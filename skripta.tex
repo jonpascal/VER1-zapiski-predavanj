@@ -1,0 +1,230 @@
+\documentclass[12pt]{book} 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel} 	
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{biblatex}           
+\usepackage{hyperref}   
+\usepackage{geometry}
+
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=30mm,
+    bottom=40mm
+}
+
+\makeatletter
+\renewcommand{\maketitle}{
+  \begin{titlepage}
+    \begin{center}
+      \vspace*{25mm} 
+      \Huge\@title\par 
+      \vspace{20mm} 
+      \large\@author \\
+      \vspace{140mm} 
+      \large\@date\par 
+    \end{center}
+  \end{titlepage}
+}
+\makeatother
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\leftmark}
+\renewcommand{\headrulewidth}{0.4pt} 
+\linespread{1.3}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\normalfont\Huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+
+
+\def\N{\mathbb{N}}
+\def\R{\mathbb{R}}
+\def\n{\noindent}
+\def\s{\vspace{10pt}}
+
+
+\theoremstyle{definition}
+\newtheorem{definicija}{Definicija}
+
+\theoremstyle{plain}
+\newtheorem{izrek}{Izrek}
+
+\theoremstyle{plain}
+\newtheorem{trditev}{Trditev}
+
+\theoremstyle{plain}
+\newtheorem{posledica}{Posledica}
+
+\theoremstyle{remark}
+\newtheorem*{opomba}{Opomba}
+
+\usepackage{thmtools}
+\declaretheoremstyle[
+    spaceabove=10pt,
+    spacebelow=10pt,
+    bodyfont=\normalfont,
+    headfont=\bfseries,
+    postheadspace=0.5em,
+    qed=$\lozenge$ 
+]{example}
+\declaretheorem[style=example, unnumbered]{zgled}
+
+
+\usepackage{filemod}
+\title{\Huge Verjetnost 1}
+\author{Napisal: Jon Pascal Miklavčič}
+\date{\filemodprintdate{\jobname}}
+
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\chapter*{Predgovor}
+Zapiski v tej skripti so bili osnovanih na rokopisih predavanj iz študijskih let pred letom 2023 in doknčno dopolnjeni z zapiski iz predavanj iz leta 2024.
+
+\tableofcontents
+
+\mainmatter
+
+\chapter{Neformalni uvod v verjetnost}
+
+Začetki verjetnosti so v 17. stoletju, iz iger na srečo (kartanje, kockanje, \dots): 
+\begin{itemize}
+    \item 17. stol.: Fermant, Pascal, Bernulli;
+    \item 18./19. stol.: Laplace, Poisson, Čebišev, Markov;
+    \item 20. stol.: Kolmogorov.
+\end{itemize}
+
+\n Izvajamo poskus in opazujemo določen pojav, ki ga imenujemo \emph{dogodek}. Ta se lahko zgodi ali ne. 
+
+\begin{zgled}
+    Poskus je met kocke. Da pade šestica, da pade sodo število pik pa sta dogodka.
+\end{zgled}
+
+\n Poskus ponovimo $n$-krat. Opazujemo dogodek $A$. S $k_n(A)$ označimo \emph{frekvenco dogodka} $A$, t.j. število tistih ponovitev poskusa, pri katerih se je dogodek $A$ zgodil. Naj bo $f_n(A)=\frac{k_n(A)}{n}$ \emph{relativna frekvenca} dogodka $A$. Dokazati je mogoče, da zporedje $\left\{f_n(A)\right\}_n$ konvergira k nekemu številu $p \in [0, 1]$; $f_n(A) \xrightarrow{n \to \infty} p$. Dobimo:
+
+\textbf{Statistično definicijo verjetnosti:}
+
+$$P(A):= p $$
+
+\n Pogosto lahko verjetnost določimo vnaprej in sicer s: 
+
+\textbf{Klasično definicijo verjetnosti:}
+
+$$P(A):= \frac{\# \text{ ugodnih izidov za dogodek } A}{\# \text{ vseh izidov}}$$
+
+pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
+
+\begin{zgled}
+    Met poštene kocke: 
+    $$P(\text{sodo število pik}) = \frac{3}{6} = \frac{1}{2}$$
+\end{zgled}
+
+\begin{zgled}
+    Kolikšna je verjetnost, da pri metu dveh poštenih kock znaša vsota pik $7$?
+    
+    \n Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$. Ne! Izidi niso enkaoverjetni. 
+    
+    Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. 
+
+    Torej vsi možni izidi, bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subset \mathbb{N}$
+    $$
+    \begin{array}{cccc}
+        (1,1) & (1,2) & \cdots & (1,6) \\
+        (2,1) & (2,2) & \ddots & (2,6)\\
+        \vdots & \ddots & \ddots & \vdots \\
+        (6,1) & (6,2) & \cdots & (6,6) \\
+    \end{array}
+    $$
+
+    Vseh izidov je torej $36$ in od tega je $6$ ugodnih. Torej $P(A)= \frac{6}{36}=\frac{1}{6}$.
+\end{zgled}
+
+\n Če je izidov neskončno, si lahko pomagamo s \textbf{Geometrijsko definicijo verjetnosti.}
+
+\begin{zgled}
+    Osebi se dogovorita za srečanje med 10. in 11. uro. Čas prihoda je slučajen. Vsak od njiju po prihodu čaka največ 20 minut. Če v tem času drugega ni, odide. Najdlje čaka do 11. ure. Kolišna je vrejetnost srečanja?
+
+    Čas začnemo šteti ob 10. uri. Vsi izidi so urejeni pari $(x, y) \in [0,1] \times[0,1]$. Ugodni izidi so $|x-y| \leq \frac{1}{3}$. Torej: 
+    $$
+    \begin{aligned}
+        \text{1) } x \geq y &: x-\frac{1}{3} \leq y \\
+        \text{2) } x \leq y &: y-x \leq \frac{1}{3} \iff y \leq x+\frac{1}{3}
+    \end{aligned}
+    $$
+
+    Torej je $$P(\text{srečanja})=\frac{1-\left(\frac{2}{3}\right)^2}{1}=\frac{5}{9}$$
+\end{zgled}
+
+\n Teorija mere se ukvarja z splošnim zapisom geometrijske definicije. 
+
+\begin{zgled}
+    Vzamemo $m, n \in \mathbb{N}$, $m>n$. $n$ krogljic slučajno razporedimo v $m$ posod. Kolikšna je verjetnost dogodka, da so vse krogljice v prvih $n$ posodah, v vsaki ena?
+
+    To je pomankljivo zastavljena naloga. Ne vemo namreč, ali med seboj krogljice razlikujemo, ali ne. Za dodatno predpostavko se ponujajo 3 možnosti: 
+
+    1) \textbf{krogljice razlikujemo:}
+    
+    \n Število vseh izidov v tem primeru je ravno število \emph{variacij} $m$ elementov na $n$ mestih \emph{s ponavljanjem}. Za vsako od $n$-tih kroglic imamo $m$ možnosti, torej je vseh možnosti $m \cdot m \cdots m=m^n$.
+    
+    \n Število ugodnih izidov pa je ravno število \emph{permutacij} $n$ krogljic v prvih $n$ posodah. Torej je ugodnih možnosti $n(n-1) \ldots 2 \cdot 1=n!$.
+    
+    Torej je $$P(A)=\frac{n !}{m^n}$$
+
+    2) \textbf{krogljic ne razlikujemo:} 
+    
+    \n V vsaki posodi je lahko več krogljic. Število vseh izidov je ravno število \emph{kombinacij s ponavljanjem}. Število kombinacij $m$ elementov s ponavljanjem na $n$ mestih je: 
+    $$
+    \binom{n+m-1}{n} = \binom{n+m-1}{m-1}
+    $$
+
+    \n Postavimo $n$ krogljic in med njih razporedimo $m-1$ črtic, ki predstavljajo stene posod:
+    $$
+    |\underbrace{\circ|\circ|\circ\circ |\circ\circ  \cdots |\circ |}_{n \text{ krogljic, } m-1 \text{ črtic}}|
+    $$
+
+    \n Na $n+m-1$ mestih moramo določiti $n$ krogljic. Ugoden izid je samo eden: 
+    $$
+    |\circ|\circ|\circ|\circ \cdots \circ|||| \cdots |
+    $$
+
+    Torej je $$P(A)=\frac{1}{\binom{n+m-1}{n}}$$
+
+    3) \textbf{krogljic ne razlikujemo, v vsaki posodi je kvečjemu ena krogljica:} 
+    
+    Število vseh izidov je ravno število \emph{kombinacij brez ponavljanja} $\binom{m}{n}$. Ugoden izid je eden. 
+
+    Torej je $$P(A)=\frac{1}{\binom{m}{n}}$$
+\end{zgled}
+
+\begin{opomba}
+V fiziki so krogljice delici (atomi, molekule, ...), posode pa fazna stanja, v katerih so lahko delci. Glede na zgornje primere ločimo:
+
+\begin{enumerate}
+    \item Maxwell-Boltzmannovo statistika, ki velja za molekule plina.
+    \item Bose-Einsteinovo statistika, ki velja za delce imenovane bozoni.
+    \item Fermi-Diracovo statistika, ki velja za fermione. 
+\end{enumerate}
+
+\n Diracovo izključitveno načelo.
+
+\end{opomba}
+
+\newpage
+
+\chapter{Aksiomatična definicija verjetnosti}
+
+
+\end{document}
