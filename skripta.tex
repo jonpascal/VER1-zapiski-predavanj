@@ -364,6 +364,158 @@ Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodko
 
 \chapter{Pogojna verjetnost}
 
+Naj bo $(\Omega, \mathcal{F}, P))$ verjetnostni prostor. Fiksirajmo dogodek $B$ s $P(B) > 0$. \emph{Pogojna verjetnost} dogodka $A$ glede na dogodek $B$ je: 
+$$
+P(A \mid B)=\frac{P(A \cap B)}{P(B)}
+$$
+
+\begin{zgled}
+    V posodi sta dve beli in ena črna krogljica. Dvakrat zaporedoma izvlečemo krogljico. Kolikšna je verjetnost, da smo drugič izbrali belo krogljico, če smo prvič izbrali belo?
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Krogljice vrečamo.
+        
+        Vseh izidov je 9: 
+        $$
+        \begin{array}{ccc}
+            B_1 B_1 & B_1 B_2 & B_1 Č \\
+            B_2 B_1 & B_2 B_2 & B_2 Č \\
+            Č B_1 & Č B_2 & Č Č
+        \end{array}
+        $$
+        \begin{flalign*}
+            &\quad P(\text{prvič belo}) = \frac{6}{9} = \frac{2}{3} & \\
+            &\quad P(\text{prvič in drugič belo}) = \frac{4}{9} & \\
+            &\quad P(\text{drugič belo | prvič belo}) = \frac{4 / 9}{6 / 9}=\frac{4}{6}=\frac{2}{3} & \\
+            &\quad P(\text{drugič belo}) = \frac{6}{5}=\frac{2}{3} & 
+        \end{flalign*}
+
+        \item Krogljic ne vračamo. 
+        
+        Vseh izidov je 6: 
+        $$
+        \begin{array}{cccccc}
+            B_1 B_2 & B_1 Č & B_2 B_1 & B_2 Č & Č B_1 & Č B_2 
+        \end{array}
+        $$
+        \begin{flalign*}
+            &\quad P(\text{prvič belo}) = \frac{4}{6} = \frac{2}{3} & \\
+            &\quad P(\text{prvič in drugič belo}) = \frac{2}{6} = \frac{1}{3} & \\
+            &\quad P(\text{drugič belo | prvič belo}) = \frac{2 / 6}{4 / 6}=\frac{1}{2}=\frac{2}{4} & \\
+            &\quad P(\text{drugič belo}) = \frac{4}{6}=\frac{2}{3} & 
+        \end{flalign*}
+    \end{enumerate}
+\end{zgled}
+
+\n Iz definicije pogojne verjetnosti dobimo:
+$$
+P(A \cap B)=P(A \mid B) \cdot P(B)  
+$$
+
+\n Za 3 dogodke $A, B, C$, kjer velja $P(B \cap C)>0$ dobimo:
+$$
+P(A \cap B \cap C)=P(A \mid B \cap C) \cdot P(B \cap C)=P(A \mid B \cap C) \cdot P(B \mid C) \cdot P(C)
+$$
+
+\n Če to posplošimo na $n$ dogodkov dobimo: 
+$$
+P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right) =P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) 
+$$
+
+Če desno stran razpišemo, res dobimo: 
+$$
+\begin{aligned}
+    P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right) &=P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) \\
+    &=P\left(A_1\right) \cdot \frac{P\left(A_1 \cap A_2\right)}{P\left(A_1\right)} \cdots \frac{P\left(A_1 \cap \cdots \cap A_n\right)}{P\left(A_1 \cap \cdots \cap A_{n-1}\right)} \\
+    &=P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right)
+\end{aligned}
+$$
+
+\begin{zgled}
+    V posodi imamo 6 modrih, 5 rdečih in 4 zelene krogljice. Brez vračanja izberemo 3 krogljice. Kolikšna je verjetnost, da so vse rdeče?
+
+    Označimo s $A_k$ dogodek, da je $k$-ta krogljica rdeče za $k=1, 2, 3$. Nalogo laho rešimo na dva načina:
+
+    \begin{enumerate}
+        \item 
+        $$
+        \begin{aligned}
+            P\left(A_1 \cap A_2 \cap A_3\right) &=P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdot P\left(A_3 \mid A_1 \cap A_2\right) \\
+            &=\frac{5}{15} \cdot \frac{4}{14} \cdot \frac{3}{13}=\frac{2}{7 \cdot 13}=\frac{2}{91}
+        \end{aligned}
+        $$
+        \item $$ P(\text{vse rdeče}) = \frac{\binom{5}{3}}{\binom{15}{3}}=\frac{\frac{5 \cdot 4 \cdot 3}{3 !}}{\frac{15 \cdot 14 \cdot 13}{3 !}}=\frac{2}{91} $$
+    \end{enumerate}
+\end{zgled}
+
+\n Imejmo poskus, ki ga opravimo v 2 korakih (fazah). 
+
+\begin{enumerate}
+    \item V prvem koraku se zgodi natanko enden izmed paroma nezdružljivih dogodkov $H_1, H_2, H_3, \ldots $ (končno ali števno mnogo). 
+    \item V drugem koraku pa nas zanima dogodek $A$. Izrazimo $P(A)$ z verjetnostmi: $$P\left(H_i\right) \quad \text{in} \quad P\left(A \mid H_i\right) \quad \text{za} \; i= 1, 2, 3, \ldots $$
+\end{enumerate}
+
+Ker je $\{ H_i \}_i$ popoln sistem dogodkov, je:
+$$
+A=A \cap \Omega=A \cap\left(\bigcup_i H_i\right)=\bigcup_i A \cap H_i
+$$
+
+in zato
+$$
+P(A)=\sum_i P\left(A \cap H_i\right)=\sum_i P\left(H_i\right) \cdot P(A \mid H_i)
+$$
+To je \textbf{formula za popolno verjetnost}.
+
+\begin{zgled}
+    Pri srečolovu je $n$ srečk, od tega je $m$ dobitnih ($m<n$). Ali imamo večje možnosti za dobitek, če izbiramo prvi ali drugi?
+
+    Če izbiramo prvi je:
+    $$
+    P(\text{dobitka}) = \frac{m}{n}
+    $$
+
+    Če izbiramo drugi je:
+    $$
+    \begin{aligned}
+        P(\text{dobitka}) &= P(\text{prvi dobi}) \cdot P(\text{dobitka | prvi dobi}) \\
+        & \qquad + P(\text{prvi ne dobi}) \cdot P(\text{dobitka | prvi ne dobi}) \\
+        &= \frac{m}{n} \cdot \frac{m-1}{n-1}+\frac{n-m}{n} \cdot \frac{m}{n-1} =\frac{m}{n}
+    \end{aligned}
+    $$
+\end{zgled}
+
+\n Pogosto nas v dvofaznem poskusu  zanima: 
+$$
+P\left(H_k \mid A\right)=\frac{P\left(H_k \cap A\right)}{P(A)}=\frac{P\left(H_k\right) \cdot P\left(A \mid H_k\right)}{\sum_i P\left(H_i\right) \cdot P\left(A \mid H_i\right)}
+$$
+To je \textbf{Bayesova formula}.
+
+\begin{zgled}
+    Test s poligrafom (detektorjem laži). Resnicoljub opravi test s poligrafom z verjetnostjo $0.95$. Z enako verjetnostjo poligraf prepozna lažnivca. Izmed 1000 oseb, med kateremi je natanko en lažnivec, slučajno izberemo eno osebo za katero poligraf pravi, da je lažnivec. Kolikšna je pogojna verjetnost, da je oseba zares lažnivec?
+
+    Označimo s $L$ dogodek, da je izbrana oseba lažnivec, $L_p$ pa dogodek, da poligraf za osebo pravi, da je lažnivec. Potem:
+    $$
+    P\left(L_p \mid L\right)=0.95, \quad  P\left(L_p \mid L^c\right)=0.05 \quad \text{in} \quad P(L)=0.001
+    $$
+
+    Zanima nas $P\left(L \mid L_p\right)$. Po Bayesovi formuli je:
+    $$
+    \begin{aligned}
+        P\left(L \mid L_p\right)&=\frac{P(L) \cdot P\left(L_p \mid L\right)}{P(L) \cdot P\left(L_p \mid L\right)+P\left(L^c\right) \cdot P\left(L_p \mid L^c\right)} \\
+        &=\frac{0.55 \cdot 0.001}{0.55 \cdot 0.001+0.05 \cdot 0.999} \\
+        &=\frac{95}{5090} = \frac{1}{50} = 0.02 
+    \end{aligned}
+    $$
+\end{zgled}
+
+\n Dogodka $A$ in $B$ sta \emph{neodvisna}, če velja: 
+$$
+P(A \cap B)=P(A) \cdot P(B)
+$$
+Če je $P(B)>0$, to enakost lahko zapišemo kot: 
+$$
+P(A)=\frac{P\left(A \cap B\right)}{P(B)}=P(A \mid B)
+$$
 
 
 \end{document}
