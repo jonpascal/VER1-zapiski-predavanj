@@ -5,6 +5,7 @@
 \usepackage{amsmath} 
 \usepackage{amssymb} 
 \usepackage{amsthm}
+\usepackage{bbm}
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -727,5 +728,262 @@ $$
 
 \chapter{Slučajne spremenljivke}
 
+Danemu poskusu priredimo številsko količino, katere vrednost je odvisna od slučaja. Imenujemo jo \emph{slučajna spremenljivka.}
+
+\begin{zgled}
+    ~
+
+    \begin{enumerate} 
+        \item Met kocke; število pik je slučajna spremenljivka.
+        \item Streljanje v tarčo; razdalja zadetka od središča tarče je slučajna spremenljivka. 
+        Na primer, verjetnost, da je razdalja $\leq x$ je sorazmerna z $x^2$.
+    \end{enumerate}
+\end{zgled}
+
+\begin{definicija}
+    \emph{Realna slučajna spremenljivka} na verjetnostnem prostoru $(\Omega, \mathcal{F}, P)$ je funkcija $X: \Omega \to \mathbb{R}$, z lastnostjo, da je za vsak $x \in \mathbb{R}$ množica:
+    $$
+    \{\omega \in \Omega: X(\omega) \leq x\}
+    $$
+
+    v $\mathcal{F}$, se pravi dogodek.
+\end{definicija}
+
+\n Oznaka: 
+$$
+\{\omega \in \Omega: X(\omega) \leq x\} \equiv X^{-1}\left((-\infty, x]\right) \equiv (X \leq x)
+$$
+
+\begin{definicija}
+    Naj bo $X$ slučajna spremenljivka. Funkcija $F_X: \mathbb{R} \to \mathbb{R}$, definirana s predpisom: 
+    $$
+    F_X(x):=P(X \leq x)
+    $$
+
+    se imenuje \emph{porazdelitvena funkcija} slučajne spremenljivke $X$.
+\end{definicija}
+
+\newpage
+
+\n Lastnosti porazdelitvene funkcije $F=F_X$:
+
+\begin{enumerate}
+    \item $0 \leq F(x) \leq 1$ za vsak $x\in \mathbb{R}.$
+    \item $F$ je naraščujoča funkcija: 
+    $$
+    x_1 < x_2 \implies F(x_1) \leq F(x_2)
+    $$
+    \begin{proof}
+        Sledi iz $\left(X \leq x_1\right) \subseteq\left(X \leq x_2\right)$ in monotonosti preslikave $P$.
+    \end{proof}
+    \item 
+    $$
+    \lim _{x \to \infty} F(x)=1, \quad \lim _{x \to -\infty} F(x)=0
+    $$
+    \begin{proof}
+        Naj bo $\{x_n\}_n \subseteq \mathbb{R}$ neomejeno strogo naraščujoče zaporedje. Potem je: 
+        \begin{align*}
+            \lim _{x \to \infty} F(x) &= \lim _{n \to \infty} F\left(x_n\right) \\
+            &=\lim _{n \to \infty} P\left(X \leq x_n\right) \\
+            &=P\left(\bigcup_{n=1}^{\infty}\left(X \leq x_n\right)\right) \tag{$\star$} \\
+            &=P(\Omega)=1 \tag{$\star \star$}
+        \end{align*}
+        
+        \quad kjer smo v $(\star)$ vrstici uporabili zveznost $P$, $(\star \star)$ vrstici pa $\forall \omega \in \Omega: \exists n: X(\omega) \leq x_n$, torej $\omega \in\left(X \leq x_n\right)$. 
+
+        Podobno se dokaže tudi druga limita.
+    \end{proof}
+    \item $F$ je z desne zvezna, t.j.:
+    $$
+    F(x+)=F(x), \quad \text{kjer je} \quad F(x+)=\lim _{\substack{h > 0 \\ h \to 0}} F(x+h)
+    $$
+    \begin{proof}
+        Naj zaporedje $\{x_n\} \subseteq \mathbb{R}$ strogo pada proti $x$. Potem je:
+        \begin{align*}
+            F(x+)&=\lim _{n \to \infty} F\left(x_n\right) \\
+            &=\lim _{n \rightarrow \infty} P\left(X \leq x_n\right) \\
+            &=P\left(\bigcap_{n=1}^{\infty}\left(X \leq x_n\right)\right) \tag{$\star$} \\
+            &=P(X \leq x) \tag{$\star \star$} \\
+            &=F(x)
+        \end{align*}
+        $(\star)$ velja, zaradi zveznosti $P$, $(\star \star)$ pa velja saj je: $$\bigcap_{n=1}^{\infty}\left(X \leq x_n\right)=(X \leq x)$$
+
+        Tukaj je:
+
+        $\quad \supseteq$: očitna 
+
+        $\quad \subseteq$: 
+        $$
+        \begin{gathered}
+            \exists \omega \in \bigcap_{n=1}^{\infty}\left(X \leq x_n\right): X(\omega) \leq x_n \quad \forall n \\
+            \qquad \implies X(\omega) \leq x$, t.j. $\omega \in(X \leq x)
+        \end{gathered}
+        $$
+    \end{proof}
+    \item 
+    \begin{itemize}
+        \item ~ \vspace{-29pt}
+        \begin{flalign*}
+            P\left(x_1<X \leq x_2\right)&=P\left(X \in\left(x_1, x_2\right]\right) & \\
+            &=P\left(\left(X \leq x_2\right) \setminus \left(X \leq x_1\right)\right) &\\
+            &= P\left(X \leq x_2\right)-P\left(X \leq x_1\right) &\\
+            &= F\left(x_2\right)-F\left(x_1\right) &
+        \end{flalign*}
+        \item ~ \vspace{-29pt}
+        \begin{flalign*}
+            P\left(x_1<X<x_2\right)&=P\left(X<x_2\right)-P\left(X \leq x_1\right) & \\
+            &=F\left(x_2-\right)-F\left(x_1\right)
+        \end{flalign*}
+
+        Saj je:$$P(X<x)=P\left(\bigcup_{n=1}^{\infty}\left(X \leq x-\frac{1}{n}\right)\right)=\lim _{n \rightarrow \infty} P\left(X \leq x-\frac{1}{n}\right)=F(x-)$$
+        \item ~ \vspace{-29pt}
+        \begin{flalign*}
+            P\left(x_1 \leq X \leq x_2\right)&=P\left(X \leq x_2\right)-P\left(X<x_1\right)& \\
+            &=F\left(x_2\right)-F\left(x_1-\right) &
+        \end{flalign*}
+        \item ~ \vspace{-10mm}
+        \begin{flalign*}
+        P\left(x_1 \leq X<x_2\right)&=P\left(X<x_2\right)-P\left(X<x_1\right) & \\
+        &=F\left(x_2-\right)-F\left(x_1-\right) &
+        \end{flalign*}
+    \end{itemize}
+\end{enumerate}
+
+Oglejmo si dva najpomembnejša razreda slučajnih spremenljivk. 
+
+\newpage
+
+\section{Diskretne slučajne spremenljivke}
+
+Slučajna spremenljivka $X$ je diskretna, če je njena zaloga vrednosti končna ali števna množica števil $\left\{x_1, x_2, x_3, \ldots\right\}$.
+
+Tedaj vpeljemo verjetnostno funkcijo:
+$$
+p_k=P\left(X=x_k\right) \quad \text{za} \quad k=1, 2, 3, \ldots
+$$
+
+in shemo:
+$$
+X:\left(\begin{array}{cccc}
+    x_1 & x_2 & x_3 & \cdots \\
+    p_1 & p_2 & p_3 & \cdots
+    \end{array}\right)
+    , \quad \sum_k p_k=1
+$$
+
+Tukaj je $\left\{\left(X=x_k\right)\right\}_k$ popoln sistem dogodkov. \s
+
+\n Porazdelitvena funkcija je: 
+$$
+F(x)=P(X \leq x)=P\left(\bigcup_{k:x_k\leq x}{\left(X=x_k\right)}\right) = \sum_{k :x_k \leq x} p_k
+$$
+
+$F$ je odsekoma konstantna.
+
+\n Na primer za $x_1<x_2<x_3$ in $p_1+p_2+p_3=1$:
+$$
+X:\left(\begin{array}{ccc}
+    x_1 & x_2 & x_3 \\
+    p_1 & p_2 & p_3
+    \end{array}\right)
+$$
+
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = left,
+        xlabel = $x$,
+        ylabel = {$y$},
+        domain=-3:3,
+        samples=100,
+        height=4cm,
+        width=10cm,
+        xmin=-3, xmax=3,
+        ymin=0, ymax=1.1,
+        ytick={0.30, 0.65, 1},
+        xtick={-2, 0, 2},
+        yticklabels={~, ~, $1$},
+        xticklabels={$x_1$, $x_2$, $x_3$},
+    ]
+    
+    \draw[->, line width=1pt] (-3, 0) -- (-2, 0);
+    \draw[->, line width=1pt] (-2, 0.3) -- (0, 0.3);
+    \draw[->, line width=1pt] (0, 0.65) -- (2, 0.65);
+    \draw[line width=1pt] (2, 1) -- (4, 1);
+
+    \draw[dashed] (-2, 0) -- (-2, 0.3);
+    \draw[decorate,decoration={brace,amplitude=5pt}] (-2, 0) -- (-2, 0.3) node[midway, left=6pt] {\footnotesize $p_1$};
+    \draw[dashed] (0, 0) -- (0, 0.65);
+    \draw[decorate,decoration={brace,amplitude=5pt}] (0, 0.3) -- (0, 0.65) node[midway, left=6pt] {\footnotesize $p_2$};
+    \draw[dashed] (2, 0) -- (2, 1);
+    \draw[decorate,decoration={brace,amplitude=5pt}] (2, 0.65) -- (2, 1) node[midway, left=6pt] {\footnotesize $p_3$};
+    \draw[dashed] (-3, 1) -- (3, 1);
+    \draw[dashed] (-3, 0.65) -- (2, 0.65);
+    \draw[dashed] (-3, 0.3) -- (0, 0.3);
+
+    \end{axis}
+\end{tikzpicture}
+
+\n \textbf{Pomembnejše diskretne porazdeitve:}
+
+\begin{enumerate}
+    \item \emph{Enakomerna diskretna porazdelitev} na $n$ točkah $x_1, x_2, \ldots, x_n$:
+    $$
+    X:\left(\begin{array}{cccc}
+        x_1 & x_2 & \ldots & x_n \\
+        \frac{1}{n} & \frac{1}{n} & \ldots & \frac{1}{n}
+        \end{array}\right)
+    $$
+    \begin{zgled}
+        Met poteven kocke, $n=6$:
+        $$
+        X:\left(\begin{array}{cccccc}
+            1 & 2 & 3 & 4 & 5 & 6 \\
+            \frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}  & \frac{1}{6}
+            \end{array}\right)
+        $$
+    \end{zgled}
+    \item \emph{Bernoullijeva porazdelitev} $\operatorname{Ber}(p)$, $p\in (0,1), q = 1-p$:
+    $$
+    x:\left(\begin{array}{cc}
+        0 & 1 \\
+        q & p
+        \end{array}\right)
+    $$
+    $(X=1)$ je dogodek, da se dogodek $A$ zgodi.
+
+    $(X=0)$ je dogodek, da se dogodek $A$ ne zgodi. 
+
+    Indikatorska funkcija: 
+    $$
+    \mathbbm{1}_A(\omega)= \begin{cases}1, & w \in A \\ 0, & w \notin A\end{cases}
+    $$
+    \item \emph{Binomska porazdelitev} $\operatorname{Bin}(n,p)$, $n \in \mathbb{N}, p \in (0,1)$:
+    $$
+    X:\left(\begin{array}{cccccc}
+        0 & 1 & 2 & 3 & \cdots & n \\
+        p_0 & p_1 & p_2 & p_3 & \cdots & p_n
+        \end{array}\right)
+    $$
+    $$
+    p_k=P(X=k)=\binom{n}{k} p^k q^{n-k}, \quad \text{kjer je} \quad q = 1-p 
+    $$
+    $(X=k)$ je dogodek, da se dogodek $A$ zgodi natanko $k$-krat v $n$ ponovitvah poskusa. 
+
+    \begin{zgled}
+        Mečemo kocko. $X$ je število šestic v $n$ metih. $X \sim \operatorname{Bin}(n, \frac{1}{6})$.
+    \end{zgled}
+    \item \emph{Poissonova porazdelitev} $\operatorname{Poi}(\lambda)$, $\lambda > 0$:
+    $$
+    p_k=P(X=k)=\frac{\lambda^k}{k !} e^{-\lambda}, \quad \text{za } k=0,1,2, \ldots
+    $$
+    Res velja: 
+    $$
+    \sum_{k=0}^{\infty} p_k=e^{-\lambda} \left(\sum_{k=0}^{\infty} \frac{\lambda^k}{k !}\right)=e^{-\lambda} e^\lambda=1
+    $$
+    \begin{zgled}
+        Število klicev v telefonskem omrežju v minuti. $n$ je število naročnikov. Recimo, da je $n=10^6$ in vsak se z verjetnostjo $p$ odloči, da bo klical. $X \sim \operatorname{Bin}(n,p)\approx \operatorname{Poi}(np)$. Primer je tudi število napačnih črk v časopisu. 
+    \end{zgled}
+    
+\end{enumerate}
 
 \end{document}
