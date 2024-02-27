@@ -15,6 +15,7 @@
 \usepackage{hyperref}   
 \usepackage{geometry}
 
+\usetikzlibrary{patterns}
 \pgfplotsset{compat=1.17}
 
 \geometry{
@@ -855,7 +856,7 @@ Oglejmo si dva najpomembnejša razreda slučajnih spremenljivk.
 
 \section{Diskretne slučajne spremenljivke}
 
-Slučajna spremenljivka $X$ je diskretna, če je njena zaloga vrednosti končna ali števna množica števil $\left\{x_1, x_2, x_3, \ldots\right\}$.
+Slučajna spremenljivka $X$ je \emph{diskretno porazdeljena}, če je njena zaloga vrednosti končna ali števna množica števil $\left\{x_1, x_2, x_3, \ldots\right\}$.
 
 Tedaj vpeljemo verjetnostno funkcijo:
 $$
@@ -983,7 +984,338 @@ $$
     \begin{zgled}
         Število klicev v telefonskem omrežju v minuti. $n$ je število naročnikov. Recimo, da je $n=10^6$ in vsak se z verjetnostjo $p$ odloči, da bo klical. $X \sim \operatorname{Bin}(n,p)\approx \operatorname{Poi}(np)$. Primer je tudi število napačnih črk v časopisu. 
     \end{zgled}
+    \item \emph{Geometrijska porazdelitev} $\operatorname{geo}(p)$, $p \in (0,1)$:
     
+    Ponavljanjo poskus in opazujmo dogodek $A$ s $P(a) = p$. $X$ je število potrebnih ponovitev, da se zgodi dogedek $A$ prvič. 
+
+    $(X=k)$ je dogodek, da se $A$ zgodi prvič k $k$-ti ponovitvi poskusa:
+    $$
+    \underbrace{\bar A\bar A\bar A \ldots \bar A}_{k-1}A
+    $$
+    $$
+    p_k=P(X=k)=p  q^{k-1}, \quad \text{za }k=1, 2, 3, \ldots
+    $$
+    Res velja: 
+    $$
+    \sum_{k=1}^{\infty} p_k=p \sum_{k=1}^{\infty} q^{k-1}=p \frac{1}{1-q}=1
+    $$
+    \begin{zgled}
+        Mečemo kocko. $X$ je število potrebnih metov, da pade šestica prvič. $X \sim \operatorname{geo}(\frac{1}{6})$.
+    \end{zgled}
+    \item \emph{Pascalova} oz. \emph{nenegativna binomska porazdelitev} $\operatorname{Pas}(m,p)$, $m \in \mathbb{N}, p \in (0,1)$:
+    
+    $X$ je število potrebnih ponovitev poskusa, da se dogodek $A$ zgodi $m$-krat.
+
+    $(X=k)$ je dogodek, da se $A$ zgodi $m$-tič v $k$-ti ponovitvi.
+    $$
+    \underbrace{A A \bar A A \bar A \ldots \bar A A}_{\substack{m-1 \, A \\ k-m \, \bar A}}A
+    $$
+    $$
+    p_k=P(x=k)=\binom{k-1}{m-1} p^m q^{k-m}, \quad \text{za } k=m, m+1, m+2, \ldots
+    $$
+
+    $\sum_{k=m}^{\infty} p_k = 1$ se dokaže računsko z $(m-1)$-kratnim odvajanjem vrste $1+q+q^2+ \cdots = \frac{1}{1-q}$ ali pa direktno z uporabo vrste $(1-q)^{-m}=\sum_{j=0}^{\infty}\binom{-m}{j} (-q)^j$. \s
+    
+    Geometrijska porazdelitev je poseben primer Pascalove: $\operatorname{Pas}(1,p) = \operatorname{geo}(p)$
+
+    \begin{zgled}
+        Mečemo kocko. $X$ je število potrebnih meto, da šestica pade $m$ krat. $X \sim \operatorname{Pas}(m, \frac{1}{6})$.
+    \end{zgled}
+
+    \item \emph{Hipergeometrijska porazdelitev} $\operatorname{Hip}(n; M, N)$, $n \leq \min \{M, N-M\}$:
+    
+    V posodi imamo $M$ belih in $(N-M)$ črnih krogljic. Slučajno izvlečemo $n$ krogljic. $X$ naj bo število belih krogljic med izvlečenimi:
+    $$
+    p_k=P(x=k)=\frac{\binom{M}{k} \binom{N-M}{n-k}}{\binom{N}{n}}
+    $$
+    Ker je $\{(X=k\}_{k=0}^n$ popoln sistem dogodkov, je $\sum_{k=0}^n p_k=1$. Torej velja:
+    $$
+    \sum_{k=0}^{n} \binom{M}{k} \binom{N-M}{n-k} = \binom{N}{n}
+    $$
+    \begin{zgled}
+        V jezeru je $N$ rib, od tega je $M$ krapov. Ulovimo $n$ rib. Naj bo $X$ število ujetih krapov. $X \sim \operatorname{Hip}(n;M,N)$.
+    \end{zgled}
+
+    Vzemimo, da je $n \ll \min\{M, N-M\}$. Tedaj ne naredimo velike napake, če krogljice vrečamo. Tedaj je $X \sim \operatorname{Bin}(n, \frac{M}{N})$ ozirioma $p_k = \binom{n}{k} \left(\frac{M}{N}\right)^k \left(\frac{N-M}{N}\right)^{n-k}$ za $k=0, 1, \ldots , n.$
+
 \end{enumerate}
 
+\section{Zvezne slučajne spremenljivke}
+
+Slučajna spremenljivka $X$ je \emph{zvezno porazdeljena}, če obstaja nenegativna integrabilna funkcija $p_X$, imenovana \emph{gostota verjetnosti}, da za vsak $x \in \mathbb{R}$ velja:
+$$
+F_X(x)=\int_{-\infty}^x p_X(t) \, d t
+$$
+
+Pogosto se gostota označuje s $f_X$. 
+
+\n Tedaj je $F_X=F$ zvezna funkcija. Toda obstajajo tudi zvezne porazdelitvene funkcije, ki nimajo gostote. \s
+
+\n Ker je $\lim _{x \rightarrow \infty} F(x)=1$, je $\int_{-\infty}^{\infty} p(t) \, d t=1$. \s
+
+\n Če je $p$ zvezna v toči $x$, potem je $F$ odvedljiva v $x$ in velja $F^{\prime}(x)=p(x)$. \s
+
+\n Za vsak $x \in \mathbb{R}$ velja $P(X=x)=F(x)-F(x-)=0$. Če je $x_1 \leq x_2$, je potem:
+$$
+P\left(x_1 \leq X_1 \leq x_2\right)=F\left(x_2\right)-F\left(x_1-\right)=\int_{x_1}^{x_2} p(t) \, d t
+$$
+
+\newpage
+
+\n \textbf{Nekatere pomembnejše zvezne porazdelitve:}
+
+\begin{enumerate}
+    \item \emph{Enakomerna zvezna porazdelitev} na $[a, b]$, $a<b$:
+    $$
+    p(x)=
+    \begin{cases}
+        \frac{1}{b-a}, & \text{ če } a\leq x \leq b \\
+        \, \, 0, & \text{ sicer }
+    \end{cases}
+    $$
+    \begin{tikzpicture}
+
+        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $x$,
+            ylabel = {$y$},
+            domain=-3:3,
+            samples=100,
+            height=4cm,
+            width=10cm,
+            xmin=-3, xmax=3,
+            ymin=0, ymax=0.5,
+            ytick={0.3},
+            xtick={-2, 0.5, 2},
+            yticklabels={$\frac{1}{b-a}$},
+            xticklabels={$a$, $x$, $b$},
+            yticklabel style={xshift=0cm}
+        ]
+        
+        \draw[line width=1pt] (-3, 0) -- (-2, 0);
+        \draw[line width=1pt] (-2, 0.3) -- (2, 0.3);
+        \draw[line width=1pt] (2, 0) -- (3, 0);
+    
+        \draw[dashed] (-2, 0) -- (-2, 0.3);
+        \draw[dashed] (2, 0) -- (2, 0.3);
+        \draw[dashed] (-3, 0.3) -- (2, 0.3);
+    
+        \fill[siva] (-2,0) rectangle (0.5,0.3);
+    
+        \end{axis}
+    \end{tikzpicture}
+    $$
+    F(x)=\int_{-\infty}^x p(t) \, d t= 
+    \begin{cases}
+        0, & \text{ če } x \leq a \\
+        \frac{x-a}{b-a}, & \text{ če } a \leq x \leq b \\
+        1, & \text{ če } x \geq b
+    \end{cases}
+    $$
+    \item \emph{Normalna} ali \emph{Gaussova porazdelitev} $\operatorname{N}(\mu, \sigma)$, $(\mu \in \mathbb{R}, \sigma>0)$:
+    $$
+    p(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+    $$
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $x$,
+            ylabel = {$y$},
+            domain=-3:3,
+            samples=100,
+            height=4cm,
+            width=10cm,
+            xmin=-3, xmax=3,
+            ymin=0, ymax=0.5,
+            xtick={0},
+            xticklabels={$\mu$},
+            yticklabels={}
+        ]
+        
+        \addplot [black, thick] {1/(sqrt(2*pi))*exp(-(x^2/2)};
+        \draw[dashed] (0, 0) -- (0, 0.3989);
+
+        \end{axis}
+    \end{tikzpicture}
+
+    Če je $\sigma$ majhen: \hspace{5cm} Če je $\sigma$ velik:
+    \begin{figure}[h]
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    axis lines = left,
+                    xlabel = $x$,
+                    ylabel = {$y$},
+                    domain=-3:3,
+                    samples=100,
+                    height=4cm,
+                    width=7cm,
+                    xmin=-3, xmax=3,
+                    ymin=0, ymax=1,
+                    xtick={0},
+                    xticklabels={$\mu$},
+                    yticklabels={}
+                ]
+                
+                \addplot [black, thick] {1/(sqrt(2*pi*0.22))*exp(-(x^2/(2*0.05))};
+                \draw[dashed] (0, 0) -- (0, 0.8505);
+        
+                \end{axis}
+            \end{tikzpicture}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    axis lines = left,
+                    xlabel = $x$,
+                    ylabel = {$y$},
+                    domain=-3:3,
+                    samples=100,
+                    height=4cm,
+                    width=7cm,
+                    xmin=-3, xmax=3,
+                    ymin=0, ymax=0.5,
+                    xtick={0},
+                    xticklabels={$\mu$},
+                    yticklabels={}
+                ]
+                
+                \addplot [black, thick] {1/(sqrt(2*pi*4))*exp(-(x^2/4)};
+                \draw[dashed] (0, 0) -- (0, 0.1995);
+        
+                \end{axis}
+            \end{tikzpicture}
+        \end{minipage}
+    \end{figure}
+
+    $$
+    F(x)=\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, d t \stackrel{\star}{=} \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}s^2} \, ds = \frac{1}{2}+\phi\left(\frac{x-\mu}{\sigma}\right)
+    $$
+
+    Kjer smo v enakosti $\star$ uvedli novo spremenljivko $s=\frac{t-\mu}{\sigma}$.
+    
+    \hspace{20pt} Tukaj je: $$\phi(x)=\frac{1}{\sqrt{2 \pi}} \int_0^x e^{2 \pi t^2} \, d t$$ \s
+
+    $N(0,1)$: standardna normalna porazdelitev:
+    $$
+    p(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}
+    $$
+    
+    Laplaceova formula: za velike $n$ je:
+    $$
+    \operatorname{Bin}(n,p) \approx \operatorname{N}(np, \sqrt{npq})
+    $$
+    \begin{zgled}
+        Sistolični krvni tlak je an populciji približno normalno porazdeljen: \s
+        
+        \begin{tikzpicture}
+
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+            \begin{axis}[
+                axis lines = left,
+                xlabel = $x$,
+                ylabel = {$y$},
+                domain=-3:3,
+                samples=100,
+                height=4cm,
+                width=10cm,
+                xmin=-3, xmax=3,
+                ymin=0, ymax=0.5,
+                xtick={0, 1},
+                xticklabels={120, 130},
+                yticklabels={}
+            ]
+            
+            \addplot [black, thick] {1/(sqrt(2*pi))*exp(-(x^2/2)};
+            \addplot [fill=siva, domain=0:1] {1/(sqrt(2*pi))*exp(-(x^2/2)} \closedcycle;
+            \draw[dashed] (0, 0) -- (0, 0.3989);
+            \draw[dashed] (1, 0) -- (1, 0.2420);
+        
+            \end{axis}
+        \end{tikzpicture}
+
+        delež ljudi, ki imajo tlak med $120$ in $130 \operatorname{mm\ Hg}$.
+    \end{zgled}
+
+    \item \emph{Eksponenta porazdelitev} $\operatorname{Exp}(\lambda)$, $\lambda > 0$:
+    $$
+    p(x)= \begin{cases}\lambda e^{-\lambda x}, & \text { če } x \geq 0 \\ 0, & \text { sicer }\end{cases}
+    $$
+
+    \begin{tikzpicture}
+
+        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $x$,
+            ylabel = {$y$},
+            domain=0:5,
+            samples=100,
+            height=4cm,
+            width=10cm,
+            xmin=-1, xmax=5,
+            ymin=0, ymax=1.2,
+            axis y line=middle,
+            xtick={0, 2},
+            xticklabels={0, $x$},
+            yticklabels={}
+        ]
+        
+        \addplot [black, thick] {e^(-x)};
+        \addplot [fill=siva, domain=0:2] {e^(-x)} \closedcycle;
+
+        \draw[line width=1pt] (-1, 0) -- (0, 0);
+        \draw[dashed] (0, 0) -- (0, 1);
+        \draw[dashed] (2, 0) -- (2, 0.1353);
+    
+        \end{axis}
+    \end{tikzpicture}
+
+    $$
+    F(x)= \begin{cases}1-e^{-\lambda x}, & \text { če } x \geq 0 \\ 0, & \text { sicer }\end{cases}
+    $$
+
+    \begin{tikzpicture}
+
+        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $x$,
+            ylabel = {$y$},
+            domain=0:5,
+            samples=100,
+            height=4cm,
+            width=10cm,
+            xmin=-1, xmax=5,
+            ymin=0, ymax=1.2,
+            axis y line=middle,
+            xtick={0, 2},
+            ytick={1},
+            xticklabels={0, $x$},
+            yticklabels={1}
+        ]
+        
+        \addplot [black, thick] {1-e^(-x)};
+
+        \draw[line width=1pt] (-1, 0) -- (0, 0);
+        \draw (2, 0) -- (2, 1-0.1353);
+        \draw[dashed] (0, 1) -- (5, 1);
+    
+        \end{axis}
+    \end{tikzpicture}
+
+    \begin{zgled}
+        Radioaktivni razpad - potreben čas, da se nekaj zgodi. 
+    \end{zgled}
+
+\end{enumerate}
 \end{document}
