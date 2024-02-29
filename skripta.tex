@@ -1577,4 +1577,234 @@ za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\lef
         &=F_X(x)  F_Y(y) &
     \end{flalign*}
 \end{proof}
+
+\chapter[Matematično upanja oz. pričakovana vrednost]{Matematično upanja oz.\\pričakovana vrednost}
+
+\n Za končno slučajno spremenljivko 
+    $X:\left(\begin{array}{llll}
+    x_1 & x_2 & \cdots & x_n \\
+    p_1 & p_2 & \cdots & p_n
+    \end{array}\right)$
+je \emph{matematično upanje} definirano kot: 
+$$
+E(x):=\sum_{k=1}^n x_k p_k
+$$
+
+Tako je v primeru $p_1=p_2=\ldots=p_n=\frac{1}{n}$ matematično upanje enako povprečni vrednosti: $E(x)=\frac{x_n+x_2+\cdots+x_n}{n}$. 
+
+\n Naj ima sedaj $X$ neskončno zalogo vrednosti. Če je $X$ diskretna slučajna spremenljivka, s $p_k=P\left(X=x_k\right)$ za $k \in \mathbb{N}$, potem ima $X$ matematično upanje, če je: 
+$$
+\sum_{k=1}^{\infty}\left|x_k\right| p_k<\infty
+$$
+
+Tedaj je \emph{matematično upanje} definirano kot vsota vrste: 
+$$
+E(x):=\sum_{k=1}^{\infty} x_k p_k
+$$
+
+\n Če je $X$ zvezna slučajna spremenljivka, z gostoto $p(x)$, ima $X$ matematično upanje, če je:
+$$
+\int_{-\infty}^{\infty}|x|  p(x) \, d x<\infty
+$$
+
+Tedaj je \emph{matematično upanje} definirano kot: 
+$$
+E(x)=\int_{-\infty}^{\infty} x \, p(x) \, d x
+$$
+
+\begin{zgled}
+    ~
+    
+    \begin{enumerate}
+        \item $X \sim \operatorname{Ber}(p), p >0$, $X:\left(\begin{array}{cc} 0 & 1 \\ q & p \end{array}\right)$:
+        $$
+        E(x)=0 \cdot q+1 \cdot p=p
+        $$
+        \item \emph{Izrojena} ali \emph{degenerirana} slučajna spremenljivka $\exists x_0 \in \mathbb{R}: P\left(X=x_0\right)=1$, t.j.: $X:\left(\begin{array}{c} x_0 \\ 1 \end{array}\right)$:
+        $$
+        E(x)=x_0 \cdot 1=x_0
+        $$
+        \item $X \sim \operatorname{Poi}(\lambda), \lambda >0$, $p_k=\frac{\lambda^k}{k !}  e^{-\lambda}$ in $x_k = k$, za $k=0, 1, 2, \ldots$:
+        $$
+        E(x)=\sum_{k=0}^{\infty} x_k \, p_k=\sum_{k=0}^{\infty} k \, \frac{\lambda^k}{k !}  e^{-\lambda}=e^{-\lambda} \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1) !} = e^{-\lambda} \lambda e^\lambda=\lambda
+        $$
+        \item Enakomerna zvezna porazdelitev na $[a, b]$:
+        $$
+        \begin{aligned}
+            E(X)&=\int_{-\infty}^{\infty} x \, p(x) \, d x \\
+            &=\int_a^b x \, \frac{1}{b-a} \, d x \\
+            &=\frac{1}{b-a} \, \int_a^b x \,d x \\
+            &=\left.\frac{1}{b-a} \frac{x^2}{2}\right|_a ^b \\
+            &=\frac{b^2-a^2}{(b-a) 2} \\
+            &=\frac{a+b}{2}
+        \end{aligned}
+        $$
+        \item $X \sim \operatorname{N}(0,1)$, $p(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}$:
+        \begin{align*}
+            \int_{-\infty}^{\infty}|x| e^{-\frac{x^2}{2}} \, d x&=2 \int_0^{\infty} x \, e^{-\frac{x^2}{2}} \, d x \\
+            &=2 \int_0^{\infty} e^{-u} \, d u \tag{$\star$} \\
+            &=\left.2 \left(-e^{-u}\right)\right|_0 ^{\infty}=2<\infty
+        \end{align*}
+        $\implies$ $X$ ima matematično upanje. V vrstici $(\star)$ smo uporabili per-partes.
+        $$
+        E(x)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} x \, e^{-\frac{x^2}{2}} \, d t \stackrel{\text{liha}}{=} 0
+        $$
+        \item Cauchyjeva porazdelitev, $p(x)=\frac{1}{\pi\left(1+x^2\right)}$:
+        $$
+        \int_{-\infty}^{\infty}|x| \frac{1}{\pi\left(1+x^2\right)} \, d x =\frac{2}{\pi} \int_0^{\infty} \frac{x}{1+x^2} \, d x = \left.\frac{1}{\pi} \ln \left(1+x^2\right)\right|_0 ^{\infty}=\infty
+        $$
+        $\implies$ $X$ nima matematičnega upanja.
+        \item $1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\ldots$ pogojno konvergentna vrsta. Če vzamemo: 
+        $$
+        x_k p_k=\frac{(-1)^{k+1}}{k}, \quad \text{za} \quad k=1,2,\ldots
+        $$
+        $$
+        p_k=2^{-k}=\frac{1}{2^k}, \quad \sum_{k=1}^{\infty} p_k=1, \quad x_k=\frac{(-1)^{k+1}}{k} 2^k
+        $$
+        $X$ nima matematičnega upanja, ker vrsta ne konvergira absolutno. 
+    \end{enumerate}
+\end{zgled}
+
+\begin{trditev}
+    Naj bo $f: \mathbb{R} \rightarrow \mathbb{R}$ funkcija: 
+    \begin{enumerate}[label=(\alph*)]
+        \item Če je 
+            $X:\left(\begin{array}{cccc}
+            x_1 & x_2 & x_3 & \cdots \\
+            p_1 & p_2 & p_3 & \cdots
+            \end{array}\right)$, potem je:
+        $$
+        E(f \circ X)=\sum_k f\left(x_k\right) p_k
+        $$
+        če matematično upanje obstaja, t.j. vrsta absolutno konvergira.
+        \item Če je $X$ zvezno porazdeljena z gostoto $p(x)$, potem je: 
+        $$
+        E\left(f \circ X\right)=\int_{-\infty}^{\infty} f(x) p(x) \, d x
+        $$
+        če je integral absolutno konvergenten.
+    \end{enumerate}
+\end{trditev}
+
+\begin{proof}(samo (a))
+    $$
+    f \circ X \equiv f(X):\left(\begin{array}{cccc}
+        f\left(x_1\right) & f\left(x_2\right) & f\left(x_3\right) & \cdots \\
+        p_1 & p_2 & p_3 & \cdots
+        \end{array}\right)
+    $$
+    $$
+    E(f \circ x)=\sum_h f\left(x_k\right) p_k
+    $$
+\end{proof}
+
+\begin{posledica}
+    Slučajna spremenljivka $X$ ima matematično upanje $\iff$ $|X|$ ima matematično upanje. Tedaj velja: 
+    $$
+    |E(X)| \leq E(|X|)
+    $$
+\end{posledica}
+    
+\begin{proof}
+    $$
+    |E(X)|=\left|\sum_k x_k  p_k \right| \leq \sum_k\left|x_k\right| p_k = E(|X|)
+    $$
+\end{proof}
+
+\begin{posledica}
+    Za $a \in \mathbb{R}$ in slučajno spremenljivko $X$ z matematičnim upanjem velja: 
+    $$
+    E(a \cdot x)=a \cdot E(x)
+    $$
+
+    Upanje je homogeno.
+\end{posledica}
+
+\begin{proof}
+    Vzamemo: 
+    $$
+    f(x)=a \cdot x
+    $$
+\end{proof}
+
+\n Podobno kot zadnjo trditev se dokaže:
+\begin{trditev}
+    Naj bo $f: \mathbb{R}^2 \to \mathbb{R}$ funkcija, $(X,Y)$ pa diskretno porazdeljen slučajni vektor: 
+    $$
+    p_{i j}=P\left(x=x_i, y=y_j\right), \quad \text{za} \quad i, j=1,2, \ldots
+    $$
+    Potem je $f(X, Y): \Omega \to \mathbb{R}$ slučajna spremenljivka in velja: 
+    $$
+    E(f(X, Y))=\sum_i \sum_j f\left(x_i, y_j\right)  p_{i j}
+    $$
+
+    če vrsta absolutno konvergira.
+\end{trditev}
+
+\begin{trditev}
+    Če imata $X$ in $Y$ matematično upanje, ga ima tudi $X+Y$ in velja: 
+    $$
+    E(X+Y)=E(X)+E(Y)
+    $$
+
+    Upanje je aditivno. 
+\end{trditev}
+
+\begin{proof}
+    $$
+    \begin{aligned}
+        E(X+Y)&=\sum_i \sum_j\left(x_i+y_j\right) p_{i j} \\
+        &=\sum_i x_i \sum_j p_{i j}+\sum_j y_j \sum_i p_{i j} \\
+        &=\sum_i x_i p_i+\sum_j y_j q_j \\
+        &=E(X) + E(Y)
+    \end{aligned}
+    $$
+\end{proof}
+
+\begin{posledica}
+    Za slučajne spremenljivke $X_1, X_2, \ldots, X_n$, ki imajo matematično upanje, velja: 
+    $$
+    E\left(a_1 X_1+a_2 X_2+\ldots+a_n X_n\right)=a_1 E\left(X_1\right)+a_2 E \left(X_2\right)+\cdots+a_n E\left(X_n\right)
+    $$
+
+    kjer so $a_1, a_2, \ldots, a_n \in \mathbb{R}$.
+\end{posledica}
+
+\begin{zgled}
+    ~
+
+    \begin{enumerate}
+        \item Naj ima $X$ matematično upanje. Potem je: 
+        $$
+        E(X-E(X))=E(X)-E(\underbrace{E(X)}_{\text{konst.}})=E(X)-E(X)=0
+        $$
+        \item $X_k \sim \operatorname{Ber}(p)$, torej $X_k:\left(\begin{array}{cc}0 & 1 \\1-p & p\end{array}\right)$ za $k=1, 2, \ldots$. $X:=X_1+ \cdots +X_n$:
+        $$
+        E(X)=E\left(X_1\right)+\cdots+E\left(X_n\right)=n p
+        $$
+        Imejmo Bernoullijevo zaporedje neodvisnih ponovitev poskusa $A$, $P(A)=p$. $X_k:\left(\begin{array}{cc}0 & 1 \\1-p & p\end{array}\right)$; $(X_k=1)$, če se dogodek $A$ zgodi v $k$-ti ponovitvi poskusa. Potem je $X=X_1+\cdots+X_n$ frekvenca dogodka $A$ v $n$ ponovitvah. Tedaj je $X \sim \operatorname{Bin}(n,p)$.
+
+        Torej je $E(X)=n p$. To se lahko vidi tudi direktno: 
+        $$
+        \begin{aligned}
+            E(x)&=\sum_{k=0}^n k \binom{n}{k} p^k q^{n-k} \\
+            &=\sum_{k=1}^n k  \frac{n}{k} \binom{n-1}{k-1} p^k q^{n-k} \\
+            &=np \sum_{k=1}^n\binom{n-1}{k-1} p^{k-1} q^{n-k} \\
+            &=n p (p+q)^{n-1} \\
+            &= np
+        \end{aligned}
+        $$
+    \end{enumerate}
+\end{zgled}
+
+\begin{zgled}
+    $X \sim N(\mu, \sigma)$, $\mu \in \mathbb{R}, \sigma>0$:
+    $$
+    p(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+    $$
+    
+    Na vajah: $Y=\frac{X-\mu}{\sigma} \sim N(0,1)$. Ker je $E(Y) = 0$, je:
+    $$
+    E(x)=E(\sigma Y+\mu) = \sigma E(Y)+\mu=\mu
+    $$
+\end{zgled}
 \end{document}
