@@ -2106,6 +2106,8 @@ Zanjo velja $\sigma(a X)=\left|a\right| \sigma(X)$ za $a \in \mathbb{R}$. \s
     $\quad p_1=p, \quad  p_2=p q, \quad p_3=p  q^2, \quad p_4 = p q^3, \quad\ldots$
 \end{zgled}
 
+\s
+
 \n \emph{Kovarianca} slučajne spremenljivke $X$ in $Y$ se definirana kot: 
 $$
 \begin{aligned}
@@ -2115,4 +2117,212 @@ $$
     &=E(XY)-E(X) E(Y)
 \end{aligned}
 $$
+
+\n Lastnosti kovariance: 
+
+\begin{enumerate}
+    \item $K(X,X) = D(X)$
+    \item $X$ in $Y$ sta nekorelirani $\iff$ $K(X,Y) = 0$
+    \item $K$ je simetrična in bilinearna funkcija:
+    \begin{flalign*}
+        & \quad K(X, Y)=K(Y, X), \quad \text{za} \quad a, b \in \mathbb{R} & \\
+        & \quad K(a X+b Y, Z)=a K(X, Z)+b K(Y, Z) & \\
+    \end{flalign*}
+    \item Kovarianca obstaja, če obstaja $D(X)$ in $D(Y)$. Tedaj velja:
+    $$
+    |K(X, Y)| \leq \sqrt{D(X) D(Y)}=\sigma(X) \sigma(Y),
+    $$
+
+    kar sledi iz Cauchy-Schwarzove neenakosti za $X-E(X)$ in $Y-E(Y)$. 
+    
+    Enakost velja $\iff$ $Y-E(Y)= \pm \frac{\sigma(Y)}{\sigma(X)} (X-E(X))$ z verjetnostjo $1$. 
+    \item Če imata $X$ in $Y$ disperzijo, potem jo ima tudi $X+Y$ in velja: 
+    $$
+    D(X+Y)=D(X)+D(Y)+2 K(X, Y)
+    $$
+    
+    Če sta $X$ in $Y$ nekorelirani, je potem: 
+    $$
+    D(X+Y)=D(X)+D(Y)
+    $$ 
+    \begin{proof}
+        Sledi iz enakosti: 
+        $$
+        \begin{aligned}
+            (X+Y-E(X+Y))^2&=\left((X-E(X))+(Y-E(Y))\right)^2 \\
+            &= (X-E(X))^2+(Y-E(Y))^2 +\\
+            &\hspace{4cm} +2(X-E(X)) (Y-E(Y))
+        \end{aligned}
+        $$
+    \end{proof}
+    \item Posplošitev zadnje lastnosti: 
+    $$
+    D\left(X_1+\cdots+X_n\right)=\sum_{k=1}^n D\left(X_k\right)+2 \sum_{i=1}^{n-1} \sum_{j=i+1}^n K\left(X_i, X_j\right)
+    $$
+    Posebej: če so $X_1, \ldots X_n$ paroma nekorelirane potem je: 
+    $$
+    D\left(X_1+\cdots+X_n\right)=D\left(X_1\right)+\cdots+D\left(X_n\right)
+    $$
+\end{enumerate}
+
+\begin{zgled}
+    Za $X \sim \operatorname{Bin}(n,p)$, je $X=X_1+\cdots+X_n$, kjer velja:
+    $$
+    X_k:\left(\begin{array}{cc} 0 & 1 \\ q & p \end{array}\right), \quad \text{oziroma} \quad X_k= \begin{cases}1, & \text { zgodi se $A$ v $k$-ti ponovitvi } \\ 0, & \text { sicer }\end{cases} 
+    $$
+
+    \n $X_1, \ldots X_n$ so neodvisne slučajne spremenljivke, zato je: 
+    $$
+    D\left(X_k\right)=E\left(X_k^2\right)-\left(E\left(X_k\right)\right)^2=p-p^2=p(1-p)=p q
+    $$
+
+    in potem: 
+    $$
+    D(X)=D\left(X_1+\cdots+X_n\right)=D\left(X_1\right)+\cdots+D\left(X_n\right)=n p q
+    $$
+\end{zgled}
+
+\n \emph{Standardizacija} slučajne spremenljivke $X$ je slučajna spremenljivka: 
+$$
+X_s=\frac{X-E(X)}{\sigma(X)}
+$$
+
+Tedaj je $E\left(X_s\right)=0$ in $D\left(X_s\right)=1$, saj je: 
+$$
+D\left(X_s\right)=\frac{1}{\sigma(X)^2} \frac{D(X-E(X))}{D(X)}=1
+$$
+
+\begin{zgled}
+    Na vajah boste pokazali: 
+    $$
+    X \sim \operatorname{N}(\mu, \sigma) \implies X_s = \frac{X - \mu}{\sigma} \sim \operatorname{N}(0,1)
+    $$  
+\end{zgled}
+
+\n \emph{Korelacijski koeficient} slučajnih spremenljivk $X$ in $Y$ je: 
+$$
+r(X, Y)=\frac{K(X, Y)}{\sigma(X) \sigma(Y)}=\frac{E((X-E(X)) (Y-E(Y))}{\sigma(X) \sigma(Y)} = E(X_s Y_s)
+$$
+
+\n Lastnosti: 
+
+\begin{enumerate}
+    \item $r(X, Y)=0$ $\iff$ $X$ in $Y$ sta nekorelirani.
+    \item $-1 \leq r(X, Y) \leq 1$
+    \begin{proof}
+        Sledi iz lastnosti (4) za $K$.  
+    \end{proof}
+    \item ~ \vspace{-31pt}
+    $$
+    \begin{aligned}
+        &r(X, Y)=1 \iff Y=\frac{\sigma(Y)}{\sigma(X)} (X-E(X))+E(Y) \quad \text{z verjetnostjo $1$} \\
+        &r(X, Y)=-1 \iff Y=-\frac{\sigma(Y)}{\sigma(X)} (X-E(X))+E(Y) \quad \text{z verjetnostjo $1$}
+    \end{aligned}
+    $$
+\end{enumerate}
+
+\begin{zgled}
+    Vržemo 2 kocki. $X$ je število pik na prvi kocki in $Y$ število pik na drugi kocki. Zaradi neodvisnosti je $K(X,Y) = 0$. 
+
+    Definiramo $Z=X+Y$. Izračunajmo $r(X,Z)$:
+    \begin{flalign*}
+        &\qquad E(X)=E(Y)=\frac{7}{2} & \\
+        &\qquad E\left(X^2\right)=\frac{1}{6}(1+4+9+16+25+36)=\frac{91}{6} & 
+    \end{flalign*}
+    \begin{flalign*}
+        &\qquad D(X)=E\left(X^2\right)-(E(X))^2=\frac{91}{6}-\frac{49}{4}=\frac{182-147}{12}=\frac{35}{12} & \\
+        &\qquad K(X, Z)=K(X, X+Y)=K(X, X)+K(X, Y)=D(X)+0=\frac{35}{12} & \\
+        &\qquad D(Z)=D(X)+D(Y)=2 \cdot \frac{35}{12}=\frac{35}{6}, \quad \text{ker sta $X$ in $Y$ neodvisni.} & \\
+        &\qquad r(X, Z)=\frac{K(X, Z)}{\sqrt{D(X) D(Z)}}=\frac{\frac{35}{12}}{\sqrt{\frac{35}{12} \cdot \frac{35}{6}}}=\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2} &
+    \end{flalign*}
+\end{zgled}
+
+\chapter[Pogojna porazdelitev in pogojno matematično upanje]{Pogojna porazdelitev in\\pogojno matematično upanje}
+
+\n Fiksirajmo dogodek $B$ s $P(B)>0$. \emph{Pogojna porazdelitvena funkcija} slučajne spremenljivke $X$ gleda na pogoj $B$ je: 
+$$
+F_X(x \mid B) = P(X \leq x \mid B)=\frac{P((X \leq x) \cap B)}{P(B)}
+$$
+
+Ima enake lastnosti kot porazdelitvena funkcija. 
+
+\n Naj bo $(X,Y)$ diskreten slučajni vektor: 
+$$
+p_{i j}=P\left(X=x_i, Y=y_j\right), \quad B:=\left(Y=y_j\right), \quad P(B)=P\left(Y=y_j\right)=q_j
+$$
+
+\n Potem je pogojna porazdelitvena funkcija slučajne spremenljivke $X$ glede na $Y=y_j$: 
+$$
+\begin{aligned}
+    F_X\left(x \mid y_j\right)&=F_X\left(x \mid Y=y_j\right) \\
+    &=P\left(X \leq x \mid Y=y_j \right) \\
+    &=\frac{1}{q_j} P\left((X \leq x) \cap\left(Y = y_j\right)\right) \\
+    &=\frac{1}{q_j} \sum_{i : x_i \leq x} p_{i j}
+\end{aligned}
+$$
+
+\n Vpeljemo \emph{pogojno verjetnostno funkcijo}:
+$$
+p_{i \mid j}=P\left(X=x_i \mid Y=y_j\right)=\frac{P\left(X=x_i, Y=y_j\right)}{P\left(Y=y_j\right)}=\frac{p_{i j}}{q_j}
+$$
+
+Tedaj je:
+$$
+F_X\left(x \mid Y=y_j\right)=\sum_{i: x_i \leq x} p_{i \mid j}
+$$
+
+\n \emph{Pogojno matematično upanje} slučajne spremenljivke $X$ gleda na $Y=y_j$ je matematično upanje te porazdelitve: 
+$$
+E\left(X \mid y_j\right) \equiv E\left(X \mid Y=y_j\right)=\sum_i x_i \, p_{i \mid j}=\frac{1}{q_j} \sum_i x_i \, p_{i j}
+$$
+
+Tako dobimo novo slučajno spremenljivko: 
+$$
+E(X \mid Y):\left(\begin{array}{ccc}
+    E\left(X \mid y_1\right) & E\left(X \mid y_2\right) & \cdots \\
+    q_1 & q_2 & \cdots
+    \end{array}\right)
+$$
+
+\emph{Pogojno matematično upanje} slučajne spremenljivke $X$ glede na slučajno spremenjivko $Y$. 
+
+\n Označimo $\varphi\left(y_j\right):=E\left(X \mid y_j\right)$ za vse $j$ in dobimo: 
+$$
+E(X \mid Y):=\varphi(Y):\left(\begin{array}{ccc}
+    \varphi\left(y_1\right) & \varphi\left(y_2\right) & \cdots \\
+    q_1 & q_2 & \cdots 
+    \end{array}\right)
+$$
+
+$\varphi$ je \emph{regresijska funkcija}. 
+
+\n Za $E(X,Y)$ velja zveza: 
+$$
+\begin{aligned}
+    E(E(X \mid Y))&=\sum_j E\left(X \mid y_j\right) q_j \\
+    &=\sum_j \sum_i x_i \, p_{i j} \\
+    &=\sum_i x_i\left(\sum_j p_{i j}\right) \\
+    &=\sum_i x_i \, p_i \\
+    &=E(X)
+\end{aligned}
+$$
+
+\n Vzemeimo, da sta $X$ in $Y$ neodvisni. Tedaj: 
+$$
+p_{i \mid j}=\frac{p_{i j}}{q_j}=p_i \implies E\left(X \mid y_j\right)=\sum_i x_i\, p_i=E(X)
+$$
+
+torej je $E(X \mid Y)$ izrojena slučajna spremenljivka.
+
+\begin{zgled}
+    Kokš znese $N$ jajc, kjer je $N \sim \operatorname{Poi}(\lambda)$. Iz vsakega jajca se zvali piščanec s verjetnostjo $p \in (0,1)$, neodvisno od drugih jajc. 
+
+    Naj bo $K$ število piščancev. Določimo $E(K \mid N), E(K) \text { in } E(N \mid K)$.
+    \begin{flalign*}
+        &\qquad P(N=n)=\frac{\lambda^n}{n !} e^{-\lambda,} \quad \text{za} \quad n=0,1,2, \ldots & \\
+        &\qquad P(K=k \mid N=h)=\binom{n}{k} p^{k} q^{n-k}, \quad q=1-p \quad \text{in za} \quad k=0,1,2, \ldots & \\
+        &\qquad E(K \mid N=n)=E(\operatorname{Bin}(n, p))=n p=: \varphi(n) & \\
+        &\qquad E(K \mid N)=p N=\varphi(N) &
+    \end{flalign*}
+\end{zgled}
 \end{document}
