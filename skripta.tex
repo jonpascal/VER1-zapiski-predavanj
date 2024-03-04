@@ -2322,7 +2322,167 @@ torej je $E(X \mid Y)$ izrojena slučajna spremenljivka.
         &\qquad P(N=n)=\frac{\lambda^n}{n !} e^{-\lambda,} \quad \text{za} \quad n=0,1,2, \ldots & \\
         &\qquad P(K=k \mid N=h)=\binom{n}{k} p^{k} q^{n-k}, \quad q=1-p \quad \text{in za} \quad k=0,1,2, \ldots & \\
         &\qquad E(K \mid N=n)=E(\operatorname{Bin}(n, p))=n p=: \varphi(n) & \\
-        &\qquad E(K \mid N)=p N=\varphi(N) &
+        &\qquad E(K \mid N)=p N=\varphi(N) & \\
+        &\qquad E(K)=E(E(K \mid N))=E(p N)=p  E(N)=p  \lambda &
     \end{flalign*}
+    Dokažimo, da je $K \sim \operatorname{Poi}(\lambda)$:
+    \begin{flalign*}
+        \qquad P(K=k)&=\sum_{n=k}^{\infty} P(K=k \mid N=n) P(N=n) & \\
+        &=\sum_{n=k}^{\infty}\binom{n}{k} p^k \, q^{n-k} \, \frac{\lambda^n}{n !} e^{-\lambda} & \\
+        &=e^{-\lambda} \frac{p^k}{k !} \lambda^k \sum_{n=k}^{\infty} \frac{q^{n-k} \, \lambda^{n-k}}{(n-k) !} & \\
+        &=e^{-\lambda} \frac{(p \lambda)^k}{k !}  e^{q\lambda}=\frac{(p \lambda)^k}{k !} e^{-p \lambda} & 
+    \end{flalign*}
+
+    \begin{flalign*}
+        \qquad P(N=n \mid K=k)&=\frac{P(N=n, K=k)}{P(K=k)} & \\
+        &=\frac{P(K=k \mid N=n) P(N=n)}{P(K=k)} & \\
+        &=\binom{n}{k} p^k \, q^{n-k} \frac{\lambda^n}{n !} e^{-\lambda}  \frac{k !}{(p \lambda)^k}  e^{p \lambda} & \\
+        &=\frac{1}{(n-k) !} q^{n-k} \, \lambda^{n-k} e^{-q \lambda} & \\
+        &=\frac{(q \lambda)^{n-k}}{(n-k) !} e^{-q \lambda} &
+    \end{flalign*}
+    
+    za $n=k,k+1,k+2, \ldots$, kar je Poissonova porazdelitev, premaknjena za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
+    $$
+    \varphi(k)=E(N \mid K=k)=E(k+ \operatorname{Poi}(q \lambda))=k+q \lambda
+    $$
+
+    torej je: 
+    $$
+    E(N \mid K)=\varphi(K)=K+q \lambda
+    $$
+
+    Preizkus: 
+    $$
+    E(E(N \mid K))=E(K+q \lambda)=E(K)+q \lambda=p \lambda+q \lambda=\lambda = E(N)
+    $$
 \end{zgled}
+
+\chapter{Rodovne funkcije}
+
+\n Naj bo $X$ slučajna spremenljivka z vrednostmi v $\mathbb{N} \cup\{0\}$: 
+$$
+p_k=P(X=k), \quad \text{za} \quad k=0,1,2, \ldots, \quad p_k \geq 0, \quad \sum_{k=0}^{\infty} p_k=1
+$$
+
+\n \emph{Rodovna funkcija} slučajne spremenljivke $X$ je:
+$$
+G_X(s):=p_0+p_1 s+p_2 s^2+p_3 s^3+\cdots=\sum_{k=0}^{\infty} p_k s^k
+$$
+
+za vse $s \in \mathbb{R}$, za katere vrsta absolutno konvergira. 
+
+\n Očitno je $G_X(0)=p_0$, $G_X(1)=\sum_{k=0}^{\infty} p_k=1$ in $G_X(s)=E\left( s^X\right)$, saj je: 
+$$
+s^X:\left(\begin{array}{ccccc}
+    s^0 & s^1 & s^2 & s^3 & \cdots \\
+    p_0 & p_1 & p_2 & p_3 & \cdots
+    \end{array}\right)
+$$
+
+\n Za $s \in[-1,1]$ velja $\left|p_k \, s^k\right| \leq p_k$ in $\sum_{k=0}^{\infty} p_k=1$, zato vrsta $\sum_{k=0}^{\infty}\left|p_k \, s^k\right|$ konvergira. Torej je konvergenčni radij vrste vsaj $1$. 
+
+\begin{zgled} ~
+
+    \begin{enumerate}
+        \item $X \sim \operatorname{geo}(p)$, $p_k=P(X=k)=p\, q^{k-1}$ za $k=1, 2, 3, \ldots$:
+        $$
+        G_X(s)=\sum_{k=1}^{\infty} p \, q^{k-1} s^k=p s \sum_{k=1}^{\infty}\left(qs\right)^{k-1} = p s \frac{1}{1-qs} = \frac{p s}{1-q s}
+        $$
+
+        za vse $s \in \mathbb{R}$, za katere je $|qs| < 1$, torej je konvergenčni radij $\frac{1}{q}$.
+        \item $X \sim \operatorname{Poi}(\lambda)$, $p_k=p(X=k)=\frac{\lambda^k}{k !} e^{-\lambda}$ za $k=0,1,2, \ldots$:
+        $$
+        G_X(s)=\sum_{k=0}^{\infty} \frac{\lambda^k}{k !} e^{-\lambda} s^k=e^{-\lambda} \sum_{k=0}^{\infty}\frac{(\lambda s)^k}{k !}=e^{-\lambda} e^{\lambda s}=e^{\lambda(s-1)}
+        $$
+
+        za vse $s \in \mathbb{R}$.
+    \end{enumerate}
+\end{zgled}
+
+\n Iz teorije Taylorjevih vrst dobimo \emph{izrek o enoličnosti}. 
+
+\begin{izrek}
+    Naj imata $X$ in $Y$ rodovni funkciji $G_X$ in $G_Y$. Potem za $s \in [-1, 1]$ velja:
+    $$
+    G_X(s)=G_Y(s) \iff P(X=k)=P(Y=k) \quad \text{za vse} \quad k=0, 1, 2, \ldots
+    $$
+\end{izrek}
+
+\n Tedej velja: 
+$$
+P(X=k)=\frac{1}{k !} G_X^{(k)}(0)
+$$ 
+
+\s 
+
+\n Velja: 
+$$
+G_X(s)=\sum_{k=0}^{\infty} p_k \, s^k, \quad  G_X^{\prime}(s)=\sum_{k=1}^{\infty} p_k \, k \,s^{k-1}
+$$ 
+
+za vse $s \in (-1, 1)$. Od koder sledi: 
+
+$$
+\lim _{s \uparrow 1} G_X^{\prime}(s)=\sum_{k=1}^{\infty} p_k \, k=E(X)
+$$
+
+\begin{izrek}
+    Naj ima $X$ rodovno funkcijo $G_X$ in $n \in \mathbb{N}$. Potem je: 
+    $$
+    G_X^{(n)}(1-)=E(X(X-1)(X-2) \cdots(X-n+1))
+    $$
+
+    kjer je: $G_X^{(n)}(1-)=\lim_{s \uparrow 1} G_X^{(n)}(s)$
+\end{izrek} 
+
+\begin{proof}
+    Za $s \in[0,1)$ je: 
+    $$
+    G_X^{(n)}(s)=\left(\sum_{k=0}^{\infty} p_k \, s^k\right)^{(n)}=\sum_{k=n}^{\infty} k(k-1) \cdots(k-n+1) s^{k-n} \, p_k
+    $$
+    Ko gre $s \uparrow 1$, z uporabo Abelove leme dobimo: 
+    $$
+    \lim_{s \uparrow 1} G_X^{(n)}(s)=\sum_{k=n}^{\infty} k(k-1) \cdots(k-n+1) \, p_k=E(X(X-1)(X-2) \cdots(X-n+1))
+    $$
+\end{proof}
+
+\begin{posledica}
+    \begin{flalign*}
+        \qquad E(X)&=G_X^{\prime}(1-) & \\
+        \qquad D(X)&=E(X(X-1))+E(X)-(E(X))^2  & \\
+        &= G_X^{\prime \prime}(1-)+G_X^{\prime}(1-)-\left(G_X^{\prime}(1-)\right)^2 &
+    \end{flalign*}
+\end{posledica}
+
+\begin{izrek}
+    Naj bosta $X$ in $Y$ neodvisni slučajni spremenljivki z rodovnima funkcijama $G_X$ in $G_Y$. Potem je za $s \in [0,1]$: 
+    $$
+    G_{X+Y}(s)=G_X(s) \, G_Y(s)
+    $$
+\end{izrek}
+
+\begin{proof}
+    \begin{align*}
+        G_{X+Y}(s)&=E\left(s^{X+Y}\right) \\
+        &=E(s^X \cdot s^Y) \\
+        &=E(s^X) \, E(s^Y) \tag{$\star$} \\
+        &=G_X(s) \, G_Y(s)
+    \end{align*}
+
+    \n Enakost $(\star)$ velja, saj sta $s^X$ in $s^Y$ neodvisni slučajni spremenljivki.
+\end{proof}
+
+\n \textbf{Posplošitev:} Če je $S_n=X_1 + \cdots + X_n$ vsota neodvisnih slučajnih spremenljivk z vrednostmi v $\mathbb{N} \cup \{0\}$, potem je za $s \in [-1, 1]$: 
+$$
+G_{S_n}(s)=G_{X_1}(s)\, G_{X_2}(s) \cdots G_{X_n}(s)
+$$
+
+\n Posebej: če so $X_1, \ldots, X_n$ enako porazdeljene, potem je: 
+$$
+G_{S_n}(s)=\left(G_X(s)\right)^n
+$$
+
+\s
+
+Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_N$, kjer so $X_1, X_2, \ldots$ enako porazdeljene in $N$ slučajna spremenljivka z rodovno funkcijo $G_N$?
 \end{document}
