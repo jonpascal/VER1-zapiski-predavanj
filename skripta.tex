@@ -2905,4 +2905,262 @@ $$
         \end{axis}
     \end{tikzpicture}
 \end{zgled}
+
+\n \emph{(Semi)kvartilni razmik} je: 
+$$
+s=\frac{1}{2}\left(x_{\frac{3}{4}}-x_{\frac{1}{4}}\right)
+$$
+
+ki je nadomestek za standardno deviacijo. 
+
+\s
+
+\begin{tikzpicture}
+
+    \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+    \begin{axis}[
+        axis lines = left,
+        xlabel = $x$,
+        ylabel = {$y$},
+        domain=-3:3,
+        samples=100,
+        height=4cm,
+        width=10cm,
+        xmin=-3, xmax=3,
+        ymin=0, ymax=0.5,
+        xtick={-1, 0, 1},
+        xticklabels={$x_{\frac{1}{4}}$, $x_{\frac{1}{2}}$, $x_{\frac{3}{4}}$},
+        yticklabels={},
+        axis y line=middle
+    ]
+    
+    \addplot [black, thick] {1/(sqrt(2*pi))*exp(-((x)^2/2)};
+    \draw (0,1) -- (0,0);
+    \draw[dashed] (-1, 0) -- (-1, 0.242);
+    \draw[dashed] (1, 0) -- (1, 0.242);
+    \draw[line width=2pt] (-1,0) -- (1,0);
+    \addplot[mark=*] coordinates {(-1,0)};
+    \addplot[mark=*] coordinates {(1,0)};
+
+    \end{axis}
+\end{tikzpicture}
+
+\begin{zgled} ~
+
+    \begin{enumerate}
+        \item $X \sim \operatorname{N}(0,1)$:
+        $$
+        s=\frac{1}{2}\left(x_{\frac{3}{4}}-x_{\frac{1}{4}}\right) = x_{\frac{3}{4}}\approx 0.67
+        $$
+        \item Cauchyjeva porazdelitev, $p(x)=\frac{1}{\pi\left(1+x^2\right)}$ nima momentov.
+        
+        Zaradi simetrije velja $x_{\frac{1}{2}}=0$. 
+        $$
+        \int_0^{x_{\frac{3}{4}}} \frac{1}{\pi\left(1+x^2\right)} \, d x=\frac{1}{4}
+        $$
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                xlabel = $x$,
+                ylabel = {$y$},
+                domain=-3:3,
+                samples=100,
+                height=4cm,
+                width=10cm,
+                xmin=-3, xmax=3,
+                ymin=0, ymax=0.5,
+                ytick={0.3183},
+                xtick={1},
+                yticklabels={$\frac{1}{\pi}$},
+                xticklabels={$x_{\frac{3}{4}}$},
+                enlargelimits=0.05,
+                axis y line=middle,
+                yticklabel style={xshift=-2cm}
+            ]
+            
+            \addplot [black, thick] {1/(3.1415 * (1 + x^2))};
+            \draw[dashed] (0, 0.3183) -- (-1.58, 0.3183);
+            \draw[dashed] (1, 0) -- (1, 0.1592);
+
+            \node at (1.2,0.06) {\small $\frac{1}{4}$};
+            \node at (0.6,0.1) {\small $\frac{1}{4}$};
+    
+            \end{axis}
+        \end{tikzpicture}
+        $$
+        \left.\frac{1}{\pi} \operatorname{arctg} x\right|_0 ^{x_{\frac{3}{4}}}=\frac{1}{4} \implies \operatorname{arctg} x_{\frac{3}{4}}=\frac{\pi}{4}
+        $$
+        Torej je: 
+        $$
+        x_{\frac{3}{4}}=1=s \quad \text{in} \quad x_{\frac{1}{4}}=-1
+        $$
+    \end{enumerate}
+\end{zgled}
+
+\chapter{Momentno rodovna funkcija}
+
+\n \emph{Momentno rodovna funkcija} slučajne spremenljivke $X$ je: 
+$$
+M_X(t)=E\left(e^{t  X}\right)
+$$
+
+za tiste $t \in \mathbb{R}$ za katere obstaja matematično upanje, t.j.: $E\left(e^{t X}\right)<\infty$.
+
+\n Kadar ima $X$ vrednosti v $\mathbb{N} \cup \{0\}$, je: 
+$$
+M_X(t)=E\left(\left(e^t\right)^X\right)=G_X\left(e^t\right)
+$$
+
+torej, gre za posplošitev rodovne funkcije. 
+
+\n Če je $X$ zvezno porazdeljena z gostoto $p(x)$, je: 
+$$
+M_X(t)=\int_{-\infty}^{\infty} e^{t  x} \, p(x) \, d x
+$$
+
+kar je \emph{Laplaceova transformacija} funkcije $p$. 
+
+\begin{zgled}
+    $X \sim \operatorname{N}(0,1)$:
+    $$
+    \begin{aligned}
+        M_X(t)&=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} e^{t x} \, e^{-\frac{x^2}{2}} \,d x \\
+        &=e^{\frac{t^2}{2}} \underbrace{\frac{1}{\sqrt{2} \pi} \int_{-\infty}^{\infty} e^{-\frac{1}{2}(x-t)^2} \, d x}_{\text {gostota za } N(t, 1)} \\
+        &=e^{\frac{t^2}{2}}
+    \end{aligned}
+    $$
+\end{zgled}
+
+\begin{izrek}
+    Naj obstaja $\delta > 0$, da je $M_X(t)<\infty$, za vse $t \in(-\delta, \delta)$. Potem je porazdelitev $X$ natanko določena z $M_X$, vsi začetni momenti obstajajo: 
+    $$
+    \begin{aligned}
+        & z_k=E\left(X^k\right)=M_X^{(k)}(0) \quad \text {za vse} \quad  k \in \mathbb{N} & \\
+        & M_X(t)=\sum_{k=0}^{\infty} \frac{z_k}{k !} t^k \quad \text{za vse} \quad {t \in(-\delta, \delta)} &
+    \end{aligned}
+    $$
+\end{izrek}
+
+\begin{proof}(skica)
+    $$
+    \begin{aligned}
+        M_X(t)&=E\left(e^{t X}\right) \\
+        &=E\left(\sum_{k=0}^{\infty} \frac{X^k}{k !}  t^k\right) \\
+        &=\sum_{k=0}^{\infty} \frac{E\left(X^k\right)}{k !} t^k \\
+        &=\sum_{k=0}^{\infty} \frac{z_k}{k !} t^k
+    \end{aligned}
+    $$
+\end{proof}
+
+\begin{trditev}
+    $$
+    M_{a X+b}(t)=e^{b t} \, M_X(a t) \quad \text{za} \quad a \neq 0, b \in \mathbb{R}
+    $$
+\end{trditev}
+
+\begin{proof}
+    $$
+    \begin{aligned}
+        M_{a X+b}(t)&=E\left(e^{t(a X+b)}\right) \\
+        &=E\left(e^{(a t) X} \, e^{b t}\right) \\
+        &=e^{b t} \, M_X(a t)
+    \end{aligned}
+    $$
+\end{proof}
+
+\begin{trditev}
+    Za $X \sim \operatorname{N}(\mu, \sigma)$ velja: 
+    $$
+    M_X(t)=e^{\mu t+\frac{\sigma^2 t^2}{2}}
+    $$
+\end{trditev}
+
+\begin{proof}
+    Definiramo: $U:=\frac{X-\mu}{\sigma} \sim N(0,1)$, zato $X=\sigma U+\mu$:
+    $$
+    \begin{aligned}
+        M_X(t)&=M_{\sigma U+\mu}(t) \\
+        &=e^{\mu t} \, M_U(\sigma\, t) \\
+        &=e^{\mu t} \, e^{\frac{\sigma^2 t^2}{2}} \\
+        &=e^{\mu t+\frac{\sigma^2 t^2}{2}}
+    \end{aligned}
+    $$
+\end{proof}
+
+\begin{izrek}
+    Če sta $X$ in $Y$ neodvisni slučajni spremenljivki, potem je:
+    $$
+    M_{X+Y}(t)=M_X(t) \, M_Y(t)
+    $$
+\end{izrek}
+
+\begin{proof}
+    \begin{align*}
+        M_{X+Y}(t)&=E\left(e^{t (X+Y)}\right) \\
+        &=E\left(e^{t X} \, e^{t  Y}\right) \tag{$\star$} \\
+        &=E\left(e^{t X}\right) E\left(e^{tY}\right) \\
+        &=M_X(t) \, M_Y(t)
+    \end{align*}
+
+    Kjer smo v $(\star)$ vrstici upoštevali neodvisnost.
+\end{proof}
+
+\begin{trditev}
+    Imejmo $X \sim \operatorname{N}(\mu_X, \sigma_X)$ in $Y \sim \operatorname{N}(\mu_Y, \sigma_Y)$ neodvisni slučajne spremenljivki. Potem je: 
+    $$
+    X+Y \sim N\left(\mu_X+\mu_Y, \sqrt{\sigma_X^2+\sigma_Y^2}\right)
+    $$
+\end{trditev}
+
+\begin{opomba}
+    \begin{flalign*}
+        &\qquad E(X+Y)=E(X)+E(Y)=\mu_X+\mu_Y & \\
+        &\qquad D(X+Y)=D(X)+D(Y)=\sigma_X^2+\sigma_Y^2 & 
+    \end{flalign*}
+\end{opomba}
+
+\begin{proof}
+    $$
+    \begin{aligned}
+        M_{X+Y}(t)&=M_X(t) \, M_Y(t) \\
+        &=e^{\mu_X t+\frac{\sigma_X^2 t^2}{2}} \, e^{\mu_Y t+\frac{\sigma_Y^2 t^2}{2}} \\
+        &=e^{\left(\mu_X+\mu_Y\right) t+\frac{\sigma_X^2+\sigma_Y^2}{2} t^2} 
+    \end{aligned}
+    $$
+
+    od koder zaradi enoličnosti sledi:
+    $$
+    X+Y \sim \operatorname{N}\left(\mu_X\mu_Y, \sqrt{\sigma_X^2+\sigma_Y^2}\right)
+    $$
+\end{proof}
+
+\begin{zgled}
+    Za $\operatorname{N}(0,1)$ izračunajmo vse momente:
+    $$
+    \begin{aligned}
+        M_X(t)&=e^{\frac{t^2}{2}} \\
+        &=\sum_{k=0}^{\infty} \frac{1}{k !}\left(\frac{t^2}{2}\right)^k \\
+        &=\sum_{k=0}^{\infty} \frac{t^{2 k}}{2^k \, k !}
+    \end{aligned}
+    $$
+    $\qquad \implies z_{2 k+1}=0 \quad \forall k$
+    
+    Po drugi strani pa je:
+    $$
+    M_X(t)=\sum_{k=0}^{\infty} \frac{z_k}{k !}  t^k
+    $$
+
+    Po primerjavi koeficientov dobimo: 
+    $$
+    \frac{z_{2 k}}{(2 k) !}=\frac{1}{2^k \, k !}
+    $$
+
+    Od tod sledi: 
+    $$
+    z_{2 k}=\frac{(2 k) !}{2^k \, k !}=\frac{1 \cdot 2 \cdot 3\cdots  2 k}{2 \cdot 4 \cdot 6 \cdots 2 k }=1 \cdot 3 \cdot 5 \cdot 7 \cdots (2 k-1)=(2 k-1) ! !
+    $$
+\end{zgled}
+
 \end{document}
