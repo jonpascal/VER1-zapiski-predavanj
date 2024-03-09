@@ -15,7 +15,6 @@
 \usepackage{hyperref}   
 \usepackage{geometry}
 
-\usetikzlibrary{patterns}
 \pgfplotsset{compat=1.17}
 
 \geometry{
@@ -25,6 +24,9 @@
     top=30mm,
     bottom=40mm
 }
+
+\setlength{\parskip}{0.4em}
+\linespread{1.2}
 
 \makeatletter
 \renewcommand{\maketitle}{
@@ -42,19 +44,22 @@
 \makeatother
 
 \usepackage{fancyhdr}
+\makeatletter
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt} 
+  \renewcommand{\footrulewidth}{0pt}
+}
+\makeatother
+
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[R]{\leftmark}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO,RE]{\MakeUppercase{\leftmark}}
+\fancyfoot{}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\headrulewidth}{0.4pt} 
-\linespread{1.3}
 
-\usepackage{titlesec}
-\titleformat{\chapter}[display]{\normalfont\Huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
-
-
-\def\N{\mathbb{N}}
-\def\R{\mathbb{R}}
 \def\n{\noindent}
 \def\s{\vspace{10pt}}
 
@@ -88,7 +93,7 @@
 
 \usepackage{filemod}
 \title{\Huge Verjetnost 1}
-\author{Napisal: Jon Pascal Miklavčič}
+\author{\small Zapiski po predavanjih prof. dr. Romana Drnovška \\ Napisal: Jon Pascal Miklavčič}
 \date{\filemodprintdate{\jobname}}
 
 
@@ -97,9 +102,6 @@
 \frontmatter
 
 \maketitle
-
-\chapter*{Predgovor}
-Zapiski v tej skripti so bili osnovanih na rokopisih predavanj iz študijskih let pred letom 2023 in doknčno dopolnjeni z zapiski iz predavanj iz leta 2024.
 
 \tableofcontents
 
