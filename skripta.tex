@@ -14,7 +14,9 @@
 \usepackage{biblatex}           
 \usepackage{hyperref}   
 \usepackage{geometry}
+\usepackage{float} 
 
+\usepgfplotslibrary{fillbetween}
 \pgfplotsset{compat=1.17}
 
 \geometry{
@@ -126,29 +128,33 @@ Začetki verjetnosti so v 17. stoletju, iz iger na srečo (kartanje, kockanje, \
 
 \textbf{Statistično definicijo verjetnosti:}
 
-$$P(A):= p $$
+$$
+P(A):= p 
+$$
 
 \n Pogosto lahko verjetnost določimo vnaprej in sicer s: 
 
 \textbf{Klasično definicijo verjetnosti:}
 
-$$P(A):= \frac{\# \text{ ugodnih izidov za dogodek } A}{\# \text{ vseh izidov}}$$
+$$
+P(A):= \frac{\# \text{ ugodnih izidov za dogodek } A}{\# \text{ vseh izidov}}
+$$
 
 pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
 
 \begin{zgled}
     Met poštene kocke: 
-    $$P(\text{sodo število pik}) = \frac{3}{6} = \frac{1}{2}$$
+    $$
+    P(\text{sodo število pik}) = \frac{3}{6} = \frac{1}{2}
+    $$
 \end{zgled}
 
 \begin{zgled}
     Kolikšna je verjetnost, da pri metu dveh poštenih kock znaša vsota pik $7$?
     
-    Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$. Ne! Izidi niso enkaoverjetni. 
+    \n Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$. Ne! Izidi niso enkaoverjetni. 
     
-    Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. 
-
-    Torej vsi možni izidi, bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subset \mathbb{N}$
+    Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. Torej vsi možni izidi, bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subseteq \mathbb{N}$:
     $$
     \begin{array}{cccc}
         (1,1) & (1,2) & \cdots & (1,6) \\
@@ -174,7 +180,52 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
     \end{aligned}
     $$
 
-    Torej je $$P(\text{srečanja})=\frac{1-\left(\frac{2}{3}\right)^2}{1}=\frac{5}{9}$$
+    Torej je 
+    $$
+    P(\text{srečanja})=\frac{1-\left(\frac{2}{3}\right)^2}{1}=\frac{5}{9}
+    $$
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+    
+            \begin{axis}[
+                axis lines = left,
+                xlabel = $x$,
+                ylabel = {$y$},
+                domain=0:1,
+                samples=500,
+                height=5cm,
+                width=5cm,
+                xmin=0, xmax=1,
+                ymin=0, ymax=1,
+                xtick={0, 1/3, 1},
+                ytick={1/3, 1},
+                xticklabels={0, $\frac{1}{3}$, 1},
+                yticklabels={$\frac{1}{3}$, 1}
+            ]
+            
+            \addplot [name path=A, black, thick] {x-(1/3)};
+            \addplot [name path=B, black, thick] {x+(1/3)};
+            \addplot[siva] fill between[of=A and B, soft clip={domain=0:1}];
+    
+            \draw[line width=1pt] (2/3, 1) -- (1, 1);
+            \draw[line width=1pt] (1, 2/3) -- (1, 1);
+            \draw[line width=1pt] (0, 0) -- (1/3, 0);
+            \draw[line width=1pt] (0, 0) -- (0, 1/3);
+            \draw[dashed] (0, 0) -- (1, 1);
+            \draw[dashed] (0, 1) -- (1, 1);
+            \draw[dashed] (1, 0) -- (1, 1);
+        
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{Prostor vseh možnih izidov}
+        \label{fig:1}
+    \end{figure}
+
 \end{zgled}
 
 \n Teorija mere se ukvarja z splošnim zapisom geometrijske definicije. 
@@ -183,55 +234,66 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
     Vzamemo $m, n \in \mathbb{N}$, $m>n$. $n$ krogljic slučajno razporedimo v $m$ posod. Kolikšna je verjetnost dogodka, da so vse krogljice v prvih $n$ posodah, v vsaki ena?
 
     To je pomankljivo zastavljena naloga. Ne vemo namreč, ali med seboj krogljice razlikujemo, ali ne. Za dodatno predpostavko se ponujajo 3 možnosti: 
+    \begin{enumerate}
+        \item \textbf{Krogljice razlikujemo:}
+        
+        Število vseh izidov v tem primeru je ravno število \emph{variacij} $m$ elementov na $n$ mestih \emph{s ponavljanjem}. Za vsako od $n$-tih kroglic imamo $m$ možnosti, torej je vseh možnosti $m \cdot m \cdots m=m^n$.
+        
+        Število ugodnih izidov pa je ravno število \emph{permutacij} $n$ krogljic v prvih $n$ posodah. Torej je ugodnih možnosti $n(n-1) \ldots 2 \cdot 1=n!$.
+        
+        Torej je:
+        $$
+        P(A)=\frac{n !}{m^n}
+        $$
 
-    1) \textbf{krogljice razlikujemo:}
-    
-    \n Število vseh izidov v tem primeru je ravno število \emph{variacij} $m$ elementov na $n$ mestih \emph{s ponavljanjem}. Za vsako od $n$-tih kroglic imamo $m$ možnosti, torej je vseh možnosti $m \cdot m \cdots m=m^n$.
-    
-    \n Število ugodnih izidov pa je ravno število \emph{permutacij} $n$ krogljic v prvih $n$ posodah. Torej je ugodnih možnosti $n(n-1) \ldots 2 \cdot 1=n!$.
-    
-    Torej je $$P(A)=\frac{n !}{m^n}$$
+        \item \textbf{Krogljic ne razlikujemo:} 
+        
+        V vsaki posodi je lahko več krogljic. Število vseh izidov je ravno število \emph{kombinacij s ponavljanjem}. Število kombinacij $m$ elementov s ponavljanjem na $n$ mestih je: 
+        $$
+        \binom{n+m-1}{n} = \binom{n+m-1}{m-1}
+        $$
 
-    2) \textbf{krogljic ne razlikujemo:} 
-    
-    \n V vsaki posodi je lahko več krogljic. Število vseh izidov je ravno število \emph{kombinacij s ponavljanjem}. Število kombinacij $m$ elementov s ponavljanjem na $n$ mestih je: 
-    $$
-    \binom{n+m-1}{n} = \binom{n+m-1}{m-1}
-    $$
+        \newpage
 
-    \n Postavimo $n$ krogljic in med njih razporedimo $m-1$ črtic, ki predstavljajo stene posod:
-    $$
-    |\underbrace{\circ|\circ|\circ\circ |\circ\circ  \cdots |\circ |}_{n \text{ krogljic, } m-1 \text{ črtic}}|
-    $$
+        Postavimo $n$ krogljic in med njih razporedimo $m-1$ črtic, ki predstavljajo stene posod:
+        $$
+        |\underbrace{\circ|\circ|\circ\circ |\circ\circ  \cdots |\circ |}_{n \text{ krogljic, } m-1 \text{ črtic}}|
+        $$
 
-    \n Na $n+m-1$ mestih moramo določiti $n$ krogljic. Ugoden izid je samo eden: 
-    $$
-    |\circ|\circ|\circ|\circ \cdots \circ|||| \cdots |
-    $$
+        Na $n+m-1$ mestih moramo določiti $n$ krogljic. Ugoden izid je samo eden: 
+        $$
+        |\circ|\circ|\circ|\circ \cdots \circ|||| \cdots |
+        $$
 
-    Torej je $$P(A)=\frac{1}{\binom{n+m-1}{n}}$$
+        Torej je:
+        $$
+        P(A)=\frac{1}{\binom{n+m-1}{n}}
+        $$
 
-    3) \textbf{krogljic ne razlikujemo, v vsaki posodi je kvečjemu ena krogljica:} 
-    
-    Število vseh izidov je ravno število \emph{kombinacij brez ponavljanja} $\binom{m}{n}$. Ugoden izid je eden. 
+        \item \textbf{Krogljic ne razlikujemo, v vsaki posodi je kvečjemu ena krogljica:} 
+        
+        Število vseh izidov je ravno število \emph{kombinacij brez ponavljanja} $\binom{m}{n}$. 
+        
+        Ugoden izid je eden. 
 
-    Torej je $$P(A)=\frac{1}{\binom{m}{n}}$$
+        Torej je:
+        $$
+        P(A)=\frac{1}{\binom{m}{n}}
+        $$
+    \end{enumerate}
 \end{zgled}
 
 \begin{opomba}
 V fiziki so krogljice delici (atomi, molekule, ...), posode pa fazna stanja, v katerih so lahko delci. Glede na zgornje primere ločimo:
-
 \begin{enumerate}
-    \item Maxwell-Boltzmannovo statistika, ki velja za molekule plina.
-    \item Bose-Einsteinovo statistika, ki velja za delce imenovane bozoni.
-    \item Fermi-Diracovo statistika, ki velja za fermione. 
+    \item Maxwell-Boltzmannovo statistiko, ki velja za molekule plina.
+    \item Bose-Einsteinovo statistiko, ki velja za delce imenovane bozoni.
+    \item Fermi-Diracovo statistiko, ki velja za fermione. 
 \end{enumerate}
 
 \n Diracovo izključitveno načelo.
 
 \end{opomba}
-
-\newpage
 
 \chapter{Aksiomatična definicija verjetnosti}
 
