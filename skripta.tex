@@ -95,7 +95,7 @@
 
 \usepackage{filemod}
 \title{\Huge Verjetnost 1}
-\author{\small Zapiski po predavanjih prof. dr. Romana Drnovška \\ Napisal: Jon Pascal Miklavčič}
+\author{\small Zapiski po predavanjih prof. dr. Romana Drnovška \\ Napisal: \href{https://github.com/jonpascal/VER1-zapiski-predavanj}{Jon Pascal Miklavčič}}
 \date{\filemodprintdate{\jobname}}
 
 
@@ -152,9 +152,9 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
 \begin{zgled}
     Kolikšna je verjetnost, da pri metu dveh poštenih kock znaša vsota pik $7$?
     
-    \n Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$. Ne! Izidi niso enkaoverjetni. 
+    Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$. Ne! Izidi niso enkaoverjetni. 
     
-    Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. Torej vsi možni izidi, bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subseteq \mathbb{N}$:
+    \n Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. Torej vsi možni izidi, bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subseteq \mathbb{N}$:
     $$
     \begin{array}{cccc}
         (1,1) & (1,2) & \cdots & (1,6) \\
@@ -297,13 +297,15 @@ V fiziki so krogljice delici (atomi, molekule, ...), posode pa fazna stanja, v k
 
 \chapter{Aksiomatična definicija verjetnosti}
 
+\section{Dogodki}
+
 Imamo prostor vseh izidov oz. \emph{vzorčni prostor} $\Omega$ (možna oznaka je tudi $\mathcal{G}$). Dogodki so nekatere (ne nujno vse) podmnozice $\Omega$.
 
 \begin{zgled}
     Met kocke. Vzorčni prostor je $\Omega=\{1,2,3,4,5,6\}$, dogodki pa so poljubne podmnožice $\Omega$, to je $\mathcal{P}(\Omega) = 2^{\Omega}$. Na primer $A = \{2,4,6\}$ je dogodek, da pade sodo število pik. 
 \end{zgled}
 
-\n Računanje z dogodki:
+\n \textbf{Računanje z dogodki:}
 
 \begin{enumerate}
     \item \emph{Vsota dogodkov} oz. \emph{unija dogodkov} (zgodi se vsaj enden od dogodkov): $$A + B = A \cup B$$
@@ -311,14 +313,14 @@ Imamo prostor vseh izidov oz. \emph{vzorčni prostor} $\Omega$ (možna oznaka je
     \item \emph{Nasprotni dogodek} oz. \emph{komplement dogodka} (dogodek se ne zgodi): $$\bar A = A^c$$
 \end{enumerate}
 
-\n Pravila za računanje z dogodki: 
+\n \textbf{Pravila za računanje z dogodki:} 
 
 \begin{enumerate}
-    \item \textbf{idempotentnost}: $A \cup A=A=A \cap A$
-    \item \textbf{komutativnost}: $A \cup B=B \cup A, \quad A \cap B=B \cap A$
-    \item \textbf{asociativnost}: $$\begin{aligned} & (A \cup B) \cup C=A \cup(B \cup C) \\ & (A \cap B) \cap C=A \cap(B \cap C)\end{aligned}$$
-    \item \textbf{distributivnost}: $$\begin{aligned} & (A \cup B) \cap C=(A \cap C) \cup(B \cap C) \\ & (A \cap B) \cup C=(A \cup C) \cap(B \cup C)\end{aligned}$$
-    \item \textbf{de Morganova zakona}: $$\begin{aligned} & (A \cap B)^c=A^c \cup B^c \\ & (A \cup B)^c=A^c \cap B^c\end{aligned}$$ \\ Še več: $$ \left(\bigcap_i A_i\right)^c=\bigcup_i A_i^c, \quad \left(\bigcup_i A_i\right)^c=\bigcap_i A_i^c$$
+    \item \emph{idempotentnost}: $$A \cup A=A=A \cap A$$
+    \item \emph{komutativnost}: $$A \cup B=B \cup A, \quad A \cap B=B \cap A$$
+    \item \emph{asociativnost}: $$\begin{aligned} & (A \cup B) \cup C=A \cup(B \cup C) \\ & (A \cap B) \cap C=A \cap(B \cap C)\end{aligned}$$
+    \item \emph{distributivnost}: $$\begin{aligned} & (A \cup B) \cap C=(A \cap C) \cup(B \cap C) \\ & (A \cap B) \cup C=(A \cup C) \cap(B \cup C)\end{aligned}$$
+    \item \emph{de Morganova zakona}: $$\begin{aligned} & (A \cap B)^c=A^c \cup B^c \\ & (A \cup B)^c=A^c \cap B^c\end{aligned}$$ \\ \emph{Še več:} $$ \left(\bigcap_i A_i\right)^c=\bigcup_i A_i^c, \quad \left(\bigcup_i A_i\right)^c=\bigcap_i A_i^c$$
 \end{enumerate}
 
 \n V splošnem ni vsaka podnožica množice $\Omega$ dogodek. Neprazna družina podmnožic (dogodkov) $\mathcal{F}$ v $\Omega$ je \emph{$\sigma$-algerba}, če zanjo velja: 
@@ -331,15 +333,18 @@ Imamo prostor vseh izidov oz. \emph{vzorčni prostor} $\Omega$ (možna oznaka je
 
 \n Elementi v $\mathcal{F}$ so dogodki. Če v točki 3. zahtevamo manj: 
 
-\begin{enumerate}[start=3,label={\arabic*.*}]
+\begin{enumerate}[start=3,label={\arabic**.}]
     \item $A, B \in \mathcal{F} \implies A \cup B \in \mathcal{F}$
 \end{enumerate}
 
-potem pravimo, da je $\mathcal{F}$ \emph{algebra}. \s
+Potem pravimo, da je $\mathcal{F}$ \emph{algebra}. \s
 
-V algebri imamo potem tudi zaprtost za končne unije: $A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A_n \in \mathcal{F}$. Ker po de-Morganu velja $\bigcap_i A_i=\left(\bigcup_i A_i^c\right)^c$, je algebra zaprta za končne preseke, $\sigma$-algebra pa celo za števne preseke. Ker velja $A \setminus B=A \cap B^c$, je algebra zaprta za razlike. 
+\n V algebri imamo potem tudi zaprtost za končne unije (dokažemo z indukcijo): 
+$$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A_n \in \mathcal{F}$$ 
 
-Vsaka algebra vsebuje $\{\emptyset, \Omega\}$. Ker je $\mathcal{F}$ neprazna, obstaja $A \in \mathcal{F}$ in zato tudi $\Omega=A \cup A^c \in \mathcal{F}$ in $\emptyset=\Omega^c \in \mathcal{F}$. Tako dobimo, da je $\{\emptyset, \Omega\}$ najmanšja možna ($\sigma$-)algebra, $\mathcal{P}(\Omega)$ pa največja možna ($\sigma$-)algebra.
+\n Ker po de-Morganu velja $\bigcap_i A_i=\left(\bigcup_i A_i^c\right)^c$, je algebra zaprta za končne preseke, $\sigma$-algebra pa celo za števne preseke. Ker velja $A \setminus B=A \cap B^c$, je algebra zaprta za razlike. 
+
+\n Vsaka algebra vsebuje $\{\emptyset, \Omega\}$. Ker je $\mathcal{F}$ neprazna, obstaja $A \in \mathcal{F}$ in je zato tudi $\Omega=A \cup A^c \in \mathcal{F}$ in $\emptyset=\Omega^c \in \mathcal{F}$. Tako dobimo, da je $\{\emptyset, \Omega\}$ najmanšja možna ($\sigma$-)algebra, $\mathcal{P}(\Omega)$ pa največja možna ($\sigma$-)algebra.
 
 \begin{zgled}
     Za $A \neq \emptyset \neq \Omega$ je najmanjša ($\sigma$-)algebra, ki vsebuje $A$ enaka $\left\{\emptyset, A, A^c, \Omega\right\}$. 
@@ -347,19 +352,22 @@ Vsaka algebra vsebuje $\{\emptyset, \Omega\}$. Ker je $\mathcal{F}$ neprazna, ob
     \n Za $\Omega=\{1,2,3\}$ in $A=\{1,2\}$, je potem taka $\sigma$-algebra $\{\emptyset,\{3\},\{1,2\},\{1,2,3\}\}$.
 \end{zgled}
 
-Dogodka $A$ in $B$ sta \emph{disjunkta} oz. \emph{nezdružljiva} če je $A \cap B=\emptyset$. 
+\n Dogodka $A$ in $B$ sta \emph{disjunkta} oz. \emph{nezdružljiva} če je $A \cap B=\emptyset$. 
 
-Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodkov}, če velja: $$\bigcup_i A_i=\Omega \quad \text{in} \quad A_i \cap A_j = \emptyset \quad \text{za} \quad i \neq j.$$ 
+\n Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodkov}, če velja: $$\bigcup_i A_i=\Omega \quad \text{in} \quad A_i \cap A_j = \emptyset \quad \text{za} \quad i \neq j.$$ 
 
-\n Naj bo $\mathcal{F}$ $\sigma$-algebra na $\Omega$. \textbf{Verjetnost} na $(\Omega, \mathcal{F})$ je preslikava $P:\mathcal{F} \to \mathbb{R}$ z lastnostmi:
+\section{Verjetnostna preslikava}
 
-\begin{enumerate}
-    \item Za vsak $A \in \mathcal{F}$: $P(A) \geq 0 $
-    \item $P(\Omega) = 1$
-    \item Za poljubne paroma nezdružljive dogodke $\{A_i\}_{i=1}^{\infty}$ velja števna aditivnost: $$P\left(\bigcup_{j=1}^{\infty} A_i\right)=\sum_{i=1}^{\infty} P\left(A_i\right)$$
-\end{enumerate}
+\begin{definicija}
+    Naj bo $\mathcal{F}$ $\sigma$-algebra na $\Omega$. \emph{Verjetnost} na $(\Omega, \mathcal{F})$ je preslikava $P:\mathcal{F} \to \mathbb{R}$ z lastnostmi:
+    \begin{enumerate}
+        \item Za vsak $A \in \mathcal{F}$: $P(A) \geq 0 $
+        \item $P(\Omega) = 1$
+        \item Za poljubne paroma nezdružljive dogodke $\{A_i\}_{i=1}^{\infty}$ velja števna aditivnost: $$P\left(\bigcup_{i=1}^{\infty} A_i\right)=\sum_{i=1}^{\infty} P\left(A_i\right)$$
+    \end{enumerate}
+\end{definicija}
 
-\n Lastnosti verjetnosti $P$: 
+\n \textbf{Lastnosti verjetnosti $P$:}
 
 \begin{enumerate}[label=(\alph*)]
     \item $P(\emptyset) = 0$. 
@@ -371,7 +379,7 @@ Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodko
     \end{proof}
     \item $P$ je \emph{končno aditivna}, t.j. za končno mnogo paroma nezdružljivih dogodkov $\{A_i\}_{i=1}^{n}$ velja: 
     $$
-    P\left(A_1 \cup \cdots \cup A_n\right)=P\left(A_1\right)+P\left(A_2\right)+\cdots+P\left(A_n\right)
+    P\left(A_1 \cup \cdots \cup A_n\right)=P\left(A_1\right)+\cdots+P\left(A_n\right)
     $$
     \begin{proof}
         V lastnosti 3. vzamemo $A_{n+1}=A_{n+2}=\cdots=\emptyset$ in upoštevamo lastnost (a). 
@@ -386,7 +394,7 @@ Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodko
     \end{proof}
     \item $P(A^c) = 1-P(A)$
     \begin{proof}
-        V (c) vzamemo $B = \Omega$.
+        V lastnosti (c) vzamemo $B = \Omega$.
     \end{proof}
     \item $P$ je \emph{zvezna}, t.j.:
     
@@ -395,41 +403,104 @@ Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodko
         \item $$ B_1 \supseteq B_2 \supseteq B_3 \supseteq \cdots \implies P\left(\bigcap_{i=1}^{\infty} B_i\right)=\lim _{n \to \infty} P\left(B_n\right)$$
     \end{enumerate}
 
-    \begin{proof}
+    \begin{proof} 
+        ~
+
         \begin{enumerate}[label=(\roman*)]
-            \item Definiramo $C_1 = A$ in $C_i = A_i \setminus A_{i-1}$ za $i = 2, 3, \ldots$. Potem je $A_n=C_1 \cup \ldots \cup C_n$, kjer velja $C_i \cap C_j=\emptyset$ za $i \neq j$ in $\bigcup_{i=1}^{\infty} A_i=\bigcup_{i=1}^{\infty} C_i$. Torej je: 
-            $$ \begin{aligned} P\left(\bigcup_{i=1}^{\infty} A_i \right) &= P\left(\bigcup_{i=1}^{\infty} C_i\right) \\ &= \sum_{i=1}^{\infty} P(C_i) \\ &= \lim _{n \to \infty} \sum_{i=1}^{n} P(C_i) \\ &= \lim _{n \to \infty} P\left(\bigcup_{i=1}^n C_i\right) \\ &= \lim_{n \to \infty} P(A_n) \end{aligned}$$ 
-            \item Ker $B_1 \supseteq B_2 \supseteq B_3 \supseteq \cdots$, je potem $B_1^c \subseteq B_2^c \subseteq B_3^c \subseteq \cdots$. Po (i) potem velja 
-            $$P\left(\bigcup_{i=1} B_i^c\right)=\lim _{i \to \infty} P\left(B_i^c\right)$$ 
-            Toda $$ \bigcup_{i=1}^{\infty} B_i^c=\left(\bigcap_{i=1}^{\infty} B_i\right)^c \implies 1-P\left(\bigcap_{i=1}^{\infty} B_i\right)=\lim_{i \to \infty}\left(1-P(B_i\right)) $$ Od koder sledi željena enakost. 
+            \item Definiramo $C_1 = A$ in $C_i = A_i \setminus A_{i-1}$ za $i = 2, 3, \ldots$ Potem je:
+            $$
+            A_n=\bigcup_{i=1}^n C_i, \quad C_i \cap C_j=\emptyset \text{ za } i \neq j \quad \text{in} \quad \bigcup_{i=1}^{\infty} A_i=\bigcup_{i=1}^{\infty} C_i
+            $$ 
+            
+            Torej je: 
+            $$
+            \begin{aligned} 
+                P\left(\bigcup_{i=1}^{\infty} A_i \right) &= P\left(\bigcup_{i=1}^{\infty} C_i\right) \\ 
+                &= \sum_{i=1}^{\infty} P(C_i) \\ &= \lim _{n \to \infty} \sum_{i=1}^{n} P(C_i) \\ 
+                &= \lim _{n \to \infty} P\left(\bigcup_{i=1}^n C_i\right) \\ 
+                &= \lim_{n \to \infty} P(A_n) 
+            \end{aligned}
+            $$ 
+            \item Ker $B_1 \supseteq B_2 \supseteq B_3 \supseteq \cdots$, je potem $B_1^c \subseteq B_2^c \subseteq B_3^c \subseteq \cdots$. Po (i) potem velja:
+            $$
+            P\left(\bigcup_{i=1} B_i^c\right)=\lim _{i \to \infty} P\left(B_i^c\right)
+            $$ 
+            Potem velja: 
+            $$
+            \bigcup_{i=1}^{\infty} B_i^c=\left(\bigcap_{i=1}^{\infty} B_i\right)^c \implies 1-P\left(\bigcap_{i=1}^{\infty} B_i\right)=\lim_{i \to \infty}\left(1-P(B_i\right)) 
+            $$
+            
+            Od koder sledi željena enakost. 
         \end{enumerate}
     \end{proof}
 \end{enumerate}
 
-\textbf{Verjetnostni prostor} je trojica $(\Omega, \mathcal{F}, P)$
+\n \textbf{Verjetnostni prostor} je trojica $(\Omega, \mathcal{F}, P)$
 
 \begin{zgled}[Končni ali števni verjetnostni prostor]
     $\Omega=\left\{\omega_2, \omega_2, \omega_3, \ldots\right\}$ končno ali števno mnogo izidov. $\left\{\omega_1\right\},\left\{\omega_2\right\},\left\{\omega_3\right\}, \ldots$ je popoln sistem dogodkov, neka podmnožica v $\Omega$ je končna ali števna unija teh dogodkov. Torej $\mathcal{F}=\mathcal{P}(\Omega)$. Vzamemo:
     $$
     A=\bigcup_{i: \omega_i \in A}\left\{\omega_0\right\} 
     $$
-    Če označimo $P(\{\omega_i\}) = p_i \geq 0$ je $\sum_i p_i=1$ in $P(A)=\sum_{i: \omega_i \in A} p_i$, $A \subseteq \Omega$.
-
-    Če ima $\Omega$ $n$ elementov in $p_i = \frac{1}{n}$ za $i=1, 2, \ldots, n$. Potem je $P(A)=\frac{|A|}{n}=\frac{\operatorname{moč}(A)}{n}$. To je klasična definicija verjetnosti. 
+    Če označimo $P(\{\omega_i\}) = p_i \geq 0$, potem je: 
+    $$
+    \sum_i p_i=1 \quad \text{in} \quad P(A)=\sum_{i: \omega_i \in A} p_i \quad \text{za} \quad A \subseteq \Omega
+    $$
+    Če ima $\Omega$ $n$ elementov in $p_i = \frac{1}{n}$ za $i=1, 2, \ldots, n$. Potem je:
+    $$
+    P(A)=\frac{|A|}{n}=\frac{\operatorname{mo\check{c}}(A)}{n}
+    $$
+    To je klasična definicija verjetnosti. 
 \end{zgled}
 
 \begin{zgled}[Neskončni neštevni verjetnostni prostor]
     Primer srečanja dveh oseb, kjer $\Omega=[0,1] \times[0,1]$. Za $\sigma$-algebro $\mathcal{F}$ ne moremo vzeti vseh podmnožic, radi pa bi jih vzeli čim več.
 
-    $\mathcal{F}$ naj bo najmanjša $\sigma$-algebra, ki vsebje vse odprte pravokotnike $(a, b)\times(c, d)$ (izkaže se, da je isto, če vzamemo zaprte pravokotnike). $\mathcal{F}$ imenujemo \emph{Borelova $\sigma$-algebra}.
+    \n $\mathcal{F}$ naj bo najmanjša $\sigma$-algebra, ki vsebje vse odprte pravokotnike $(a, b)\times(c, d)$ (izkaže se, da je isto, če vzamemo zaprte pravokotnike). $\mathcal{F}$ imenujemo \emph{Borelova $\sigma$-algebra}.
 
-    Verjetnost definiramo na pravokotnikih kot: 
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+    
+            \begin{axis}[
+                axis lines = left,
+                xlabel = $x$,
+                ylabel = {$y$},
+                domain=0:1,
+                samples=500,
+                height=5cm,
+                width=5cm,
+                xmin=0, xmax=1,
+                ymin=0, ymax=1,
+                xtick={0, 0.6, 0.9, 1},
+                ytick={0.5, 0.8, 1},
+                xticklabels={0, $\vphantom{b}a$, $b$, 1},
+                yticklabels={$c$, $d$, 1}
+            ]
+    
+            \fill[siva] (0.6, 0.5) rectangle (0.9, 0.8);
+
+            \draw[latex-latex, line width=1pt] (0.6, 0) -- (0.9, 0);
+            \draw[latex-latex, line width=1pt] (0, 0.5) -- (0, 0.8);
+            \draw[dashed] (0.6, 0) -- (0.6, 0.8);
+            \draw[dashed] (0.9, 0) -- (0.9, 0.8);
+            \draw[dashed] (0, 0.5) -- (0.9, 0.5);
+            \draw[dashed] (0, 0.8) -- (0.9, 0.8);
+        
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{Odprt pravokotnik v $\Omega$}
+        \label{fig:2}
+    \end{figure}
+
+    \n Verjetnost definiramo na pravokotnikih kot: 
     $$
     P((a, b) \times(c, d))=(b-a)(d-c)
     $$
-    Ni lahko videti, da lahko $P$ razširimo do verjetnosti na $\mathcal{F}$. $P$ pa ne moremo razširiti na $\mathcal{P}(\Omega)$. Problem je števna aditivnost. 
-
-    To je geometrijska definicija verjetnosti.
+    Ni lahko videti, da lahko $P$ razširimo do verjetnosti na $\mathcal{F}$. $P$ pa ne moremo razširiti na $\mathcal{P}(\Omega)$. Problem je števna aditivnost. To je geometrijska definicija verjetnosti.
 \end{zgled}
 
 \chapter{Pogojna verjetnost}
