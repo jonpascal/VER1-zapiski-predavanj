@@ -505,10 +505,38 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
 
 \chapter{Pogojna verjetnost}
 
-Naj bo $(\Omega, \mathcal{F}, P)$ verjetnostni prostor. Fiksirajmo dogodek $B$ s $P(B) > 0$. \emph{Pogojna verjetnost} dogodka $A$ glede na dogodek $B$ je: 
-$$
-P(A \mid B)=\frac{P(A \cap B)}{P(B)}
-$$
+\section{Pogojna verjetnost}
+
+\begin{definicija}
+    Naj bo $(\Omega, \mathcal{F}, P)$ verjetnostni prostor. Fiksirajmo dogodek $B$ s $P(B) > 0$. \emph{Pogojna verjetnost} dogodka $A$ glede na dogodek $B$ je: 
+    $$
+    P(A \mid B)=\frac{P(A \cap B)}{P(B)}
+    $$
+\end{definicija}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+
+        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+        \fill[siva, rounded corners=10pt] (1.5,0.75) rectangle (3,2.25);
+        \fill[siva] (2,0.75) rectangle (3,2.25);
+
+        \draw[rounded corners=10pt, thick] (0,0) rectangle (5,3);
+        \draw[rounded corners=8pt, thick] (0.1,0.1) rectangle (3,2.9);
+        \draw[rounded corners=10pt, thick] (1.5,0.75) rectangle (4,2.25);
+
+        \node at (4.5,2.5) {$\Omega$};
+        \node at (3.5,1.5) {$A$};
+        \node at (0.5,2.5) {$B$};
+        \node at (2.25,1.5) {$A \cup B$};
+
+    \end{tikzpicture}
+
+    \caption{Verjetnostni prostor $\Omega$}
+    \label{fig:3}
+\end{figure}
 
 \begin{zgled}
     V posodi sta dve beli in ena črna krogljica. Dvakrat zaporedoma izvlečemo krogljico. Kolikšna je verjetnost, da smo drugič izbrali belo krogljico, če smo prvič izbrali belo?
@@ -519,9 +547,9 @@ $$
         Vseh izidov je 9: 
         $$
         \begin{array}{ccc}
-            B_1 B_1 & B_1 B_2 & B_1 Č \\
-            B_2 B_1 & B_2 B_2 & B_2 Č \\
-            Č B_1 & Č B_2 & Č Č
+            B_1 B_1 & B_1 B_2 & B_1 \check{C} \\
+            B_2 B_1 & B_2 B_2 & B_2 \check{C} \\
+            \check{C} B_1 & \check{C} B_2 & \check{C} \check{C}
         \end{array}
         $$
         \begin{flalign*}
@@ -536,7 +564,7 @@ $$
         Vseh izidov je 6: 
         $$
         \begin{array}{cccccc}
-            B_1 B_2 & B_1 Č & B_2 B_1 & B_2 Č & Č B_1 & Č B_2 
+            B_1 B_2 & B_1 \check{C} & B_2 B_1 & B_2 \check{C} & \check{C} B_1 & \check{C} B_2 
         \end{array}
         $$
         \begin{flalign*}
@@ -563,7 +591,7 @@ $$
 P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right) =P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) 
 $$
 
-Če desno stran razpišemo, res dobimo: 
+\n Če desno stran razpišemo, res dobimo: 
 $$
 \begin{aligned}
     P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right) &=P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) \\
@@ -589,6 +617,8 @@ $$
     \end{enumerate}
 \end{zgled}
 
+\section{Formula o popolni verjetnosti}
+
 \n Imejmo poskus, ki ga opravimo v 2 korakih (fazah). 
 
 \begin{enumerate}
@@ -596,16 +626,15 @@ $$
     \item V drugem koraku pa nas zanima dogodek $A$. Izrazimo $P(A)$ z verjetnostmi: $$P\left(H_i\right) \quad \text{in} \quad P\left(A \mid H_i\right) \quad \text{za} \; i= 1, 2, 3, \ldots $$
 \end{enumerate}
 
-Ker je $\{ H_i \}_i$ popoln sistem dogodkov, je:
+\n Ker je $\{ H_i \}_i$ popoln sistem dogodkov, je:
 $$
 A=A \cap \Omega=A \cap\left(\bigcup_i H_i\right)=\bigcup_i A \cap H_i
 $$
-
-in zato
+Zato velja:
 $$
 P(A)=\sum_i P\left(A \cap H_i\right)=\sum_i P\left(H_i\right) \cdot P(A \mid H_i)
 $$
-To je \textbf{formula za popolno verjetnost}.
+To je \emph{formula za popolno verjetnost.}
 
 \begin{zgled}
     Pri srečolovu je $n$ srečk, od tega je $m$ dobitnih ($m<n$). Ali imamo večje možnosti za dobitek, če izbiramo prvi ali drugi?
@@ -629,7 +658,7 @@ To je \textbf{formula za popolno verjetnost}.
 $$
 P\left(H_k \mid A\right)=\frac{P\left(H_k \cap A\right)}{P(A)}=\frac{P\left(H_k\right) \cdot P\left(A \mid H_k\right)}{\sum_i P\left(H_i\right) \cdot P\left(A \mid H_i\right)}
 $$
-To je \textbf{Bayesova formula}.
+To je \emph{Bayesova formula}.
 
 \begin{zgled}
     Test s poligrafom (detektorjem laži). Resnicoljub opravi test s poligrafom z verjetnostjo $0.95$. Z enako verjetnostjo poligraf prepozna lažnivca. Izmed 1000 oseb, med kateremi je natanko en lažnivec, slučajno izberemo eno osebo za katero poligraf pravi, da je lažnivec. Kolikšna je pogojna verjetnost, da je oseba zares lažnivec?
@@ -639,7 +668,7 @@ To je \textbf{Bayesova formula}.
     P\left(L_p \mid L\right)=0.95, \quad  P\left(L_p \mid L^c\right)=0.05 \quad \text{in} \quad P(L)=0.001
     $$
 
-    Zanima nas $P\left(L \mid L_p\right)$. Po Bayesovi formuli je:
+    \n Zanima nas $P\left(L \mid L_p\right)$. Po Bayesovi formuli je:
     $$
     \begin{aligned}
         P\left(L \mid L_p\right)&=\frac{P(L) \cdot P\left(L_p \mid L\right)}{P(L) \cdot P\left(L_p \mid L\right)+P\left(L^c\right) \cdot P\left(L_p \mid L^c\right)} \\
@@ -663,7 +692,7 @@ $$
 P\left(A_{i_1} \cap A_{i_2} \cap \ldots \cap A_{i_k}\right)=P\left(A_{i_1}\right) \cdot P\left(A_{i_2}\right) \cdots P\left(A_{i_k}\right)
 $$
 
-Če zahtevamo to le za $k=2$, torej $A_i$ in $A_j$ sta neodvisna za vsak $i \neq j$, potem rečemo, da so dogodki \emph{paroma neodvisni}. To je šibkejši pogoj kot neodvisnost. 
+\n Če zahtevamo to le za $k=2$, torej $A_i$ in $A_j$ sta neodvisna za vsak $i \neq j$, potem rečemo, da so dogodki \emph{paroma neodvisni}. To je šibkejši pogoj kot neodvisnost. 
 
 \begin{zgled}
     Met tetraedra. $\Omega=\{1,2,3,4\}$ in $P(\{i\})=\frac{1}{4}$ za $i = 1, 2, 3, 4$. 
@@ -676,17 +705,19 @@ $$
 \end{trditev}
 
 \begin{proof}
+    ~
+
     \begin{enumerate}[label=(\roman*)]
         \item Ker je $A \cap B^c = A \setminus A \cap B$ velja: 
         $$
         \begin{aligned}
             P\left(A \cap B^c\right)&=P(A)-P(A \cap B) \\
-            &=P(A)-P(A)2 P(B) \\
+            &=P(A)-P(A) \cdot P(B) \\
             &=P(A) (1-P(B)) \\
-            &=P(A) P\left(B^c\right)
+            &=P(A) \cdot P\left(B^c\right)
         \end{aligned}
         $$
-        \item Za $A^c$ in $B$ dokažemo podobno.
+        \item Za $A^c$ in $B$ dokažemo na podoben način.
         \item 
         $$
         \begin{aligned}
@@ -694,8 +725,8 @@ $$
             &= 1-P(A)-P(B)+P(A \cap B) \\
             &= P\left(A^c\right)-P(B)+P(A) \cdot P(B) \\
             &= P\left(A^c\right)-P(B)(1-P(A)) \\
-            &= P\left(A^c\right)-P(B) P\left(A^c\right) \\
-            &= P\left(A^c\right) P\left(B^c\right)
+            &= P\left(A^c\right)-P(B) \cdot P\left(A^c\right) \\
+            &= P\left(A^c\right) \cdot P\left(B^c\right)
         \end{aligned}
         $$
     \end{enumerate} 
