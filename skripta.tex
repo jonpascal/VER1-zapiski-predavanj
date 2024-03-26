@@ -7,6 +7,7 @@
 \usepackage{amsthm}
 \usepackage{bbm}
 \usepackage{lmodern}
+\usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -1058,7 +1059,6 @@ Danemu poskusu priredimo številsko količino, katere vrednost je odvisna od slu
     $$
     \{\omega \in \Omega: X(\omega) \leq x\}
     $$
-
     v $\mathcal{F}$, se pravi dogodek.
 \end{definicija}
 
@@ -1072,13 +1072,14 @@ $$
     $$
     F_X(x):=P(X \leq x)
     $$
-
-    se imenuje \emph{porazdelitvena funkcija} slučajne spremenljivke $X$.
+    Imenujemo jo \emph{porazdelitvena funkcija} slučajne spremenljivke $X$.
 \end{definicija}
+
+\n Dogovor: $P((X \leq x)) \iff P(X \leq x)$.
 
 \newpage
 
-\n Lastnosti porazdelitvene funkcije $F=F_X$:
+\n Lastnosti porazdelitvene funkcije $F \equiv F_X$:
 
 \begin{enumerate}
     \item $0 \leq F(x) \leq 1$ za vsak $x\in \mathbb{R}.$
@@ -1102,16 +1103,16 @@ $$
             &=P(\Omega)=1 \tag{$\star \star$}
         \end{align*}
         
-        \quad kjer smo v $(\star)$ vrstici uporabili zveznost $P$, $(\star \star)$ vrstici pa $\forall \omega \in \Omega: \exists n: X(\omega) \leq x_n$, torej $\omega \in\left(X \leq x_n\right)$. 
+        Kjer smo v $(\star)$ vrstici uporabili zveznost $P$, v $(\star \star)$ vrstici pa dejstvo, da $\forall \omega \in \Omega: \exists n: X(\omega) \leq x_n$, torej $\omega \in\left(X \leq x_n\right)$. 
 
-        Podobno se dokaže tudi druga limita.
+        Podobno se dokaže tudi druga limita (treba je vzeti preseke).
     \end{proof}
     \item $F$ je z desne zvezna, t.j.:
     $$
     F(x+)=F(x), \quad \text{kjer je} \quad F(x+)=\lim _{\substack{h > 0 \\ h \to 0}} F(x+h)
     $$
     \begin{proof}
-        Naj zaporedje $\{x_n\} \subseteq \mathbb{R}$ strogo pada proti $x$. Potem je:
+        Naj zaporedje $\{x_n\}_n \subseteq \mathbb{R}$ strogo pada proti $x$. Potem je:
         \begin{align*}
             F(x+)&=\lim _{n \to \infty} F\left(x_n\right) \\
             &=\lim _{n \rightarrow \infty} P\left(X \leq x_n\right) \\
@@ -1119,7 +1120,7 @@ $$
             &=P(X \leq x) \tag{$\star \star$} \\
             &=F(x)
         \end{align*}
-        $(\star)$ velja, zaradi zveznosti $P$, $(\star \star)$ pa velja saj je: $$\bigcap_{n=1}^{\infty}\left(X \leq x_n\right)=(X \leq x)$$
+        Kjer $(\star)$ velja, zaradi zveznosti $P$, $(\star \star)$ pa velja saj je: $$\bigcap_{n=1}^{\infty}\left(X \leq x_n\right)=(X \leq x)$$
 
         Tukaj je:
 
@@ -1147,14 +1148,18 @@ $$
             P\left(x_1<X<x_2\right)&=P\left(X<x_2\right)-P\left(X \leq x_1\right) & \\
             &=F\left(x_2-\right)-F\left(x_1\right)
         \end{flalign*}
-
-        Saj je:$$P(X<x)=P\left(\bigcup_{n=1}^{\infty}\left(X \leq x-\frac{1}{n}\right)\right)=\lim _{n \rightarrow \infty} P\left(X \leq x-\frac{1}{n}\right)=F(x-)$$
+        Saj je:
+        \begin{flalign*}
+            P(X<x)&=P\left(\bigcup_{n=1}^{\infty}\left(X \leq x-\frac{1}{n}\right)\right) & \\
+            &=\lim _{n \rightarrow \infty} P\left(X \leq x-\frac{1}{n}\right) & \\ 
+            &=F(x-) &
+        \end{flalign*}
         \item ~ \vspace{-29pt}
         \begin{flalign*}
             P\left(x_1 \leq X \leq x_2\right)&=P\left(X \leq x_2\right)-P\left(X<x_1\right)& \\
             &=F\left(x_2\right)-F\left(x_1-\right) &
         \end{flalign*}
-        \item ~ \vspace{-10mm}
+        \item ~ \vspace{-29pt}
         \begin{flalign*}
         P\left(x_1 \leq X<x_2\right)&=P\left(X<x_2\right)-P\left(X<x_1\right) & \\
         &=F\left(x_2-\right)-F\left(x_1-\right) &
@@ -1164,13 +1169,11 @@ $$
 
 Oglejmo si dva najpomembnejša razreda slučajnih spremenljivk. 
 
-\newpage
-
 \section{Diskretne slučajne spremenljivke}
 
 Slučajna spremenljivka $X$ je \emph{diskretno porazdeljena}, če je njena zaloga vrednosti končna ali števna množica števil $\left\{x_1, x_2, x_3, \ldots\right\}$.
 
-Tedaj vpeljemo verjetnostno funkcijo:
+\n Tedaj vpeljemo verjetnostno funkcijo:
 $$
 p_k=P\left(X=x_k\right) \quad \text{za} \quad k=1, 2, 3, \ldots
 $$
@@ -1184,14 +1187,14 @@ X:\left(\begin{array}{cccc}
     , \quad \sum_k p_k=1
 $$
 
-Tukaj je $\left\{\left(X=x_k\right)\right\}_k$ popoln sistem dogodkov. \s
+\n Tukaj je $\left\{\left(X=x_k\right)\right\}_k$ popoln sistem dogodkov.
 
 \n Porazdelitvena funkcija je: 
 $$
 F(x)=P(X \leq x)=P\left(\bigcup_{k:x_k\leq x}{\left(X=x_k\right)}\right) = \sum_{k :x_k \leq x} p_k
 $$
 
-$F$ je odsekoma konstantna.
+\n Torej je $F$ odsekoma konstantna.
 
 \n Na primer za $x_1<x_2<x_3$ in $p_1+p_2+p_3=1$:
 $$
@@ -1201,40 +1204,46 @@ X:\left(\begin{array}{ccc}
     \end{array}\right)
 $$
 
-\begin{tikzpicture}
-    \begin{axis}[
-        axis lines = left,
-        xlabel = $x$,
-        ylabel = {$y$},
-        domain=-3:3,
-        samples=100,
-        height=4cm,
-        width=10cm,
-        xmin=-3, xmax=3,
-        ymin=0, ymax=1.1,
-        ytick={0.30, 0.65, 1},
-        xtick={-2, 0, 2},
-        yticklabels={~, ~, $1$},
-        xticklabels={$x_1$, $x_2$, $x_3$},
-    ]
-    
-    \draw[->, line width=1pt] (-3, 0) -- (-2, 0);
-    \draw[->, line width=1pt] (-2, 0.3) -- (0, 0.3);
-    \draw[->, line width=1pt] (0, 0.65) -- (2, 0.65);
-    \draw[line width=1pt] (2, 1) -- (4, 1);
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $x$,
+            ylabel = {$y$},
+            domain=-3:3,
+            samples=100,
+            height=4cm,
+            width=10cm,
+            xmin=-3, xmax=3,
+            ymin=0, ymax=1.1,
+            ytick={0.30, 0.65, 1},
+            xtick={-2, 0, 2},
+            yticklabels={~, ~, $1$},
+            xticklabels={$x_1$, $x_2$, $x_3$},
+        ]
+        
+        \draw[->, line width=1pt] (-3, 0) -- (-2, 0);
+        \draw[->, line width=1pt] (-2, 0.3) -- (0, 0.3);
+        \draw[->, line width=1pt] (0, 0.65) -- (2, 0.65);
+        \draw[line width=1pt] (2, 1) -- (4, 1);
 
-    \draw[dashed] (-2, 0) -- (-2, 0.3);
-    \draw[decorate,decoration={brace,amplitude=5pt}] (-2, 0) -- (-2, 0.3) node[midway, left=6pt] {\footnotesize $p_1$};
-    \draw[dashed] (0, 0) -- (0, 0.65);
-    \draw[decorate,decoration={brace,amplitude=5pt}] (0, 0.3) -- (0, 0.65) node[midway, left=6pt] {\footnotesize $p_2$};
-    \draw[dashed] (2, 0) -- (2, 1);
-    \draw[decorate,decoration={brace,amplitude=5pt}] (2, 0.65) -- (2, 1) node[midway, left=6pt] {\footnotesize $p_3$};
-    \draw[dashed] (-3, 1) -- (3, 1);
-    \draw[dashed] (-3, 0.65) -- (2, 0.65);
-    \draw[dashed] (-3, 0.3) -- (0, 0.3);
+        \draw[dashed] (-2, 0) -- (-2, 0.3);
+        \draw[decorate,decoration={brace,amplitude=5pt}] (-2, 0) -- (-2, 0.3) node[midway, left=6pt] {\footnotesize $p_1$};
+        \draw[dashed] (0, 0) -- (0, 0.65);
+        \draw[decorate,decoration={brace,amplitude=5pt}] (0, 0.3) -- (0, 0.65) node[midway, left=6pt] {\footnotesize $p_2$};
+        \draw[dashed] (2, 0) -- (2, 1);
+        \draw[decorate,decoration={brace,amplitude=5pt}] (2, 0.65) -- (2, 1) node[midway, left=6pt] {\footnotesize $p_3$};
+        \draw[dashed] (-3, 1) -- (3, 1);
+        \draw[dashed] (-3, 0.65) -- (2, 0.65);
+        \draw[dashed] (-3, 0.3) -- (0, 0.3);
 
-    \end{axis}
-\end{tikzpicture}
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Porazdelitvena funkcija $F$}
+    \label{fig:8}
+\end{figure}
 
 \n \textbf{Pomembnejše diskretne porazdeitve:}
 
@@ -1247,7 +1256,7 @@ $$
         \end{array}\right)
     $$
     \begin{zgled}
-        Met poteven kocke, $n=6$:
+        Met poštene kocke, $n=6$:
         $$
         X:\left(\begin{array}{cccccc}
             1 & 2 & 3 & 4 & 5 & 6 \\
@@ -1257,7 +1266,7 @@ $$
     \end{zgled}
     \item \emph{Bernoullijeva porazdelitev} $\operatorname{Ber}(p)$, $p\in (0,1), q = 1-p$:
     $$
-    x:\left(\begin{array}{cc}
+    X:\left(\begin{array}{cc}
         0 & 1 \\
         q & p
         \end{array}\right)
@@ -1268,7 +1277,7 @@ $$
 
     Indikatorska funkcija: 
     $$
-    \mathbbm{1}_A(\omega)= \begin{cases}1, & w \in A \\ 0, & w \notin A\end{cases}
+    \mathbbm{1}_A(\omega)= \begin{cases}1 &; w \in A \\ 0 &; w \notin A\end{cases}
     $$
     \item \emph{Binomska porazdelitev} $\operatorname{Bin}(n,p)$, $n \in \mathbb{N}, p \in (0,1)$:
     $$
@@ -1287,14 +1296,14 @@ $$
     \end{zgled}
     \item \emph{Poissonova porazdelitev} $\operatorname{Poi}(\lambda)$, $\lambda > 0$:
     $$
-    p_k=P(X=k)=\frac{\lambda^k}{k !} e^{-\lambda}, \quad \text{za } k=0,1,2, \ldots
+    p_k=P(X=k)=\frac{\lambda^k}{k !} e^{-\lambda}, \quad \text{za} \quad k=0,1,2, \ldots
     $$
     Res velja: 
     $$
     \sum_{k=0}^{\infty} p_k=e^{-\lambda} \left(\sum_{k=0}^{\infty} \frac{\lambda^k}{k !}\right)=e^{-\lambda} e^\lambda=1
     $$
     \begin{zgled}
-        Število klicev v telefonskem omrežju v minuti. $n$ je število naročnikov. Recimo, da je $n=10^6$ in vsak se z verjetnostjo $p$ odloči, da bo klical. $X \sim \operatorname{Bin}(n,p)\approx \operatorname{Poi}(np)$. Primer je tudi število napačnih črk v časopisu. 
+        Število klicev v telefonskem omrežju v minuti. $n$ je število naročnikov. Recimo, da je $n=10^6$ in vsak se z verjetnostjo $p$ odloči, da bo klical. Ker je $n$ velik in $p$ majhen lahko aproksimiramo $X \sim \operatorname{Bin}(n,p)\approx \operatorname{Poi}(np)$. Primer je tudi število napačnih črk v časopisu. 
     \end{zgled}
     \item \emph{Geometrijska porazdelitev} $\operatorname{geo}(p)$, $p \in (0,1)$:
     
@@ -1305,7 +1314,7 @@ $$
     \underbrace{\bar A\bar A\bar A \ldots \bar A}_{k-1}A
     $$
     $$
-    p_k=P(X=k)=p  q^{k-1}, \quad \text{za }k=1, 2, 3, \ldots
+    p_k=P(X=k)=p  q^{k-1}, \quad \text{za} \quad k=1, 2, 3, \ldots
     $$
     Res velja: 
     $$
@@ -1323,7 +1332,7 @@ $$
     \underbrace{A A \bar A A \bar A \ldots \bar A A}_{\substack{m-1 \, A \\ k-m \, \bar A}}A
     $$
     $$
-    p_k=P(x=k)=\binom{k-1}{m-1} p^m q^{k-m}, \quad \text{za } k=m, m+1, m+2, \ldots
+    p_k=P(X=k)=\binom{k-1}{m-1} p^m q^{k-m}, \quad \text{za} \quad k=m, m+1, m+2, \ldots
     $$
 
     $\sum_{k=m}^{\infty} p_k = 1$ se dokaže računsko z $(m-1)$-kratnim odvajanjem vrste $1+q+q^2+ \cdots = \frac{1}{1-q}$ ali pa direktno z uporabo vrste $(1-q)^{-m}=\sum_{j=0}^{\infty}\binom{-m}{j} (-q)^j$. \s
@@ -1331,19 +1340,36 @@ $$
     Geometrijska porazdelitev je poseben primer Pascalove: $\operatorname{Pas}(1,p) = \operatorname{geo}(p)$
 
     \begin{zgled}
-        Mečemo kocko. $X$ je število potrebnih meto, da šestica pade $m$ krat. $X \sim \operatorname{Pas}(m, \frac{1}{6})$.
+        Mečemo kocko. $X$ je število potrebnih metov, da šestica pade $m$ krat. $X \sim \operatorname{Pas}(m, \frac{1}{6})$.
     \end{zgled}
 
     \item \emph{Hipergeometrijska porazdelitev} $\operatorname{Hip}(n; M, N)$, $n \leq \min \{M, N-M\}$:
     
     V posodi imamo $M$ belih in $(N-M)$ črnih krogljic. Slučajno izvlečemo $n$ krogljic. $X$ naj bo število belih krogljic med izvlečenimi:
     $$
-    p_k=P(x=k)=\frac{\binom{M}{k} \binom{N-M}{n-k}}{\binom{N}{n}}
+    p_k=P(X=k)=\frac{\binom{M}{k} \binom{N-M}{n-k}}{\binom{N}{n}}
     $$
     Ker je $\{(X=k\}_{k=0}^n$ popoln sistem dogodkov, je $\sum_{k=0}^n p_k=1$. Torej velja:
     $$
     \sum_{k=0}^{n} \binom{M}{k} \binom{N-M}{n-k} = \binom{N}{n}
     $$
+    Računsko v $\sum_{k=0}^n p_k$ se privzame: 
+    $$
+    (1+x)^N=(1+x)^M(1+x)^{N-M}
+    $$
+    Za vsakega od teh faktorjev se uporabi binomski obrazec in se primerja koeficiente pri $x^n$:
+    $$
+    \begin{aligned}
+        \sum_{k=0}^N \binom{N}{k} x^k&=\left(\sum_{i=0}^M \binom{M}{i} x^i\right) \cdot\left(\sum_{j=0}^{N-M} \binom{N-M}{j} x^j\right) \\
+        &=\sum_i \sum_j \binom{M}{i}\binom{N-M}{j} x^{i+j}
+    \end{aligned}
+    $$
+    Koeficient pri $x^n$ na levi je $\binom{N}{n}$, na desni pa: 
+    $$
+    \sum_{i+j=n}\binom{M}{i}\binom{N-m}{j}=\sum_{k=0}^m\binom{M}{k}\binom{N-M}{n-k}
+    $$
+    Tako je vsota res 1. 
+
     \begin{zgled}
         V jezeru je $N$ rib, od tega je $M$ krapov. Ulovimo $n$ rib. Naj bo $X$ število ujetih krapov. $X \sim \operatorname{Hip}(n;M,N)$.
     \end{zgled}
@@ -1359,99 +1385,154 @@ $$
 F_X(x)=\int_{-\infty}^x p_X(t) \, d t
 $$
 
-Pogosto se gostota označuje s $f_X$. 
+\begin{opomba}
+    Pogosto se gostota označuje s $f_X$.   
+\end{opomba}
+  
+\n Tedaj je $F_X=F$ zvezna funkcija. Toda obstajajo tudi zvezne porazdelitvene funkcije, ki nimajo gostote.
 
-\n Tedaj je $F_X=F$ zvezna funkcija. Toda obstajajo tudi zvezne porazdelitvene funkcije, ki nimajo gostote. \s
+\n Ker je $\lim _{x \rightarrow \infty} F(x)=1$, je: 
+$$
+\int_{-\infty}^{\infty} p(t) \, d t=1
+$$ 
 
-\n Ker je $\lim _{x \rightarrow \infty} F(x)=1$, je $\int_{-\infty}^{\infty} p(t) \, d t=1$. \s
-
-\n Če je $p$ zvezna v toči $x$, potem je $F$ odvedljiva v $x$ in velja $F^{\prime}(x)=p(x)$. \s
+\n Če je $p$ zvezna v toči $x$, potem je $F$ odvedljiva v $x$ in velja $F^{\prime}(x)=p(x)$. 
 
 \n Za vsak $x \in \mathbb{R}$ velja $P(X=x)=F(x)-F(x-)=0$. Če je $x_1 \leq x_2$, je potem:
 $$
 P\left(x_1 \leq X_1 \leq x_2\right)=F\left(x_2\right)-F\left(x_1-\right)=\int_{x_1}^{x_2} p(t) \, d t
 $$
 
-\newpage
-
-\n \textbf{Nekatere pomembnejše zvezne porazdelitve:}
+\n \textbf{Pomembnejše zvezne porazdelitve:}
 
 \begin{enumerate}
     \item \emph{Enakomerna zvezna porazdelitev} na $[a, b]$, $a<b$:
     $$
     p(x)=
     \begin{cases}
-        \frac{1}{b-a}, & \text{ če } a\leq x \leq b \\
-        \, \, 0, & \text{ sicer }
+        \frac{1}{b-a} &; \text{ če } a\leq x \leq b \\
+        \, \, \, 0 &; \text{ sicer }
     \end{cases}
     $$
-    \begin{tikzpicture}
 
-        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
 
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=-3:3,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-3, xmax=3,
-            ymin=0, ymax=0.5,
-            ytick={0.3},
-            xtick={-2, 0.5, 2},
-            yticklabels={$\frac{1}{b-a}$},
-            xticklabels={$a$, $x$, $b$},
-            yticklabel style={xshift=0cm}
-        ]
-        
-        \draw[line width=1pt] (-3, 0) -- (-2, 0);
-        \draw[line width=1pt] (-2, 0.3) -- (2, 0.3);
-        \draw[line width=1pt] (2, 0) -- (3, 0);
-    
-        \draw[dashed] (-2, 0) -- (-2, 0.3);
-        \draw[dashed] (2, 0) -- (2, 0.3);
-        \draw[dashed] (-3, 0.3) -- (2, 0.3);
-    
-        \fill[siva] (-2,0) rectangle (0.5,0.3);
-    
-        \end{axis}
-    \end{tikzpicture}
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+            \begin{axis}[
+                axis lines = left,
+                domain=-3:3,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-3, xmax=3,
+                ymin=0, ymax=0.5,
+                ytick={0.3},
+                xtick={-2, 0.5, 2},
+                yticklabels={$\frac{1}{b-a}$},
+                xticklabels={$a$, $x$, $b$},
+                yticklabel style={xshift=0cm}
+            ]
+            
+            \fill[siva] (-2,0) rectangle (0.5,0.3);
+            
+            \draw[line width=1pt] (-3, 0) -- (-2, 0);
+            \draw[line width=1pt] (-2, 0.3) -- (2, 0.3);
+            \draw[line width=1pt] (2, 0) -- (3, 0);
+            \draw[line width=0.5pt] (-3, 0) -- (3, 0);
+            
+            \draw[dashed] (-2, 0) -- (-2, 0.3);
+            \draw[dashed] (2, 0) -- (2, 0.3);
+            \draw[dashed] (-3, 0.3) -- (2, 0.3);
+            
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{$p_X(x)$ za enakomerno porazdelitev}
+        \label{fig:9}
+    \end{figure}
+
     $$
     F(x)=\int_{-\infty}^x p(t) \, d t= 
     \begin{cases}
-        0, & \text{ če } x \leq a \\
-        \frac{x-a}{b-a}, & \text{ če } a \leq x \leq b \\
-        1, & \text{ če } x \geq b
+        0 &; \text{ če } x \leq a \\
+        \frac{x-a}{b-a} &; \text{ če } a \leq x \leq b \\
+        1 &; \text{ če } x \geq b
     \end{cases}
     $$
-    \item \emph{Normalna} ali \emph{Gaussova porazdelitev} $\operatorname{N}(\mu, \sigma)$, $(\mu \in \mathbb{R}, \sigma>0)$:
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+            \begin{axis}[
+                axis lines = left,
+                domain=-3:3,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-3, xmax=3,
+                ymin=0, ymax=1.1,
+                ytick={1},
+                xtick={-2, 0.5, 2},
+                yticklabels={1},
+                xticklabels={$a$, $x$, $b$},
+                yticklabel style={xshift=0cm}
+            ]
+            
+            \draw[line width=1pt] (-3, 0) -- (-2, 0);
+            \draw[line width=1pt] (-2, 0) -- (2, 1);
+            \draw[line width=1pt] (2, 1) -- (3, 1);
+            \draw (0.5, 0) -- (0.5, 0.625);
+            
+            \draw[dashed] (-3, 1) -- (3, 1);
+            \draw[dashed] (3, 0) -- (3, 1);
+            
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{$p_X(x)$ za normalno porazdelitev}
+        \label{fig:10}
+    \end{figure}
+
+    \item \emph{Normalna} ali \emph{Gaussova porazdelitev} $\operatorname{N}(\mu, \sigma)$, $\mu \in \mathbb{R}, \sigma>0$:
     $$
     p(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
     $$
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
 
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=-3:3,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-3, xmax=3,
-            ymin=0, ymax=0.5,
-            xtick={0},
-            xticklabels={$\mu$},
-            yticklabels={}
-        ]
-        
-        \addplot [black, thick] {1/(sqrt(2*pi))*exp(-(x^2/2)};
-        \draw[dashed] (0, 0) -- (0, 0.3989);
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
 
-        \end{axis}
-    \end{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                domain=-3:3,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-3, xmax=3,
+                ymin=0, ymax=0.5,
+                xtick={-0.35, 0},
+                xticklabels={$x$, $\mu$},
+                yticklabels={}
+            ]
+            
+            \addplot [fill=siva, domain=-3:(-0.35)] {1/(sqrt(2*pi))*exp(-(x^2/2)} \closedcycle;
+            \addplot [black, thick] {1/(sqrt(2*pi))*exp(-(x^2/2)};
+
+            \draw[dashed] (0, 0) -- (0, 0.3989);
+
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{Verjetnostni prostor $\Omega$}
+        \label{fig:11}
+    \end{figure}
 
     Če je $\sigma$ majhen: \hspace{5cm} Če je $\sigma$ velik:
     \begin{figure}[h]
@@ -1460,10 +1541,8 @@ $$
             \begin{tikzpicture}
                 \begin{axis}[
                     axis lines = left,
-                    xlabel = $x$,
-                    ylabel = {$y$},
                     domain=-3:3,
-                    samples=100,
+                    samples=500,
                     height=4cm,
                     width=7cm,
                     xmin=-3, xmax=3,
@@ -1478,6 +1557,9 @@ $$
         
                 \end{axis}
             \end{tikzpicture}
+
+            \label{fig:12}
+
         \end{minipage}
         \hfill
         \begin{minipage}{0.45\textwidth}
@@ -1485,10 +1567,8 @@ $$
             \begin{tikzpicture}
                 \begin{axis}[
                     axis lines = left,
-                    xlabel = $x$,
-                    ylabel = {$y$},
                     domain=-3:3,
-                    samples=100,
+                    samples=500,
                     height=4cm,
                     width=7cm,
                     xmin=-3, xmax=3,
@@ -1503,222 +1583,334 @@ $$
         
                 \end{axis}
             \end{tikzpicture}
+
+            \label{fig:13}
+
         \end{minipage}
     \end{figure}
 
     $$
-    F(x)=\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, d t \stackrel{\star}{=} \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}s^2} \, ds = \frac{1}{2}+\phi\left(\frac{x-\mu}{\sigma}\right)
+    F(x)=\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, d t \stackrel{(\star)}{=} \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}s^2} \, ds = \frac{1}{2}+\Phi\left(\frac{x-\mu}{\sigma}\right)
     $$
 
-    Kjer smo v enakosti $\star$ uvedli novo spremenljivko $s=\frac{t-\mu}{\sigma}$.
-    
-    \hspace{20pt} Tukaj je: $$\phi(x)=\frac{1}{\sqrt{2 \pi}} \int_0^x e^{2 \pi t^2} \, d t$$ \s
+    Kjer smo v enakosti $(\star)$ uvedli novo spremenljivko $s=\frac{t-\mu}{\sigma}$. Tukaj je: 
+    $$
+    \Phi(x)=\frac{1}{\sqrt{2 \pi}} \int_0^x e^{-\frac{1}{2}t^2} \, d t
+    $$
 
-    $N(0,1)$: standardna normalna porazdelitev:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                domain=-5:5,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-4, xmax=4,
+                ymin=0, ymax=1.1,
+                xtick={-0.3},
+                ytick={1},
+                xticklabels={$x$},
+                yticklabels={1},
+            ]
+            
+            \addplot [black, thick] {1/2 * erf(x/1.4142) + 1/2};
+
+            \draw[dashed] (-5, 1) -- (5, 1);
+            \draw (-0.3,0) -- (-0.3,0.3821);
+            
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{$F_X(x)$ za normalno porazdelitev}
+        \label{fig:14}
+    \end{figure}
+
+    $N(0,1)$ je \emph{standardna normalna porazdelitev:}
     $$
     p(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}
     $$
     
-    Laplaceova formula: za velike $n$ je:
+    Laplaceova integralska formula pove, da za velike $n$ velja:
     $$
     \operatorname{Bin}(n,p) \approx \operatorname{N}(np, \sqrt{npq})
     $$
     \begin{zgled}
-        Sistolični krvni tlak je an populciji približno normalno porazdeljen: \s
+        Sistolični krvni tlak je na populaciji približno normalno porazdeljen:
         
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+
+                \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+                \begin{axis}[
+                    axis lines = left,
+                    xlabel = $x$,
+                    ylabel = {$y$},
+                    domain=-3:3,
+                    samples=500,
+                    height=4cm,
+                    width=10cm,
+                    xmin=-3, xmax=3,
+                    ymin=0, ymax=0.5,
+                    xtick={0, 1},
+                    xticklabels={120, 130},
+                    yticklabels={}
+                ]
+                
+                \addplot [fill=siva, domain=0:1] {1/(sqrt(2*pi))*exp(-(x^2/2)} \closedcycle;
+                \addplot [black, thick] {1/(sqrt(2*pi))*exp(-(x^2/2)};
+                
+                \end{axis}
+            \end{tikzpicture}
+
+            \caption{Sistolični krvni tlak}
+            \label{fig:15}
+        \end{figure}
+
+        Osenčen del je delež ljudi, ki imajo tlak med $120$ in $130 \operatorname{mm\ Hg}$.
+    \end{zgled}
+
+    \item \emph{Eksponenta porazdelitev} $\operatorname{Exp}(\lambda)$, s parametrom $\lambda > 0$:
+    $$
+    p(x)= \begin{cases}\lambda e^{-\lambda x} &; \text { če } x \geq 0 \\ 0 &; \text { sicer }\end{cases}
+    $$
+
+    \begin{figure}[H]
+        \centering
         \begin{tikzpicture}
 
             \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
 
             \begin{axis}[
                 axis lines = left,
-                xlabel = $x$,
-                ylabel = {$y$},
-                domain=-3:3,
-                samples=100,
+                domain=0:5,
+                samples=500,
                 height=4cm,
                 width=10cm,
-                xmin=-3, xmax=3,
-                ymin=0, ymax=0.5,
-                xtick={0, 1},
-                xticklabels={120, 130},
+                xmin=-1, xmax=5,
+                ymin=0, ymax=1.2,
+                axis y line=middle,
+                xtick={0, 2},
+                xticklabels={0, $x$},
                 yticklabels={}
             ]
             
-            \addplot [black, thick] {1/(sqrt(2*pi))*exp(-(x^2/2)};
-            \addplot [fill=siva, domain=0:1] {1/(sqrt(2*pi))*exp(-(x^2/2)} \closedcycle;
-            \draw[dashed] (0, 0) -- (0, 0.3989);
-            \draw[dashed] (1, 0) -- (1, 0.2420);
-        
+            \addplot [fill=siva, domain=0:2] {e^(-x)} \closedcycle;
+            \addplot [black, thick] {e^(-x)};
+
+            \draw[line width=1pt] (-1, 0) -- (0, 0);
+            \draw[dashed] (0, 0) -- (0, 1);
+            \draw[dashed] (2, 0) -- (2, 0.1353);
+            
             \end{axis}
         \end{tikzpicture}
 
-        delež ljudi, ki imajo tlak med $120$ in $130 \operatorname{mm\ Hg}$.
-    \end{zgled}
+        \caption{$p_X(x)$ za eksponentno porazdelitev}
+        \label{fig:16}
+    \end{figure}
 
-    \item \emph{Eksponenta porazdelitev} $\operatorname{Exp}(\lambda)$, $\lambda > 0$:
     $$
-    p(x)= \begin{cases}\lambda e^{-\lambda x}, & \text { če } x \geq 0 \\ 0, & \text { sicer }\end{cases}
+    F(x)= \begin{cases}1-e^{-\lambda x} &; \text { če } x \geq 0 \\ 0, &; \text { sicer }\end{cases}
     $$
 
-    \begin{tikzpicture}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
 
-        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+            \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
 
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=0:5,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-1, xmax=5,
-            ymin=0, ymax=1.2,
-            axis y line=middle,
-            xtick={0, 2},
-            xticklabels={0, $x$},
-            yticklabels={}
-        ]
-        
-        \addplot [black, thick] {e^(-x)};
-        \addplot [fill=siva, domain=0:2] {e^(-x)} \closedcycle;
+            \begin{axis}[
+                axis lines = left,
+                domain=0:5,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-1, xmax=5,
+                ymin=0, ymax=1.2,
+                axis y line=middle,
+                xtick={0, 2},
+                ytick={1},
+                xticklabels={0, $x$},
+                yticklabels={1}
+            ]
+            
+            \addplot [black, thick] {1-e^(-x)};
 
-        \draw[line width=1pt] (-1, 0) -- (0, 0);
-        \draw[dashed] (0, 0) -- (0, 1);
-        \draw[dashed] (2, 0) -- (2, 0.1353);
+            \draw[line width=1pt] (-1, 0) -- (0, 0);
+            \draw (2, 0) -- (2, 1-0.1353);
+            \draw[dashed] (0, 1) -- (5, 1);
+            
+            \end{axis}
+        \end{tikzpicture}
     
-        \end{axis}
-    \end{tikzpicture}
-
-    $$
-    F(x)= \begin{cases}1-e^{-\lambda x}, & \text { če } x \geq 0 \\ 0, & \text { sicer }\end{cases}
-    $$
-
-    \begin{tikzpicture}
-
-        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
-
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=0:5,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-1, xmax=5,
-            ymin=0, ymax=1.2,
-            axis y line=middle,
-            xtick={0, 2},
-            ytick={1},
-            xticklabels={0, $x$},
-            yticklabels={1}
-        ]
-        
-        \addplot [black, thick] {1-e^(-x)};
-
-        \draw[line width=1pt] (-1, 0) -- (0, 0);
-        \draw (2, 0) -- (2, 1-0.1353);
-        \draw[dashed] (0, 1) -- (5, 1);
-    
-        \end{axis}
-    \end{tikzpicture}
+        \caption{$F_X(x)$ za eksponentno porazdelitev}
+        \label{fig:17}
+    \end{figure}
 
     \begin{zgled}
         Radioaktivni razpad - potreben čas, da se nekaj zgodi. 
     \end{zgled}
 
+    \item \emph{Porazdelitev gama} (pomembna v statistiki), $\Gamma(b,c)$, $b>0$, $c>0$:
+    $$
+    p(x)= \begin{cases}\frac{c^b}{\Gamma(b)} x^{b-1} e^{-c x} &; \text { če } x>0 \\ 0 &; \text { sicer }\end{cases}
+    $$
+    Velja: 
+    $$
+    \int_{-\infty}^{\infty} p(x) \, d x=\frac{c^b}{\Gamma(b)} \int_{-\infty}^{\infty} x^{b-1} e^{-c x} \, d x=\frac{1}{\Gamma(b)} \int_{-\infty}^{\infty} \underbrace{(c x)^{k-1} e^{-c x} \, d(c x)}_{\Gamma(b)}=1
+    $$
+    Gama porazdelitev je poseben primer eksponentne: $\Gamma(1,\lambda) = \operatorname{Exp}(\lambda)$.
+
+    \item \emph{Porazdelitev $\chi^2(n)$} (posebna porazdelitev gama), $n \in \mathbb{N}$ prostorska stopnja:
+    $$
+    p(x)=\begin{cases}
+        \frac{1}{2^{\frac{n}{2}} \Gamma\left(\frac{n}{2}\right)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}} &; \text { če } x>0 \\
+        0 &; \text { sicer }
+        \end{cases}
+    $$
+    Velja: $\chi^2(n)=\Gamma\left(\frac{n}{2}, \frac{1}{2}\right)$.
     \item \emph{Cauchyjeva porazdelitev}:
     $$
-    p(x)=\frac{1}{\pi \left(1+x^2\right)}, \quad \text{za } x \in \mathbb{R}
+    p(x)=\frac{1}{\pi \left(1+x^2\right)}, \quad \text{za} \quad x \in \mathbb{R}
     $$
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=-3:3,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-3, xmax=3,
-            ymin=0, ymax=0.5,
-            ytick={0.3183},
-            yticklabels={$\frac{1}{\pi}$},
-            xticklabels={}
-            enlargelimits=0.05,
-            axis y line=middle,
-            yticklabel style={xshift=-2cm}
-        ]
-        
-        \addplot [black, thick] {1/(3.1415 * (1 + x^2))};
-        \draw[dashed] (0, 0.3183) -- (-1.58, 0.3183);
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                domain=-3:3,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-3, xmax=3,
+                ymin=0, ymax=0.5,
+                ytick={0.3183},
+                xtick={0},
+                yticklabels={$\frac{1}{\pi}$},
+                xticklabels={0},
+                enlargelimits=0.05,
+                axis y line=middle,
+                yticklabel style={xshift=-2cm}
+            ]
+            
+            \addplot [black, thick] {1/(3.1415 * (1 + x^2))};
+            \draw[dashed] (0, 0.3183) -- (-1.58, 0.3183);
 
-        \end{axis}
-    \end{tikzpicture}
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{$p_X(x)$ za Cauchyjevo porazdelitev}
+        \label{fig:18}
+    \end{figure}
 
     $$
     F(x)=\int_{-\infty}^x \frac{d t}{\pi\left(1+t^2\right)}=\left.\frac{1}{\pi} \operatorname{arctg} t\right|_{-\infty} ^x=\frac{1}{\pi} \operatorname{arctg} x+\frac{1}{2}
     $$
-\end{enumerate}
-\s
-\begin{zgled}
-    Primer slučajne spremenljivke, ki ni niti diskretno niti zvezno porazdeljena. 
 
-    \n Vržemo pošten kovanec. Če pade grb, postavimo $X=1$; če pade cifra, naj bo $X$ slučajno izbrano število na intervalu $[0,2]$. \vspace{2pt}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                domain=-7:7,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-6, xmax=6,
+                ymin=0, ymax=1,
+                ytick={1},
+                xtick={0},
+                yticklabels={1},
+                xticklabels={0},
+                enlargelimits=0.05,
+                axis y line=middle
+            ]
+            
+            \addplot [black, thick] {1/2 + (1/3.1415) * rad(atan(x))};
+
+            \draw[dashed] (0, 1) -- (7, 1);
+
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{$F_X(x)$ za Cauchyjevo porazdelitev}
+        \label{fig:19}
+    \end{figure}
+\end{enumerate}
+
+\n Imeli smo:
+$$
+\begin{aligned}
+    & P\left(x_1 \leq X \leq x_1\right)=\int_{x_1}^{x_2} p(x) \, d x \quad \text {oziroma} \\
+    & P\left(X \in\left[x_1, x_2\right]\right)=\int_{\left[x_1, x_2\right]} p(t) \, d t 
+\end{aligned}
+$$
+Možno je videti, da to velja za vsako Borelovo množico $A \subseteq \mathbb{R}$:
+$$
+P(X \in A)=\int_A p(t) \, d t
+$$
+Velja, da če je $A$ dovolj \enquote{lepa} množica, recimo števna/končna unija intervalov, je verjetnost, da $X$ zavzame vrednost v $A$ ravno ploščina pod $p(x)$ na množici $A$. 
+
+\begin{zgled}
+    Primer slučajne spremenljivke, ki ni niti diskretno niti zvezno porazdeljena. Vržemo pošten kovanec. Če pade grb, postavimo $X=1$. Če pa pade cifra, naj bo $X$ slučajno izbrano število na intervalu $[0,2]$.
     
     \n Izračunajmo $F(x)=P(X \leq x)$:
-    
-    1) Če je $x<0$, je $F(x) = 0$. Če je $x>2$, je $F(x) = 1$.
+    \begin{enumerate}
+        \item Če je $x<0$, je $F(x) = 0$. Če je $x>2$, je $F(x) = 1$.
+        \item Vzemimo, da je $0 \leq x \leq 2$. Potem je:
+        $$
+        F(x) = P(\text{grb}) \cdot P(X\leq x \mid \text{grb}) + P(\text{cifra}) \cdot P(X\leq x \mid \text{cifra})
+        $$
+        Če je $x<1$, je $F(x)=\frac{1}{2} \cdot \frac{x}{2}=\frac{x}{4}$.
 
-    2) Vzemimo, da je $0 \leq x \leq 2$. Potem je:
-    $$
-    F(x) = P(\text{grb}) P(X\leq x \mid \text{grb}) + P(\text{cifra}) P(X\leq x \mid \text{cifra})
-    $$
-
-    \qquad Če je $x<1$, je $F(x)=\frac{1}{2} \cdot \frac{x}{2}=\frac{x}{4}$.
-
-    \qquad Če je $x \geq 1$, je $F(x)=\frac{1}{2}+\frac{1}{2} \cdot \frac{x}{2}=\frac{1}{2}+\frac{x}{4}$.
-
+        Če je $x \geq 1$, je $F(x)=\frac{1}{2}+\frac{1}{2} \cdot \frac{x}{2}=\frac{1}{2}+\frac{x}{4}$.
+    \end{enumerate}
+  
     \n Torej je: 
     $$
     F(x)=
     \begin{cases}
-        0, & \text{ če } x<0 \\
-        \frac{x}{4}, & \text{ če } 0 \leq x<1 \\
-        \frac{1}{2}+\frac{x}{4}, & \text{ če } 1 \leq x \leq 2 \\
-        1, & \text{ če } x>2
+        0 &; \text{ če } x<0 \\
+        \frac{x}{4} &; \text{ če } 0 \leq x<1 \\
+        \frac{1}{2}+\frac{x}{4} &; \text{ če } 1 \leq x \leq 2 \\
+        1 &; \text{ če } x>2
     \end{cases}
     $$
 
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=-3:3,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-1, xmax=5,
-            ymin=0, ymax=1.3,
-            ytick={0.25, 0.75, 1.1},
-            xtick={0, 2, 4},
-            yticklabels={$\frac{1}{4}$, $\frac{3}{4}$, 1},
-            xticklabels={0, 1, 2},
-            axis y line=middle
-        ]
-        
-        \draw[->, line width=1pt] (-1,0) -- (0,0);
-        \draw[->, line width=1pt] (0,0) -- (2,0.25);
-        \draw[->, line width=1pt] (2,0.75) -- (4,1);
-        \draw[->, line width=1pt] (4,1) -- (6,1);
-        \draw[dashed] (0, 1) -- (4, 1);
-        \draw[dashed] (4, 0) -- (4, 1);
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                domain=-3:3,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-1, xmax=5,
+                ymin=0, ymax=1.1,
+                ytick={0.25, 0.75, 1},
+                xtick={0, 2, 4},
+                yticklabels={$\frac{1}{4}$, $\frac{3}{4}$, 1},
+                xticklabels={0, 1, 2},
+                axis y line=middle
+            ]
+            
+            \draw[line width=1pt] (-1,0) -- (0,0);
+            \draw[->, line width=1pt] (0,0) -- (2,0.25);
+            \draw[line width=1pt] (2,0.75) -- (4,1);
+            \draw[line width=1pt] (4,1) -- (6,1);
+            \draw[dashed] (0, 1) -- (4, 1);
+            \draw[dashed] (4, 0) -- (4, 1);
 
-        \end{axis}
-    \end{tikzpicture}
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{Porazdelitvena funkcija $F_X(x)$}
+        \label{fig:20}
+    \end{figure}
 
     \n Ker $F$ ni zvezna, $X$ ni zvezno porazdeljena. Ker $F$ ni odsekoma konstantna, $X$ ni diskretno porazdeljena. 
 \end{zgled}
