@@ -1917,12 +1917,13 @@ Velja, da če je $A$ dovolj \enquote{lepa} množica, recimo števna/končna unij
 
 \chapter{Slučajni vektorji in neodvisnost}
 
+\section{Slučajni vektorji}
+
 \begin{definicija}
     \emph{Slučajni vektor} je $n$-terica slučajnih spremenljivk $X=\left(X_1, \ldots, X_n\right)$, to je preslikava $X:\Omega \to \mathbb{R}^n$ z lastnostjo, da je množica: 
     $$
     \left(X_1 \leq x_1, \ldots, X_n \leq x_n\right):=\left\{\omega \in \Omega: X_1(\omega) \leq x_1,\ldots, X_n(\omega) \leq x_n\right\}
     $$
-
     dogodek, za vsako $n$-terico $x=\left(x_1, x_2, \ldots, x_n\right) \in \mathbb{R}^n$.
 \end{definicija}
 
@@ -1942,48 +1943,80 @@ $$
     &\lim _{x_i \rightarrow-\infty} F\left(x_1, \ldots, x_n\right)=0
 \end{aligned}
 $$
-
-\n Če pošljemo proti $\infty$ samo nekatere spremenljivke, dobimo porazdelitvene funkcije podvektorjev, na primer:
+Če pošljemo proti $\infty$ samo nekatere spremenljivke, dobimo porazdelitvene funkcije podvektorjev, na primer:
 $$
 \begin{aligned}
     &\lim _{x_n \to \infty} F_{\left(X_1, \ldots, X_{n}\right)}\left(x_1, \dots , x_n\right)=F_{\left(X_1, \ldots, X_{n-1}\right)}\left(x_1, x_2, \ldots, x_{n-1}\right) \\
-    &\lim _{\substack{x_2 \to \infty \\ \vdots \\x_n \to \infty}} F_{\left(X_1, \ldots, X_{n}\right)}\left(x_1, x_2, \ldots, x_n\right)=F_{X_1}\left(x_1\right)
+    &\lim _{\substack{x_2 \to \infty \vspace{-5pt} \\ \vdots \\x_n \to \infty}} F_{\left(X_1, \ldots, X_{n}\right)}\left(x_1, x_2, \ldots, x_n\right)=F_{X_1}\left(x_1\right)
 \end{aligned}
 $$
+Take porazdelitvene funkcije za $X_i$ imenujemo tudi, \emph{robne} (marginalne) \emph{porazdelitve.}
 
-Take porazdelitvene funkcije za $X_1$ imenujemo tudi, \emph{robne} (marginalne) \emph{porazdelitve.}
-
-\n Oglejmo si dvorazsežen primer:
+\n \textbf{Oglejmo si dvorazsežen primer ($n=2$):}
 $$
 \begin{aligned}
     (X, Y): \Omega & \to \mathbb{R}^2 \\
     \omega & \mapsto(X(\omega), Y(\omega))
     \end{aligned}
 $$
-
 Porazdelitvena funkcija je: 
 $$
 F_{(X, Y)}(x, y)=P(X \leq x, Y \leq y)
 $$
 
-Robni porazdelitvi sta: 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+
+        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
+
+        \begin{axis}[
+            axis lines = left,
+            domain=-1:1,
+            samples=500,
+            height=5cm,
+            width=5cm,
+            xmin=-1.1, xmax=1,
+            ymin=-1.1, ymax=1,
+            xtick={},
+            ytick={},
+            xticklabels={},
+            yticklabels={},
+            axis y line=middle,
+            axis x line=middle
+        ]
+
+        \fill[siva] (-1, -1) rectangle (0.6, 0.7);
+
+        \draw (0.6, 0.7) -- (-1, 0.7);
+        \draw (0.6, 0.7) -- (0.6, -1);
+        \draw (-1, 0) -- (1, 0);
+        \draw (0, -1) -- (0, 1);
+
+        \addplot[mark=*, mark size=1pt] coordinates {(-0.55,-0.45)};
+
+        \node at (-0.4,-0.3) {\footnotesize $(X, Y)$};
+        \node at (0.75,0.85) {\footnotesize $(x, y)$};
+    
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Verjetnost, da zavzamemo vrednost znotraj tega kvadrata}
+    \label{fig:21}
+\end{figure}
+
+\n Robni porazdelitvi sta: 
 $$
 \begin{aligned}
     &F_X(x)=\lim _{y \rightarrow \infty} F_{(X, Y)}{(x, y)} \\
     &F_Y(y)=\lim _{x \rightarrow \infty} F_{(X,Y)}(x, y)
 \end{aligned}
 $$
-
-\s
-
-\n Izpeljimo analog formule $P\left(x_1<X \leq x_2\right)=F\left(x_2\right)-F\left(x_1\right)$, t.j. izračunajmo verjetnost:
+Izpeljimo analog formule $P\left(x_1<X \leq x_2\right)=F\left(x_2\right)-F\left(x_1\right)$, t.j. s pomočjo porazdelitvene funkcije $F_{(X, Y)}=F$ izračunajmo verjetnost:
 $$
 P(a<X \leq b, c<y \leq d)
 $$
-
-s pomočjo porazdelitvene funkcije $F_{(X, Y)}=F$.
-
-\n Najprej si oglejmo:
+Najprej si oglejmo:
 $$
 \begin{aligned}
     P(a<X \leq b, Y \leq d)&=P\left((X \leq b, Y \leq d) \setminus (X \leq a, Y \leq d)\right) \\
@@ -1991,8 +2024,7 @@ $$
     &=F(b, d)-F(a, d)
 \end{aligned}
 $$
-
-\n V splošnem primeru: 
+V splošnem primeru: 
 $$
 \begin{aligned}
     P(a<X \leq b, c<Y \leq d)&=P(a<X \leq b, Y \leq d) - P(a<X \leq b, Y \leq c) \\
@@ -2001,18 +2033,55 @@ $$
 \end{aligned}
 $$
 
-\n Omejimo se na diskretne porazdelitve. 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
 
-Zaloga vrednosti slučajnih vektorjev $X=\left(X_1, \ldots, X_n\right)$ je največ števna množica v $\mathbb{R}^n$. Omejimo se na $n=2$: $(X, Y): \Omega \to \mathbb{R}^2$ z največ števno zalogo vrednosti. 
+        \definecolor{siva}{rgb}{0.8, 0.8, 0.8}
 
-Naj bo $\left\{x_1, x_2, \ldots\right\}$ zaloga vrednosti za $X$, $\left\{y_1, y_2, \ldots\right\}$ pa zaloga vrednosti za $Y$. Očitno je zaloga vrednosti $(X,Y)$ vsbovana v množica:
+        \begin{axis}[
+            axis lines = left,
+            domain=0:1,
+            samples=500,
+            height=5cm,
+            width=5cm,
+            xmin=0, xmax=1,
+            ymin=0, ymax=1,
+            xtick={0, 0.4, 0.9},
+            ytick={0.4, 0.8},
+            xticklabels={0, $\vphantom{b}a$, $b$},
+            yticklabels={$c$, $d$}
+        ]
+
+        \fill[siva] (0.4, 0.4) rectangle (0.9, 0.8);
+
+        \draw[dashed] (0.4, 0) -- (0.4, 0.8);
+        \draw[dashed] (0.9, 0) -- (0.9, 0.8);
+        \draw[dashed] (0, 0.4) -- (0.9, 0.4);
+        \draw[dashed] (0, 0.8) -- (0.9, 0.8);
+        \draw[->, line width=0.5pt] (0.9,0.8) -- (0.4,0.8);
+        \draw[->, line width=0.5pt] (0.9,0.8) -- (0.9,0.4);
+    
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{$P(a<X \leq b, c<Y \leq d)$}
+    \label{fig:22}
+\end{figure}
+
+\n \textbf{Omejimo se na diskretne porazdelitve:}
+
+\n Zaloga vrednosti slučajnih vektorjev $X=\left(X_1, \ldots, X_n\right)$ je največ števna množica v $\mathbb{R}^n$. Verjetnostno funkcijo definiramo s:
+$$
+p_{k_1, k_2, \ldots, k_n} = P\left(X_1=x_{k_1}, X_2=x_{k_2}, \ldots, X_n=x_{k_n}\right) \geq 0 \quad \text{in} \quad \sum_{k_1, \ldots, k_n} p_{k_1, \ldots, k_n}=1
+$$
+Omejimo se na $n=2$: $(X, Y): \Omega \to \mathbb{R}^2$ z največ števno zalogo vrednosti. Naj bo $\left\{x_1, x_2, \ldots\right\}$ zaloga vrednosti za $X$, $\left\{y_1, y_2, \ldots\right\}$ pa zaloga vrednosti za $Y$. Očitno je zaloga vrednosti $(X,Y)$ vsbovana v množica:
 $$
 \left\{\left(x_i, y_j\right): i=1,2, \ldots, j=1,2, \ldots\right\}
 $$
-
-\n Verjetnostna funkcija:
+Verjetnostna funkcija:
 $$
-p_{i j}:=P\left(X=x_i, Y=y_j\right) \quad \text{za} \quad i=1, 2, \ldots \text{ in } j=1, 2, \ldots
+p_{i j}:=P\left(X=x_i, Y=y_j\right) \quad \text{za} \quad i=1, 2, \ldots \quad \text{in} \quad  j=1, 2, \ldots
 $$
 $$
 \begin{array}{c|cccc|c}
@@ -2046,40 +2115,41 @@ $$
     $$
 \end{zgled}
 
+\section{Neodvisnost}
+
 \n Slučajne spremenljivke $X_1, X_2, \ldots, X_n$ so \emph{neodvisne}, če velja: 
 $$
 F_{\left(X_1, X_2, \ldots, X_n\right)}\left(x_1, x_2, \ldots, x_n\right)=F_{X_1}\left(x_n\right) \cdot F_{X_2}\left(x_2\right) \cdots F_{x_n}\left(x_n\right)
 $$
-
 za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\left(X_1 \leq x_1\right),\left(X_2 \leq x_2\right), \ldots,\left(X_n \leq x_n\right)$ so neodvisni.
 
 \begin{trditev}
-    Naj bo $(X,Y)$ diskreten slučajni vektor, $p_{i j}=P\left(X=x_i, Y=y_j\right), p_i=P\left(x=x_i\right), q_j=P\left(Y=y_j\right)$ za $i=1, 2, \ldots$, $j=1, 2, \ldots$
-
-    Potem sta $X$ in $Y$ neodvisni slučajni spremenljivki $\iff$ $p_{i j}=p_i \cdot q_j \quad \forall i, \forall j$. 
+    Naj bo $(X,Y)$ diskretno porazdeljen slučajni vektor. Naj bo $p_{i j}=P\left(X=x_i, Y=y_j\right), p_i=P\left(x=x_i\right), q_j=P\left(Y=y_j\right)$ za $i=1, 2, \ldots$, $j=1, 2, \ldots$ Potem sta $X$ in $Y$ neodvisni slučajni spremenljivki $\iff$ $p_{i j}=p_i \cdot q_j \quad \forall i, \forall j$. 
 \end{trditev}
 
 \begin{proof}
-    $(\implies)$:
-    \begin{flalign*}
+    ~
+
+    \n $(\implies)$:
+    \begin{align*}
         p_{i j}&=\lim _{h \to 0+} P\left(x_i-h<X \leq x_i, y_j-h< Y \leq y_j\right) \\
         &=\lim _{h \to 0}\left(F\left(x_i, y_j\right)-F\left(x_i-h, y_j\right)-F\left(x_i, y_j-h\right) +F\left(x_i-h, y_j-h\right)\right) \\
-        &=\lim _{h \to 0}\left(F_X\left(x_i\right) F_Y\left(y_j\right)-F_X\left(x_i-h\right) F_Y\left(y_j\right)-F_X\left(x_i\right) F_Y\left(y_j-h\right) \right. + \tag{$\star$} \\
-        & \hspace{9cm} +\left. F_x\left(x_i-h\right) F_y\left(y_j-h\right)\right) \\
+        &=\lim _{h \to 0}\left(F_X\left(x_i\right) \cdot F_Y\left(y_j\right)-F_X\left(x_i-h\right) \cdot F_Y\left(y_j\right)-F_X\left(x_i\right) \cdot F_Y\left(y_j-h\right) \right. + \tag{$\star$} \\
+        & \hspace{9cm} +\left. F_x\left(x_i-h\right) \cdot F_y\left(y_j-h\right)\right) \\
         &=\lim_{h \to 0}\left(F_X\left(x_i\right)-F_X\left(x_i-h\right)\right) \cdot\left(F_Y\left(y_j\right)-F_Y\left(y_j-h\right)\right) \\
         &=P\left(X=x_i\right) \cdot P\left(Y=y_j\right) \\
-        &=p_i q_j
-    \end{flalign*}
+        &=p_i \cdot q_j
+    \end{align*}
     Kjer smo v vrstici $(\star)$ uporabili neodvisnost. \s
 
-    $(\impliedby)$:
-    \begin{flalign*}
+    \n $(\impliedby)$:
+    \begin{align*}
         \quad F_{(X, Y)}(x, y)&=\sum_{\left\{i,j: x_i \leq x_1,y_j \leq y\right\}} p_{i j} & \\
-        &=\sum_{\left\{i,j: x_i \leq x,y_j \leq y\right\}} p_i p_j & \\
+        &=\sum_{\left\{i,j: x_i \leq x,y_j \leq y\right\}} p_i \cdot p_j & \\
         &=\left(\sum_{\{i: x_i \leq x\}} p_i\right)\left(\sum_{\{j: y_j \leq y\}} q_j\right) & \\
-        &=P(X \leq x) P(Y \leq y) & \\
-        &=F_X(x)  F_Y(y) &
-    \end{flalign*}
+        &=P(X \leq x) \cdot P(Y \leq y) & \\
+        &=F_X(x) \cdot F_Y(y) &
+    \end{align*}
 \end{proof}
 
 \chapter[Matematično upanja oz. pričakovana vrednost]{Matematično upanja oz.\\pričakovana vrednost}
