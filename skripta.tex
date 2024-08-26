@@ -392,7 +392,7 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
 \begin{enumerate}[label=(\alph*)]
     \item $P(\emptyset) = 0$. 
     \begin{proof}
-        V lastnosti 3. vzamamo $A_i = \emptyset$ za vsak $i$: 
+        V lastnosti 3. vzamemo $A_i = \emptyset$ za vsak $i$: 
         $$
         P\left(\bigcup_i \emptyset\right)=P(\emptyset)+P(\emptyset)+P(\emptyset)+\cdots = 0+0+0+ \cdots = 0
         $$
@@ -2146,89 +2146,95 @@ za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\lef
     \begin{align*}
         \quad F_{(X, Y)}(x, y)&=\sum_{\left\{i,j: x_i \leq x_1,y_j \leq y\right\}} p_{i j} & \\
         &=\sum_{\left\{i,j: x_i \leq x,y_j \leq y\right\}} p_i \cdot p_j & \\
-        &=\left(\sum_{\{i: x_i \leq x\}} p_i\right)\left(\sum_{\{j: y_j \leq y\}} q_j\right) & \\
+        &=\left(\sum_{\{i: x_i \leq x\}} p_i\right) \cdot \left(\sum_{\{j: y_j \leq y\}} q_j\right) & \\
         &=P(X \leq x) \cdot P(Y \leq y) & \\
         &=F_X(x) \cdot F_Y(y) &
     \end{align*}
 \end{proof}
 
-\chapter[Matematično upanja oz. pričakovana vrednost]{Matematično upanja oz.\\pričakovana vrednost}
+\chapter[Matematično upanje oz. pričakovana vrednost]{Matematično upanje oz.\\pričakovana vrednost}
 
-\n Za končno slučajno spremenljivko 
+\begin{definicija}
+    Za končno slučajno spremenljivko 
     $X:\left(\begin{array}{llll}
     x_1 & x_2 & \cdots & x_n \\
     p_1 & p_2 & \cdots & p_n
     \end{array}\right)$
-je \emph{matematično upanje} definirano kot: 
-$$
-E(x):=\sum_{k=1}^n x_k p_k
-$$
+    je \emph{matematično upanje} definirano kot: 
+    $$
+    E(X):=\sum_{k=1}^n x_k p_k
+    $$
+\end{definicija}
 
-Tako je v primeru $p_1=p_2=\ldots=p_n=\frac{1}{n}$ matematično upanje enako povprečni vrednosti: $E(x)=\frac{x_n+x_2+\cdots+x_n}{n}$. 
+\n Tako je v primeru $p_1=p_2=\cdots=p_n=\frac{1}{n}$ matematično upanje enako povprečni vrednosti: $E(X)=\frac{x_n+x_2+\cdots+x_n}{n}$. 
 
-\n Naj ima sedaj $X$ neskončno zalogo vrednosti. Če je $X$ diskretna slučajna spremenljivka, s $p_k=P\left(X=x_k\right)$ za $k \in \mathbb{N}$, potem ima $X$ matematično upanje, če je: 
-$$
-\sum_{k=1}^{\infty}\left|x_k\right| p_k<\infty
-$$
+\n Naj ima sedaj $X$ neskončno zalogo vrednosti. 
 
-Tedaj je \emph{matematično upanje} definirano kot vsota vrste: 
-$$
-E(x):=\sum_{k=1}^{\infty} x_k p_k
-$$
+\begin{definicija}
+    Če je $X$ diskretna slučajna spremenljivka, s $p_k=P\left(X=x_k\right)$ za $k \in \mathbb{N}$, potem ima $X$ matematično upanje, če je:\footnote[1]{Absolutno konvergenco zahtevamo zato, ker če vrsta konvergira le pogojno, potem lahko zamenjamo vrstni red členov in se vsota spremeni. To pri slučajnih spremenljivkah lahko vedno počnemo, saj slučajna spremenljivka ostaja enaka. Definicija matematičnega upanja tedaj ne bi bila enolična.} 
+    $$
+    \sum_{k=1}^{\infty}\left|x_k\right| p_k<\infty 
+    $$
+    Tedaj je \emph{matematično upanje} definirano kot vsota vrste: 
+    $$
+    E(X):=\sum_{k=1}^{\infty} x_k p_k
+    $$
+\end{definicija}
 
-\n Če je $X$ zvezna slučajna spremenljivka, z gostoto $p(x)$, ima $X$ matematično upanje, če je:
-$$
-\int_{-\infty}^{\infty}|x|  p(x) \, d x<\infty
-$$
-
-Tedaj je \emph{matematično upanje} definirano kot: 
-$$
-E(x)=\int_{-\infty}^{\infty} x \, p(x) \, d x
-$$
+\begin{definicija}
+    Če je $X$ zvezna slučajna spremenljivka, z gostoto $p(x)$, ima $X$ matematično upanje, če je:
+    $$
+    \int_{-\infty}^{\infty}|x|  p(x) \, d x<\infty
+    $$
+    Tedaj je \emph{matematično upanje} definirano kot: 
+    $$
+    E(X)=\int_{-\infty}^{\infty} x \, p(x) \, d x
+    $$
+\end{definicija}
 
 \begin{zgled}
     ~
     
     \begin{enumerate}
-        \item $X \sim \operatorname{Ber}(p), p >0$, $X:\left(\begin{array}{cc} 0 & 1 \\ q & p \end{array}\right)$:
-        $$
-        E(x)=0 \cdot q+1 \cdot p=p
-        $$
-        \item \emph{Izrojena} ali \emph{degenerirana} slučajna spremenljivka $\exists x_0 \in \mathbb{R}: P\left(X=x_0\right)=1$, t.j.: $X:\left(\begin{array}{c} x_0 \\ 1 \end{array}\right)$:
-        $$
-        E(x)=x_0 \cdot 1=x_0
-        $$
+        \item $X \sim \operatorname{Ber}(p), p >0$, $X:\left(\begin{array}{cc} 0 & 1 \\ q & p \end{array}\right)$: $E(X)=0 \cdot q+1 \cdot p=p$
+        \item \emph{Izrojena} ali \emph{degenerirana} slučajna spremenljivka $\exists x_0 \in \mathbb{R}: P\left(X=x_0\right)=1$, t.j.: $X:\left(\begin{array}{c} x_0 \\ 1 \end{array}\right)$: $E(X)=x_0 \cdot 1=x_0$
         \item $X \sim \operatorname{Poi}(\lambda), \lambda >0$, $p_k=\frac{\lambda^k}{k !}  e^{-\lambda}$ in $x_k = k$, za $k=0, 1, 2, \ldots$:
         $$
-        E(x)=\sum_{k=0}^{\infty} x_k \, p_k=\sum_{k=0}^{\infty} k \, \frac{\lambda^k}{k !}  e^{-\lambda}=e^{-\lambda} \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1) !} = e^{-\lambda} \lambda e^\lambda=\lambda
+        \begin{aligned}
+            E(X)&=\sum_{k=0}^{\infty} x_k p_k \\
+            &=\sum_{k=0}^{\infty} k \frac{\lambda^k}{k !}  e^{-\lambda} \\
+            &=e^{-\lambda} \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1) !} \\ 
+            &= e^{-\lambda} \lambda e^\lambda=\lambda
+        \end{aligned}
         $$
         \item Enakomerna zvezna porazdelitev na $[a, b]$:
         $$
         \begin{aligned}
-            E(X)&=\int_{-\infty}^{\infty} x \, p(x) \, d x \\
-            &=\int_a^b x \, \frac{1}{b-a} \, d x \\
-            &=\frac{1}{b-a} \, \int_a^b x \,d x \\
+            E(X)&=\int_{-\infty}^{\infty} x p(x) \, d x \\
+            &=\int_a^b x \frac{1}{b-a} \, d x \\
+            &=\frac{1}{b-a} \int_a^b x \,d x \\
             &=\left.\frac{1}{b-a} \frac{x^2}{2}\right|_a ^b \\
-            &=\frac{b^2-a^2}{(b-a) 2} \\
+            &=\frac{b^2-a^2}{(b-a) \cdot 2} \\
             &=\frac{a+b}{2}
         \end{aligned}
         $$
         \item $X \sim \operatorname{N}(0,1)$, $p(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}$:
         \begin{align*}
-            \int_{-\infty}^{\infty}|x| e^{-\frac{x^2}{2}} \, d x&=2 \int_0^{\infty} x \, e^{-\frac{x^2}{2}} \, d x \\
+            \int_{-\infty}^{\infty}|x| p(x) \, d x &= \int_{-\infty}^{\infty}|x| e^{-\frac{x^2}{2}} \, d x \\
+            &=2 \int_0^{\infty} x \, e^{-\frac{x^2}{2}} \, d x \\
             &=2 \int_0^{\infty} e^{-u} \, d u \tag{$\star$} \\
             &=\left.2 \left(-e^{-u}\right)\right|_0 ^{\infty}=2<\infty
         \end{align*}
-        $\implies$ $X$ ima matematično upanje. V vrstici $(\star)$ smo uporabili per-partes.
+        $\implies$ $X$ ima matematično upanje. V vrstici $(\star)$ smo vpeljali novo spremenljivko $u=\frac{x^2}{2}$.
         $$
-        E(x)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} x \, e^{-\frac{x^2}{2}} \, d t \stackrel{\text{liha}}{=} 0
+        E(X)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} x e^{-\frac{x^2}{2}} \, d t \stackrel{\text{liha}}{=} 0
         $$
         \item Cauchyjeva porazdelitev, $p(x)=\frac{1}{\pi\left(1+x^2\right)}$:
         $$
         \int_{-\infty}^{\infty}|x| \frac{1}{\pi\left(1+x^2\right)} \, d x =\frac{2}{\pi} \int_0^{\infty} \frac{x}{1+x^2} \, d x = \left.\frac{1}{\pi} \ln \left(1+x^2\right)\right|_0 ^{\infty}=\infty
         $$
         $\implies$ $X$ nima matematičnega upanja.
-        \item $1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\ldots$ pogojno konvergentna vrsta. Če vzamemo: 
+        \item $1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\ldots$ je pogojno konvergentna vrsta. Če vzamemo: 
         $$
         x_k p_k=\frac{(-1)^{k+1}}{k}, \quad \text{za} \quad k=1,2,\ldots
         $$
@@ -2248,7 +2254,7 @@ $$
             p_1 & p_2 & p_3 & \cdots
             \end{array}\right)$, potem je:
         $$
-        E(f \circ X)=\sum_k f\left(x_k\right) p_k
+        E(f \circ X)=\sum_k f(x_k) p_k
         $$
         če matematično upanje obstaja, t.j. vrsta absolutno konvergira.
         \item Če je $X$ zvezno porazdeljena z gostoto $p(x)$, potem je: 
@@ -2259,7 +2265,7 @@ $$
     \end{enumerate}
 \end{trditev}
 
-\begin{proof}(samo (a))
+\begin{proof}(samo (a)) \footnote[2]{V definiciji matematičnega upanja dopuščamo, da v $\{ f(x_k)\}_k$ niso sama različna števila.}
     $$
     f \circ X \equiv f(X):\left(\begin{array}{cccc}
         f\left(x_1\right) & f\left(x_2\right) & f\left(x_3\right) & \cdots \\
@@ -2267,7 +2273,7 @@ $$
         \end{array}\right)
     $$
     $$
-    E(f \circ x)=\sum_h f\left(x_k\right) p_k
+    E(f \circ X)=\sum_h f\left(x_k\right) p_k
     $$
 \end{proof}
 
@@ -2287,10 +2293,9 @@ $$
 \begin{posledica}
     Za $a \in \mathbb{R}$ in slučajno spremenljivko $X$ z matematičnim upanjem velja: 
     $$
-    E(a \cdot x)=a \cdot E(x)
+    E(a \cdot X)=a \cdot E(X)
     $$
-
-    Upanje je homogeno.
+    Torej je upanje homogeno.
 \end{posledica}
 
 \begin{proof}
@@ -2304,13 +2309,12 @@ $$
 \begin{trditev}
     Naj bo $f: \mathbb{R}^2 \to \mathbb{R}$ funkcija, $(X,Y)$ pa diskretno porazdeljen slučajni vektor: 
     $$
-    p_{i j}=P\left(x=x_i, y=y_j\right), \quad \text{za} \quad i, j=1,2, \ldots
+    p_{i j}=P\left(X=x_i, Y=y_j\right), \quad \text{za} \quad i, j=1,2, \ldots
     $$
     Potem je $f(X, Y): \Omega \to \mathbb{R}$ slučajna spremenljivka in velja: 
     $$
     E(f(X, Y))=\sum_i \sum_j f\left(x_i, y_j\right)  p_{i j}
     $$
-
     če vrsta absolutno konvergira.
 \end{trditev}
 
@@ -2319,11 +2323,10 @@ $$
     $$
     E(X+Y)=E(X)+E(Y)
     $$
-
-    Upanje je aditivno. 
+    Torej je upanje aditivno. 
 \end{trditev}
 
-\begin{proof}
+\begin{proof}(samo diskreten primer)
     $$
     \begin{aligned}
         E(X+Y)&=\sum_i \sum_j\left(x_i+y_j\right) p_{i j} \\
@@ -2339,7 +2342,6 @@ $$
     $$
     E\left(a_1 X_1+a_2 X_2+\ldots+a_n X_n\right)=a_1 E\left(X_1\right)+a_2 E \left(X_2\right)+\cdots+a_n E\left(X_n\right)
     $$
-
     kjer so $a_1, a_2, \ldots, a_n \in \mathbb{R}$.
 \end{posledica}
 
@@ -2355,12 +2357,12 @@ $$
         $$
         E(X)=E\left(X_1\right)+\cdots+E\left(X_n\right)=n p
         $$
-        Imejmo Bernoullijevo zaporedje neodvisnih ponovitev poskusa $A$, $P(A)=p$. $X_k:\left(\begin{array}{cc}0 & 1 \\1-p & p\end{array}\right)$; $(X_k=1)$, če se dogodek $A$ zgodi v $k$-ti ponovitvi poskusa. Potem je $X=X_1+\cdots+X_n$ frekvenca dogodka $A$ v $n$ ponovitvah. Tedaj je $X \sim \operatorname{Bin}(n,p)$.
+        Posebej: imejmo Bernoullijevo zaporedje neodvisnih ponovitev poskusa $A$, $P(A)=p$. $X_k:\left(\begin{array}{cc}0 & 1 \\1-p & p\end{array}\right)$ in $(X_k=1)$, če se dogodek $A$ zgodi v $k$-ti ponovitvi poskusa. Potem je $X=X_1+\cdots+X_n$ frekvenca dogodka $A$ v $n$ ponovitvah. Tedaj je $X \sim \operatorname{Bin}(n,p)$.
 
         Torej je $E(X)=n p$. To se lahko vidi tudi direktno: 
         $$
         \begin{aligned}
-            E(x)&=\sum_{k=0}^n k \binom{n}{k} p^k q^{n-k} \\
+            E(X)&=\sum_{k=0}^n k \binom{n}{k} p^k q^{n-k} \\
             &=\sum_{k=1}^n k  \frac{n}{k} \binom{n-1}{k-1} p^k q^{n-k} \\
             &=np \sum_{k=1}^n\binom{n-1}{k-1} p^{k-1} q^{n-k} \\
             &=n p (p+q)^{n-1} \\
@@ -2375,22 +2377,19 @@ $$
     $$
     p(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
     $$
-
-    Na vajah: $Y=\frac{X-\mu}{\sigma} \sim N(0,1)$. Ker je $E(Y) = 0$, je:
+    Na vajah boste pokazali: $Y=\frac{X-\mu}{\sigma} \sim N(0,1)$. Ker je $E(Y) = 0$, je:
     $$
-    E(x)=E(\sigma Y+\mu) = \sigma E(Y)+\mu=\mu
+    E(X)=E(\sigma Y+\mu) = \sigma E(Y)+\mu=\mu
     $$
 \end{zgled}
 
 \begin{trditev}
-    Če obstaja $E\left(X^2\right)$ in $E\left(Y^2\right)$, potem obstaja tudi $E(|X Y|)$ in velja: 
+    Če obstajata $E\left(X^2\right)$ in $E\left(Y^2\right)$, potem obstaja tudi $E(|X Y|)$ in velja: 
     $$
     E(|X Y|) \leq \sqrt{E\left(X^2\right) E\left(Y^2\right)}
     $$
     
-    \n To je Cauchy-Schwarzova neenakost.
-
-    Enakost velja $\iff$ 
+    \n To je Cauchy-Schwarzova neenakost. Enakost velja $\iff$ 
     $$
     |Y|=\sqrt{\frac{E\left(Y^2\right)}{E\left(X^2\right)}} |X| \qquad \text{z verjetnostjo $1$.}
     $$ 
@@ -2405,15 +2404,13 @@ $$
     $$
     U V \leq \frac{1}{2}\left(U^2+V^2\right)
     $$
-
     kjer velja enačaj, le za $\omega \in \Omega$, v katerih je $U(\omega) = V(\omega)$.
 
     \n Če vstavimo $U=a|X|$ in $V=\frac{1}{a} |Y|$ za $a>0$, dobimo neenakost: 
     $$
     |X Y| \leq \frac{1}{2}\left(a^2 X^2+\frac{1}{a^2} Y^2\right)
     $$
-
-    in zato je:
+    in zato:
     $$
     E(|XY|) \leq \frac{1}{2}\left(a^2 E\left(X^2\right)+\frac{1}{a^2} E\left(Y^2\right)\right)
     $$  
@@ -2421,7 +2418,6 @@ $$
     $$
     \frac{1}{2}\left(\sqrt{\frac{E\left(Y^2\right)}{E\left(X^2\right)}}  E\left(X^2\right)+\sqrt{\frac{E\left(X^2\right)}{E\left(Y^2\right)}}  E\left(Y^2\right)\right) = \sqrt{E\left(X^2\right) E\left(Y^2\right)}
     $$
-
     torej je: 
     $$
     E(|X Y|) \leq \sqrt{E\left(X^2\right) E\left(Y^2\right)}
@@ -2440,7 +2436,7 @@ $$
 \end{posledica}
 
 \begin{proof}
-    $Y \equiv 1$
+    Vzamemo $Y \equiv 1$. 
 \end{proof}
 
 \begin{trditev}
@@ -2451,23 +2447,21 @@ $$
 \end{trditev}
 
 \begin{proof}(samo diskreten primer)
+    Po trditvi, kjer je $p_{ij}=P\left(X=x_i, Y=y_j\right)$ dobimo:
     $$
     E(XY)=\sum_i \sum_j x_i \, y_j \, p_{i j}
     $$
-    
-    po trditvi, kjer je $p_{ij}=P\left(X=x_i, Y=y_j\right)$.
-
-    \n Zaradi neodvisnosti je $p_{i j}=p_i q_j$, kjer je $p_i=P\left(X=x_i\right)$ in $q_j=P\left(Y=y_j\right)$.
-
-Torej je: 
+    Zaradi neodvisnosti je $p_{i j}=p_i q_j$, kjer je $p_i=P\left(X=x_i\right)$ in $q_j=P\left(Y=y_j\right)$. Torej je: 
     $$
     E(X Y)=\sum_i \sum_j x_i \, y_j \, p_i \, q_j = \left(\sum_i x_i \, p_i\right)\left(\sum_j y_j \, q_j\right)=E(X) E(Y)
     $$
 \end{proof}
 
-\n Če za $X$ in $Y$ velja $E(X Y)=E(X) E(Y)$, potem sta $X$ in $Y$ \emph{nekorelirani} slučajni spremenljivki. Sicer sta \emph{korelirani}.
+\begin{definicija}
+    Če za $X$ in $Y$ velja $E(X Y)=E(X) E(Y)$, potem sta $X$ in $Y$ \emph{nekorelirani} slučajni spremenljivki. Sicer sta \emph{korelirani}.    
+\end{definicija}
 
-Po trditvi iz neodvisnosti sledi nekoreliranost. Obrat ne velja.
+\n Po trditvi iz neodvisnosti sledi nekoreliranost. Obrat ne velja.
 
 \begin{zgled}
     $$
@@ -2477,14 +2471,14 @@ Po trditvi iz neodvisnosti sledi nekoreliranost. Obrat ne velja.
         \end{array}\right)
     $$
     \begin{flalign*}
-        &\qquad X = \sin U:\left(\begin{array}{ccc}
+        &\hspace{5cm} X = \sin U:\left(\begin{array}{ccc}
             0 & 1 & 0 \\
             \frac{1}{3} & \frac{1}{3} & \frac{1}{3}
             \end{array}\right)=\left(\begin{array}{cc}
             0 & 1 \\
             \frac{2}{3} & \frac{1}{3}
             \end{array}\right) & \\
-        &\qquad Y=\cos U:\left(\begin{array}{ccc}
+        &\hspace{5cm} Y=\cos U:\left(\begin{array}{ccc}
             -1 & 0 & 1 \\
             \frac{1}{3} & \frac{1}{3} & \frac{1}{3}
             \end{array}\right) &
@@ -2501,13 +2495,12 @@ Po trditvi iz neodvisnosti sledi nekoreliranost. Obrat ne velja.
     \n Poglejmo še neodvisnost:
     $$
     \begin{array}{c|ccc|c}
-        X \setminus Y & -1 & 0 & 1 & \\
+        X \setminus Y & -1 & 0 & 1 & Y \\
         \hline 0 & \frac{1}{3} & 0 & \frac{1}{3} & \frac{2}{3} \\
         1 & 0 & \frac{1}{3} & 0 & \frac{1}{3} \\
-        \hline & \frac{1}{3} & \frac{1}{3} & \frac{1}{3} & 1
+        \hline X & \frac{1}{3} & \frac{1}{3} & \frac{1}{3} & 1
         \end{array}
     $$
-
     $X, Y$ sta odvisni slučajni spremenljivki.
 \end{zgled}
 
@@ -2521,8 +2514,7 @@ X:\left(\begin{array}{cc}
     q_1 & q_2
     \end{array}\right)
 $$
-
-Dokaži: $X$ in $Y$ sta nekorelirani $\iff$ neodvisni.
+dokaži: $X$ in $Y$ sta nekorelirani $\iff$ neodvisni.
 
 \chapter[Disperzija, kovarianca in korelacijski koeficient]{Disperzija, kovarianca in\\korelacijski koeficient}
 
