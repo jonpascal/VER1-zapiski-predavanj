@@ -2518,14 +2518,16 @@ dokaži: $X$ in $Y$ sta nekorelirani $\iff$ neodvisni.
 
 \chapter[Disperzija, kovarianca in korelacijski koeficient]{Disperzija, kovarianca in\\korelacijski koeficient}
 
-Naj obstaja $E\left(X^2\right)$. \emph{Disperzija} oz. \emph{varianca} je definirana kot:
-$$
-D(X) \equiv \operatorname{Var}(X):=E\left((X-E(X))^2\right)
-$$
+\section{Disperzija in standardni odklon}
 
-$D(X)$ meri razpršenost okoli $E(X)$. 
+\begin{definicija}
+    Naj obstaja $E\left(X^2\right)$. \emph{Disperzija} oz. \emph{varianca} je definirana kot:
+    $$
+    D(X) \equiv \operatorname{Var}(X):=E\left((X-E(X))^2\right)
+    $$    
+\end{definicija}
 
-\n Velja tudi: 
+\n $D(X)$ meri razpršenost okoli $E(X)$. Velja tudi: 
 $$
 \begin{aligned}
     E\left((X-E(X))^2\right)&=E\left(X^2-2 E(X) X+(E(X))^2\right) \\
@@ -2534,12 +2536,12 @@ $$
 \end{aligned}
 $$
 
-Zato je: 
+\n Zato je: 
 $$
-D(x)=E\left(X^2\right)-\left(E(X)\right)^2
+D(X)=E\left(X^2\right)-\left(E(X)\right)^2
 $$
 
-\n Lastnosti $D(X)$:
+\n \textbf{Lastnosti $D(X)$:}
 
 \begin{enumerate}
     \item $D(X) \geq 0 \text{ in } D(X) = 0 \iff P(X=E(X))=1$, t.j.: $X:\left(\begin{array}{c}E(X) \\ 1 \end{array}\right)$.
@@ -2557,14 +2559,16 @@ $$
     \end{proof}
 \end{enumerate}
 
-\n \emph{Standardna deviacija} oz. \emph{standardni odklon} je definirana kot: 
-$$
-\sigma(X):=\sqrt{D(X)}
-$$
+\begin{definicija}
+    \emph{Standardna deviacija} oz. \emph{standardni odklon} je definirana kot: 
+    $$
+    \sigma(X):=\sqrt{D(X)}
+    $$    
+\end{definicija}
 
-Zanjo velja $\sigma(a X)=\left|a\right| \sigma(X)$ za $a \in \mathbb{R}$. \s
+\n Zanjo velja $\sigma(a X)=\left|a\right| \sigma(X)$ za $a \in \mathbb{R}$. \s
 
-\n Pregled nakaterih $E(X)$ in $D(X)$: 
+\n \textbf{Pregled nakaterih $E(X)$ in $D(X)$:}
 
 \begin{enumerate}
     \item Enakomerna diskretna porazdelitev,
@@ -2575,130 +2579,232 @@ Zanjo velja $\sigma(a X)=\left|a\right| \sigma(X)$ za $a \in \mathbb{R}$. \s
     \begin{flalign*}
         & \quad E(X)=\frac{x_1+\cdots+x_n}{n}, \qquad D(X)=\frac{x_1^2+\cdots+x_n^2}{n}-\left(\frac{x_1+\cdots+x_n}{n}\right)^2&
     \end{flalign*}  
-    \item Binomska porazdelitev, $\operatorname{Bin}(n, p)$:
+    \item Bernoullijeva porazdelitev, $\operatorname{Ber}(p)$: $\quad E(X)=p, \quad D(X)=p q $
+    \begin{proof}
+        \begin{flalign*}
+            & E(X)=0 \cdot q+1 \cdot p=p \qquad E(X^2)=0^2 \cdot q+1^2 \cdot p=p \\ 
+            & \implies D(X)=E\left(X^2\right)-(E(X))^2 = p - p^2 = pq 
+        \end{flalign*}  
+    \end{proof}
+    \item Binomska porazdelitev, $\operatorname{Bin}(n, p)$: $\quad E(X)=n p, \quad D(X)=n  p q $
+    \begin{proof}
+        \begin{flalign*}
+            \quad E(X) &=\sum_{k=0}^n k\binom{n}{k} p^k q^{n-k} & \\
+            & =\sum_{k=1}^n k \frac{n}{k}\binom{n-1}{k-1} p^k q^{n-k} & \\
+            & =n p \sum_{k=1}^n\binom{n-1}{k-1} p^{k-1} q^{n-k} & \\
+            & =n p(p+q)^{n-1} & \\
+            & =n p &
+        \end{flalign*}
+        \begin{flalign*}
+            \quad E\left(X^2\right) & =\sum_{k = 0}^n k^2\binom{n}{k} p^k q^{n-k} & \\
+            & =\sum_{k=0}^n k n\binom{n-1}{k-1} p^k q^{n-k} & \\
+            & =n p \sum_{k=1}^n k\binom{n-1}{k-1} p^{k-1} q^{(n-1)-(k-1)} &\\
+            & =n p \sum_{j=0}^m(j+1)\binom{m}{j} p^j q^{m-j} & \\
+            & =n p\left(\sum_{j=0}^m j\binom{m}{j} p^j q^{m-j}+\sum_{j=0}^m\binom{m}{j} p^j q^{m-j}\right) & \\
+            & =n p\left(\sum_{j=0}^m m\binom{m-1}{j-1} p^j q^{m-j}+\sum_{j=0}^m\binom{m}{j} p^j q^{m-j}\right) & \\
+            & =n p\left((n-1) p \sum_{j=1}^m\binom{m-1}{j-1} p^{j-1} q^{(m-1)-(j-1)}+\sum_{j=0}^m\binom{m}{j} p^j q^{m-j}\right) & \\
+            & =n p\left((n-1) p(p+q)^{m-1}+(p+q)^m\right) & \\
+            & =n p((n-1) p+1) & \\
+            & =n^2 p^2+n p(1-p) &
+        \end{flalign*}
+        $\implies D(X)=E\left(X^2\right)-(E(X))^2 = n^2 p^2+n p(1-p) - (np)^2 = npq $
+    \end{proof}
+    \item Poissonova porazdelitev, $\operatorname{Poi}(\lambda)$: $ \quad E(X)=D(X)=\lambda $
+    \begin{proof}
+        \begin{flalign*}
+            \quad E\left(X^2\right) & =\sum_{k = 0}^{\infty} k^2 \frac{1}{k!} \lambda^k e^{-\lambda} & \\
+            & =\lambda e^{-\lambda} \sum_{k = 1}^{\infty} k \frac{1}{(k-1)!} \lambda^{k-1} & \\
+            & =\lambda e^{-\lambda}\left(\sum_{k = 1}^{\infty}(k-1) \frac{1}{(k-1)!} \lambda^{k-1}+\sum_{k = 1}^{\infty} \frac{1}{(k-1)!} \lambda^{k-1}\right) & \\
+            & =\lambda e^{-\lambda}\left(\lambda \sum_{k = 2}^{\infty} \frac{1}{(k-2)!} \lambda^{k-2}+\sum_{k = 1}^{\infty} \frac{1}{(k-1)!} \lambda^{k-1}\right) & \\
+            & =\lambda e^{-\lambda}\left(\lambda \sum_{i = 0}^{\infty} \frac{1}{i!} \lambda^i+\sum_{j = 0}^{\infty} \frac{1}{j!} \lambda^j\right) & \\
+            & =\lambda e^{-\lambda}\left(\lambda e^\lambda+e^\lambda\right) & \\
+            & =\lambda(\lambda+1) &
+        \end{flalign*}
+        \begin{flalign*}
+            \quad E(X) & =\sum_{k=0}^{\infty} x_k p_k & \\
+            & =\sum_{k=0}^{\infty} k \frac{\lambda^k}{k!} e^{-\lambda} & \\
+            & =e^{-\lambda} \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} & \\
+            & =e^{-\lambda} \lambda e^\lambda=\lambda &
+        \end{flalign*}
+        $\implies D(X)=E\left(X^2\right)-(E(X))^2 = \lambda(\lambda+1) - (\lambda)^2 = \lambda $
+    \end{proof}
+    \item Geometrijska porazdelitev, $\operatorname{geo}(p)$: $ \quad E(X)=\frac{1}{p}, \quad D(x)=\frac{q}{p^2} $
+    \begin{proof}
+        \begin{flalign*}
+            \quad E(X)&=\sum_{k=1}^{\infty} k p  q^{k-1} & \\
+            &=p \sum_{k=1}^{\infty} k q^{k-1} & \\
+            &=p \left(\sum_{k=0}^{\infty} q^k\right)^{\prime} & \\
+            &=p \left(\frac{1}{1-q}\right)^{\prime} & \\
+            &=p \frac{1}{(1-q)^2} =\frac{1}{p} &
+        \end{flalign*}
+        \begin{flalign*}
+            \quad E(X(X+1))&=\sum_{k=1}^{\infty} k(k+1) p q^{k-1} & \\
+            &=p \sum_{k=1}^{\infty}(k+1) k q^{k-1} & \\
+            &=p\left(\sum_{k=-1}^{\infty} q^{k+1}\right)^{\prime \prime} & \\
+            &=p \left(\frac{1}{1-q}\right)^{\prime \prime} & \\
+            &=p \left(\frac{1}{(1-q)^2}\right)^{\prime} & \\
+            &= p  \frac{2}{(1-q)^3} = \frac{2}{p^2} &
+        \end{flalign*}
+        $\implies D(X)=E(X(X+1))-E(X)-(E(X))^2 = \frac{2}{p^2}-\frac{1}{p}-\frac{1}{p^2}=\frac{1}{p^2}-\frac{1}{p}=\frac{q}{p^2}$
+    \end{proof}
+    \item Pascalova porazdelitev, $\operatorname{Pas}(m, p)$: $ \quad E(X)=\frac{m}{p}, \quad D(X)=\frac{m q}{p^2} $
+    \item Hipergeometrijska porazdelitev, $\operatorname{Hip}(n; M, N)$:
     \begin{flalign*}
-        & \quad E(X)=n p, \qquad D(X)=n  p q, \qquad \sigma(X)=\sqrt{n p q} &
+        & \quad E(X)=n \frac{M}{N}, \qquad D(X)=n \frac{M}{N} \frac{N-M}{N} \frac{N-n}{N-1} &
     \end{flalign*}
-    \item Poissonova porazdelitev, $\operatorname{Poi}(\lambda)$:
-    \begin{flalign*}
-        & \quad E(X)=D(X)=\lambda &
-    \end{flalign*}
-    \item Geometrijska porazdelitev, $\operatorname{geo}(p)$:
-    \begin{flalign*}
-        & \quad E(X)=\frac{1}{p}, \qquad D(x)=\frac{q}{p^2}, \quad \text{za} \quad q=1-p &
-    \end{flalign*}
-    \item Pascalova porazdelitev, $\operatorname{Pas}(m, p)$:
-    \begin{flalign*}
-        & \quad E(X)=\frac{m}{p}, \qquad D(X)=\frac{m q}{p}, \quad \text{za} \quad q=1-p &
-    \end{flalign*}
-    \item Enakomerna zvezna porazdelitev na $[a,b]$:
-    \begin{flalign*}
-        & \quad E(X)=\frac{a+b}{2}, \qquad D(X)=\frac{(b-a)^2}{12} &
-    \end{flalign*}
-    \item Normalna porazdelitev, $\operatorname{N}(\mu, \sigma)$:
-    \begin{flalign*}
-        & \quad E(X)=\mu, \qquad D(X)=\sigma^2, \qquad\sigma(x)=\sigma &
-    \end{flalign*}
-    \item Eksponenta porazdelitev, $\operatorname{Exp}(\lambda)$:
-    \begin{flalign*}
-        & \quad E(X)=\frac{1}{\lambda}, \qquad D(x)=\frac{1}{\lambda^2} &
-    \end{flalign*}
+    \item Enakomerna zvezna porazdelitev na $[a,b]$: $ \quad E(X)=\frac{a+b}{2}, \quad D(X)=\frac{(b-a)^2}{12} $
+    \begin{proof}
+        \begin{flalign*}
+            \quad E(X) & =\int_{-\infty}^{\infty} x p(x) d x & \\
+            & =\int_a^b x \frac{1}{b-a} d x & \\
+            & =\frac{1}{b-a} \int_a^b x d x & \\
+            & =\left.\frac{1}{b-a} \frac{x^2}{2}\right|_a ^b & \\
+            & =\frac{b^2-a^2}{(b-a) \cdot 2} &\\
+            & =\frac{a+b}{2} &
+        \end{flalign*}
+        \begin{flalign*}
+            \quad E\left(X^2\right) & =\int_{-\infty}^{\infty} x^2 p(x) d x & \\
+            & =\int_a^b x^2 \frac{1}{b-a} d x & \\
+            & =\frac{1}{b-a} \int_a^b x^2 d x & \\
+            & =\left.\frac{1}{b-a} \frac{x^3}{3}\right|_a ^b & \\
+            & =\frac{b^3-a^3}{(b-a) \cdot 3} &\\
+            & =\frac{4(b-a)\left(a^2+a b+b^2\right)}{12(b-a)} & \\
+            & =\frac{4 a^2+4 a b+4 b^2}{12} &
+        \end{flalign*}
+        $\implies D(X)=E\left(X^2\right)-(E(X))^2 = \frac{4 a^2+4 a b+4 b^2}{12} - \frac{(a+b)^2}{2^2} = \frac{b^2-2 a b+a^2}{12} = \frac{(b-a)^2}{12}  $
+    \end{proof}
+    \item Normalna porazdelitev, $\operatorname{N}(\mu, \sigma)$: $ \quad E(X)=\mu, \quad D(X)=\sigma^2, \quad\sigma(x)=\sigma $
+    \begin{proof}
+        \begin{flalign*}
+            \quad E(X) &= \frac{1}{\sigma \sqrt{2 \pi}} \int_{\infty}^{\infty} x e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \,d x & \\
+            &=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}(\sigma t+\mu) e^{-\frac{1}{2} t^2} \, d t & \\
+            &=\frac{\mu}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} t^2} \, d t+\underbrace{0}_{\text{liha fun.}} = \mu
+        \end{flalign*}
+        \begin{flalign*}
+            \quad D(X) &= E\left((X-E(X))^2\right) & \\
+            & =\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^{\infty}(x-\mu)^2 e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, d x & \\
+            & =\frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} \sigma^2 t^2 e^{-\frac{1}{2} t^2} \, d t & \tag{$\star$} \\
+            & =\frac{\sigma^2}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} t^2 e^{-\frac{t^2}{2}} \, dt & \\
+            & =\frac{\sigma^2}{\sqrt{2 \pi}} \cdot 2 \int_0^{\infty} \sqrt{2 u} \cdot e^{-u} \, du = \sigma^2
+        \end{flalign*}
+        Kjer smo v $(\star)$ vrstici vpeljali novo spremenljivko $x=\sigma t+\mu$.
+    \end{proof}
+    \item Eksponenta porazdelitev, $\operatorname{Exp}(\lambda)$: $\quad E(X)=\frac{1}{\lambda}, \quad D(x)=\frac{1}{\lambda^2}$
+    \begin{proof}
+        \begin{flalign*}
+            \quad E(X) & =\int_0^{\infty} x \lambda e^{-\lambda x} \, d x & \\
+            & =\left.-x \exp (-\lambda x)\right|_0^{\infty}+\int_0^{\infty} e^{-\lambda x} \,d x & \tag{$\star$} \\
+            & =(0-0)+\left.-\frac{1}{\lambda} e^{-\lambda x}\right|_0^{\infty} & \\
+            & =0+\left(0+\frac{1}{\lambda}\right) & \\
+            & =\frac{1}{\lambda} & 
+        \end{flalign*}
+        \begin{flalign*}
+            \quad E\left(X^2\right) & =\int_0^{\infty} x^2 \lambda e^{-\lambda x} \, d x & \\
+            & =\left.-x^2 e^{-\lambda x}\right|_0^{\infty}+\int_0^{\infty} 2 x e^{-\lambda x} \, d x & \tag{$\star$} \\
+            & =0+2 \frac{1}{\lambda} \int_0^{\infty} x \lambda e^{-\lambda x} \, d x & \\
+            & =2 \frac{1}{\lambda} \mathrm{E}(X) & \\
+            & =2 \left( \frac{1}{\lambda} \right)^2 &
+        \end{flalign*}
+        Kjer smo v $(\star)$ vrsticah uporabili metodo per-partes.
+
+        $\implies D(X)=E(X(X+1))-E(X)-(E(X))^2 = 2 \left( \frac{1}{\lambda} \right)^2 - \left( \frac{1}{\lambda} \right)^2=\frac{1}{\lambda^2}$
+    \end{proof}
+    \item Porazdelitev gama, $\Gamma(b, c)$: $\quad E(X)=\frac{b}{c}, \quad D(X)=\frac{b}{c^2} $
+    \begin{proof}
+        \begin{flalign*}
+            \quad E(X) & =\frac{c^b}{\Gamma(b)} \int_0^{\infty} x^b e^{-c x} \, d x & \\
+            & =\frac{c^b}{\Gamma(b)} \int_0^{\infty}\left(\frac{t}{c}\right)^b e^{-t}\frac{d t}{c} & \\
+            & =\frac{c^b}{c^{b+1} \Gamma(b)} \int_0^{\infty} t^b e^{-t} \, d t & \\
+            & =\frac{\Gamma(b+1)}{c \Gamma(b)}  &\\
+            & =\frac{b \Gamma(b)}{c \Gamma(b)} & \\
+            & =\frac{b}{c} &
+        \end{flalign*}
+        \begin{flalign*}
+            \quad D(X) &= \frac{c^b}{\Gamma(b)} \int_0^{\infty} x^{b+1} e^{-c x} \, d x & \\
+            & =\frac{c^b}{\Gamma(b)} \int_0^{\infty}\left(\frac{t}{c}\right)^{b+1} e^{-t} \frac{d t}{c} & \\
+            & =\frac{c^b}{c^{b+2} \Gamma(b)} \int_0^{\infty} t^{b+1} e^{-t} \, d t & \\
+            & =\frac{\Gamma(b+2)}{c^2 \Gamma(b)} & \\
+            & =\frac{(b+1)b}{c^2} &
+        \end{flalign*}
+        $\implies D(X)=E(X(X+1))-E(X)-(E(X))^2 =\frac{(b+1)b}{c^2} - \left( \frac{b}{c} \right)^2 = \frac{b}{c^2}$
+    \end{proof}
+    \item Porazdelitev $\chi^2(n)$: $\quad E(X)=n, \quad D(X)=2n $
 \end{enumerate}
 
-\begin{proof}(samo (4.))
-    Velja: $p_k=p(X=k)=p q^{k-1}$ za $k=1, 2, 3, \ldots$
-    $$
-    \begin{aligned}
-        \ E(X)&=\sum_{k=1}^{\infty} k p  q^{k-1} \\
-        &=p \sum_{k=1}^{\infty} k q^{k-1} \\
-        &=p \left(\sum_{k=0}^{\infty} q^k\right)^{\prime} \\
-        &=p \left(\frac{1}{1-q}\right)^{\prime} \\
-        &=p \frac{1}{(1-q)^2} \\
-        &=\frac{1}{p}
-    \end{aligned}
-    $$
-    \s
-    $$
-    \begin{aligned}
-        E(X(X+1))&=\sum_{k=1}^{\infty} k(k+1) p q^{k-1} \\
-        &=p \sum_{k=1}^{\infty}(k+1) k q^{k-1} \\
-        &=p\left(\sum_{k=-1}^{\infty} q^{k+1}\right)^{\prime \prime} \\
-        &=p \left(\frac{1}{1-q}\right)^{\prime \prime} \\
-        &=p \left(\frac{1}{(1-q)^2}\right)^{\prime} \\
-        &= p  \frac{2}{(1-q)^3} \\
-        &= \frac{2}{p^2}
-    \end{aligned}
-    $$
-    $$
-    \implies D(X)=E(X(X+1))-E(X)-(E(X))^2 = \frac{2}{p^2}-\frac{1}{p}-\frac{1}{p^2}=\frac{1}{p^2}-\frac{1}{p}=\frac{q}{p^2}
-    $$
-\end{proof}
+\newpage
 
 \begin{zgled}
     Met kocke. $X$ je število potrebnih metov, da pade prva šestica. $X \sim \operatorname{geo}(\frac{1}{6})$.
     $$
     E(X)=6, \qquad D(X)=\frac{\frac{5}{6}}{\frac{1}{36}}=30, \qquad \sigma(X)=\sqrt{30}
     $$
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis lines = left,
-            xlabel = $x$,
-            ylabel = {$y$},
-            domain=-3:3,
-            samples=100,
-            height=4cm,
-            width=10cm,
-            xmin=-1, xmax=8,
-            ymin=0, ymax=1.3,
-            ytick={1},
-            xtick={1, 2, 3, 4, 5, 6},
-            yticklabels={$p$},
-            xticklabels={1, 2, 3, 4, 5, 6},
-            axis y line=middle
-        ]
-        
-        \addplot[mark=*] coordinates {(1,1)};
-        \addplot[mark=*] coordinates {(2,5/6)};
-        \addplot[mark=*] coordinates {(3,5/6 * 5/6)};
-        \addplot[mark=*] coordinates {(4,5/6 * 5/6 * 5/6)};
-        \addplot[mark=*] coordinates {(5,5/6 * 5/6 * 5/6 * 5/6)};
-        \addplot[mark=*] coordinates {(6,5/6 * 5/6 * 5/6 * 5/6 * 5/6)};
-        \addplot[mark=*, mark size=1pt] coordinates {(7,5/6 * 5/6 * 5/6 * 5/6 * 5/6 * 5/6)};
-        \addplot[mark=*, mark size=1pt] coordinates {(8,5/6 * 5/6 * 5/6 * 5/6 * 5/6 * 5/6 * 5/6)};
-    
-        \end{axis}
-    \end{tikzpicture}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = left,
+                domain=-3:3,
+                samples=500,
+                height=4cm,
+                width=10cm,
+                xmin=-1, xmax=8,
+                ymin=0, ymax=1.3,
+                ytick={1},
+                xtick={1, 2, 3, 4, 5, 6},
+                yticklabels={$p$},
+                xticklabels={1, 2, 3, 4, 5, 6},
+                axis y line=middle
+            ]
+            
+            \addplot[mark=*] coordinates {(1,1)};
+            \addplot[mark=*] coordinates {(2,5/6)};
+            \addplot[mark=*] coordinates {(3,5/6 * 5/6)};
+            \addplot[mark=*] coordinates {(4,5/6 * 5/6 * 5/6)};
+            \addplot[mark=*] coordinates {(5,5/6 * 5/6 * 5/6 * 5/6)};
+            \addplot[mark=*] coordinates {(6,5/6 * 5/6 * 5/6 * 5/6 * 5/6)};
+            \addplot[mark=*, mark size=1pt] coordinates {(7,5/6 * 5/6 * 5/6 * 5/6 * 5/6 * 5/6)};
+            \addplot[mark=*, mark size=1pt] coordinates {(8,5/6 * 5/6 * 5/6 * 5/6 * 5/6 * 5/6 * 5/6)};
+            
+            \end{axis}
+        \end{tikzpicture}
+
+        \caption{Graf $P(X=k)$ za $k=1, 2, 3, \ldots$}
+        \label{fig:23}
+    \end{figure}
 
     $\quad p_1=p, \quad  p_2=p q, \quad p_3=p  q^2, \quad p_4 = p q^3, \quad\ldots$
 \end{zgled}
 
-\s
+\section{Kovarianca}
 
-\n \emph{Kovarianca} slučajne spremenljivke $X$ in $Y$ se definirana kot: 
-$$
-\begin{aligned}
-    K(Y, X) \equiv \operatorname{Cov}(X, Y)&:= E((X-E(X)) (Y-E(Y))) \\
-    &=E(X Y-E(X) Y-X E(Y)+E(X) E(Y)) \\
-    &=E(XY)-E(X)E(Y)-E(Y) E(X)+E(X) E(Y) \\
-    &=E(XY)-E(X) E(Y)
-\end{aligned}
-$$
+\begin{definicija}
+    \emph{Kovarianca} slučajne spremenljivke $X$ in $Y$ se definirana kot: 
+    $$
+    \begin{aligned}
+        K(Y, X) \equiv \operatorname{Cov}(X, Y)&:= E((X-E(X)) (Y-E(Y))) \\
+        &=E(X Y-E(X) Y-X E(Y)+E(X) E(Y)) \\
+        &=E(XY)-E(X)E(Y)-E(Y) E(X)+E(X) E(Y) \\
+        &=E(XY)-E(X) E(Y)
+    \end{aligned}
+    $$
+\end{definicija}
 
-\n Lastnosti kovariance: 
+\n \textbf{Lastnosti kovariance:}
 
 \begin{enumerate}
     \item $K(X,X) = D(X)$
     \item $X$ in $Y$ sta nekorelirani $\iff$ $K(X,Y) = 0$
     \item $K$ je simetrična in bilinearna funkcija:
-    \begin{flalign*}
-        & \quad K(X, Y)=K(Y, X), \quad \text{za} \quad a, b \in \mathbb{R} & \\
-        & \quad K(a X+b Y, Z)=a K(X, Z)+b K(Y, Z) & \\
-    \end{flalign*}
+    $$
+    \begin{aligned}
+        K(X, Y)&=K(Y, X)  \\
+        K(a X+b Y, Z)&=a K(X, Z)+b K(Y, Z), \quad \text{za} \quad a, b \in \mathbb{R}  
+    \end{aligned}
+    $$
     \item Kovarianca obstaja, če obstaja $D(X)$ in $D(Y)$. Tedaj velja:
     $$
     |K(X, Y)| \leq \sqrt{D(X) D(Y)}=\sigma(X) \sigma(Y),
     $$
-
     kar sledi iz Cauchy-Schwarzove neenakosti za $X-E(X)$ in $Y-E(Y)$. 
     
     Enakost velja $\iff$ $Y-E(Y)= \pm \frac{\sigma(Y)}{\sigma(X)} (X-E(X))$ z verjetnostjo $1$. 
@@ -2706,7 +2812,6 @@ $$
     $$
     D(X+Y)=D(X)+D(Y)+2 K(X, Y)
     $$
-    
     Če sta $X$ in $Y$ nekorelirani, je potem: 
     $$
     D(X+Y)=D(X)+D(Y)
@@ -2736,26 +2841,26 @@ $$
     $$
     X_k:\left(\begin{array}{cc} 0 & 1 \\ q & p \end{array}\right), \quad \text{oziroma} \quad X_k= \begin{cases}1, & \text { zgodi se $A$ v $k$-ti ponovitvi } \\ 0, & \text { sicer }\end{cases} 
     $$
-
-    \n $X_1, \ldots X_n$ so neodvisne slučajne spremenljivke, zato je: 
+    $X_1, \ldots X_n$ so neodvisne slučajne spremenljivke, zato je: 
     $$
     D\left(X_k\right)=E\left(X_k^2\right)-\left(E\left(X_k\right)\right)^2=p-p^2=p(1-p)=p q
     $$
-
     in potem: 
     $$
     D(X)=D\left(X_1+\cdots+X_n\right)=D\left(X_1\right)+\cdots+D\left(X_n\right)=n p q
     $$
 \end{zgled}
 
-\n \emph{Standardizacija} slučajne spremenljivke $X$ je slučajna spremenljivka: 
-$$
-X_s=\frac{X-E(X)}{\sigma(X)}
-$$
+\begin{definicija}
+    \emph{Standardizacija} slučajne spremenljivke $X$ je slučajna spremenljivka: 
+    $$
+    X_s=\frac{X-E(X)}{\sigma(X)}
+    $$
+\end{definicija}
 
-Tedaj je $E\left(X_s\right)=0$ in $D\left(X_s\right)=1$, saj je: 
+\n Tedaj je $E\left(X_s\right)=0$ in $D\left(X_s\right)=1$, saj je: 
 $$
-D\left(X_s\right)=\frac{1}{\sigma(X)^2} \frac{D(X-E(X))}{D(X)}=1
+D\left(X_s\right)=\frac{1}{\sigma(X)^2} \underbrace{D(X-E(X))}_{D(X)}=1
 $$
 
 \begin{zgled}
@@ -2765,12 +2870,16 @@ $$
     $$  
 \end{zgled}
 
-\n \emph{Korelacijski koeficient} slučajnih spremenljivk $X$ in $Y$ je: 
-$$
-r(X, Y)=\frac{K(X, Y)}{\sigma(X) \sigma(Y)}=\frac{E((X-E(X)) (Y-E(Y))}{\sigma(X) \sigma(Y)} = E(X_s Y_s)
-$$
+\section{Korelacijski koeficient}
 
-\n Lastnosti: 
+\begin{definicija}
+    \emph{Korelacijski koeficient} slučajnih spremenljivk $X$ in $Y$ je: 
+    $$
+    r(X, Y)=\frac{K(X, Y)}{\sigma(X) \sigma(Y)}=\frac{E((X-E(X)) (Y-E(Y))}{\sigma(X) \sigma(Y)} = E(X_s Y_s)
+    $$
+\end{definicija}
+
+\n \textbf{Lastnosti:}
 
 \begin{enumerate}
     \item $r(X, Y)=0$ $\iff$ $X$ in $Y$ sta nekorelirani.
@@ -2778,11 +2887,11 @@ $$
     \begin{proof}
         Sledi iz lastnosti (4) za $K$.  
     \end{proof}
-    \item ~ \vspace{-31pt}
+    \item ~ \vspace{-32pt}
     $$
     \begin{aligned}
-        &r(X, Y)=1 \iff Y=\frac{\sigma(Y)}{\sigma(X)} (X-E(X))+E(Y) \quad \text{z verjetnostjo $1$} \\
-        &r(X, Y)=-1 \iff Y=-\frac{\sigma(Y)}{\sigma(X)} (X-E(X))+E(Y) \quad \text{z verjetnostjo $1$}
+        &r(X, Y)=1 \iff Y=\frac{\sigma(Y)}{\sigma(X)} (X-E(X))+E(Y) \quad \text{z verjetnostjo $1$.} \\
+        &r(X, Y)=-1 \iff Y=-\frac{\sigma(Y)}{\sigma(X)} (X-E(X))+E(Y) \quad \text{z verjetnostjo $1$.}
     \end{aligned}
     $$
 \end{enumerate}
@@ -2790,7 +2899,7 @@ $$
 \begin{zgled}
     Vržemo 2 kocki. $X$ je število pik na prvi kocki in $Y$ število pik na drugi kocki. Zaradi neodvisnosti je $K(X,Y) = 0$. 
 
-    Definiramo $Z=X+Y$. Izračunajmo $r(X,Z)$:
+    \n Definiramo $Z=X+Y$. Izračunajmo $r(X,Z)$:
     \begin{flalign*}
         &\qquad E(X)=E(Y)=\frac{7}{2} & \\
         &\qquad E\left(X^2\right)=\frac{1}{6}(1+4+9+16+25+36)=\frac{91}{6} & 
