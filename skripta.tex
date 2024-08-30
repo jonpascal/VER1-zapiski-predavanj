@@ -3086,6 +3086,10 @@ $$
     $$ 
 \end{izrek}
 
+\begin{proof}
+    Sledi iz teorije Taylorjevih vrst. 
+\end{proof}
+
 \n Velja: 
 $$
 G_X(s)=\sum_{k=0}^{\infty} p_k \, s^k, \quad  G_X^{\prime}(s)=\sum_{k=1}^{\infty} p_k \, k \,s^{k-1}
@@ -3722,29 +3726,28 @@ To pomeni razpršenost, ki je nadomestek za standardno deviacijo.
 
 \chapter{Momentno rodovna funkcija}
 
-\n \emph{Momentno rodovna funkcija} slučajne spremenljivke $X$ je: 
-$$
-M_X(t)=E\left(e^{t  X}\right)
-$$
-
-za tiste $t \in \mathbb{R}$ za katere obstaja matematično upanje, t.j.: $E\left(e^{t X}\right)<\infty$.
+\begin{definicija}
+    \emph{Momentno rodovna funkcija} slučajne spremenljivke $X$ je: 
+    $$
+    M_X(t)=E\left(e^{t  X}\right)
+    $$
+    za tiste $t \in \mathbb{R}$ za katere obstaja matematično upanje, t.j.: $E\left(e^{t X}\right)<\infty$.    
+\end{definicija}
 
 \n Kadar ima $X$ vrednosti v $\mathbb{N} \cup \{0\}$, je: 
 $$
 M_X(t)=E\left(\left(e^t\right)^X\right)=G_X\left(e^t\right)
 $$
-
 torej, gre za posplošitev rodovne funkcije. 
 
 \n Če je $X$ zvezno porazdeljena z gostoto $p(x)$, je: 
 $$
 M_X(t)=\int_{-\infty}^{\infty} e^{t  x} \, p(x) \, d x
 $$
-
 kar je \emph{Laplaceova transformacija} funkcije $p$. 
 
 \begin{zgled}
-    $X \sim \operatorname{N}(0,1)$:
+    Naj bo $X \sim \operatorname{N}(0,1)$. Potem je:
     $$
     \begin{aligned}
         M_X(t)&=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} e^{t x} \, e^{-\frac{x^2}{2}} \,d x \\
@@ -3753,6 +3756,16 @@ kar je \emph{Laplaceova transformacija} funkcije $p$.
     \end{aligned}
     $$
 \end{zgled}
+
+\n Od kod ime?
+$$
+\begin{aligned}
+    M_X(t) & =E\left(1+t X+\frac{t^2}{2!} X^2+\frac{t^3}{3!} X^3+\cdots\right) \\
+    & =1+t E(X)+\frac{t^2}{2!} E\left(X^2\right)+\frac{x^3}{3!} E\left(X^3\right) + \cdots \\
+    & =1+z_1 t+\frac{z_2}{2!} t^2+\frac{z_3}{3!} t^3+\cdots
+\end{aligned}
+$$
+Kjer je $z_n=E\left(X^n\right)$ začetni moment. 
 
 \begin{izrek}
     Naj obstaja $\delta > 0$, da je $M_X(t)<\infty$, za vse $t \in(-\delta, \delta)$. Potem je porazdelitev $X$ natanko določena z $M_X$, vsi začetni momenti obstajajo: 
@@ -3824,7 +3837,6 @@ kar je \emph{Laplaceova transformacija} funkcije $p$.
         &=E\left(e^{t X}\right) E\left(e^{tY}\right) \\
         &=M_X(t) \, M_Y(t)
     \end{align*}
-
     Kjer smo v $(\star)$ vrstici upoštevali neodvisnost.
 \end{proof}
 
@@ -3850,8 +3862,7 @@ kar je \emph{Laplaceova transformacija} funkcije $p$.
         &=e^{\left(\mu_X+\mu_Y\right) t+\frac{\sigma_X^2+\sigma_Y^2}{2} t^2} 
     \end{aligned}
     $$
-
-    od koder zaradi enoličnosti sledi:
+    Od koder zaradi enoličnosti sledi:
     $$
     X+Y \sim \operatorname{N}\left(\mu_X\mu_Y, \sqrt{\sigma_X^2+\sigma_Y^2}\right)
     $$
@@ -3867,7 +3878,7 @@ kar je \emph{Laplaceova transformacija} funkcije $p$.
     \end{aligned}
     $$
     $\qquad \implies z_{2 k+1}=0 \quad \forall k$
-    
+
     Po drugi strani pa je:
     $$
     M_X(t)=\sum_{k=0}^{\infty} \frac{z_k}{k !}  t^k
