@@ -2265,7 +2265,7 @@ za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\lef
     \end{enumerate}
 \end{trditev}
 
-\begin{proof}(samo (a)) \footnote[2]{V definiciji matematičnega upanja dopuščamo, da v $\{ f(x_k)\}_k$ niso sama različna števila.}
+\begin{proof}(samo (a))\footnote[2]{V definiciji matematičnega upanja dopuščamo, da v $\{ f(x_k)\}_k$ niso sama različna števila.}
     $$
     f \circ X \equiv f(X):\left(\begin{array}{cccc}
         f\left(x_1\right) & f\left(x_2\right) & f\left(x_3\right) & \cdots \\
@@ -3017,7 +3017,7 @@ Torej je $E(X \mid Y)$ v tem primeru izrojena slučajna spremenljivka.
         &=\frac{1}{(n-k) !} q^{n-k} \, \lambda^{n-k} e^{-q \lambda} & \\
         &=\frac{(q \lambda)^{n-k}}{(n-k) !} e^{-q \lambda} &
     \end{flalign*}
-    Kjer smo v $\star$ vrstici uporabili Bayesovo formulo. Dobimo torej Poissonova porazdelitev, premaknjeno za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
+    Kjer smo v $(\star)$ vrstici uporabili Bayesovo formulo. Dobimo torej Poissonova porazdelitev, premaknjeno za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
     $$
     \varphi(k)=E(N \mid K=k)=E(k+ \operatorname{Poi}(q \lambda))=k+q \lambda
     $$
@@ -3037,14 +3037,14 @@ Torej je $E(X \mid Y)$ v tem primeru izrojena slučajna spremenljivka.
 $$
 p_k=P(X=k), \quad \text{za} \quad k=0,1,2, \ldots, \quad p_k \geq 0, \quad \sum_{k=0}^{\infty} p_k=1
 $$
-
-\n \emph{Rodovna funkcija} slučajne spremenljivke $X$ je:
-$$
-G_X(s):=p_0+p_1 s+p_2 s^2+p_3 s^3+\cdots=\sum_{k=0}^{\infty} p_k s^k
-$$
-
-za vse $s \in \mathbb{R}$, za katere vrsta absolutno konvergira. 
-
+\begin{definicija}
+    \emph{Rodovna funkcija} slučajne spremenljivke $X$ je:
+    $$
+    G_X(s):=p_0+p_1 s+p_2 s^2+p_3 s^3+\cdots=\sum_{k=0}^{\infty} p_k s^k
+    $$
+    za vse $s \in \mathbb{R}$, za katere vrsta absolutno konvergira. 
+\end{definicija}
+    
 \n Očitno je $G_X(0)=p_0$, $G_X(1)=\sum_{k=0}^{\infty} p_k=1$ in $G_X(s)=E\left( s^X\right)$, saj je: 
 $$
 s^X:\left(\begin{array}{ccccc}
@@ -3080,14 +3080,11 @@ $$
     $$
     G_X(s)=G_Y(s) \iff P(X=k)=P(Y=k) \quad \text{za vse} \quad k=0, 1, 2, \ldots
     $$
+    Tedej velja: 
+    $$
+    P(X=k)=\frac{1}{k !} G_X^{(k)}(0)
+    $$ 
 \end{izrek}
-
-\n Tedej velja: 
-$$
-P(X=k)=\frac{1}{k !} G_X^{(k)}(0)
-$$ 
-
-\s 
 
 \n Velja: 
 $$
@@ -3095,7 +3092,6 @@ G_X(s)=\sum_{k=0}^{\infty} p_k \, s^k, \quad  G_X^{\prime}(s)=\sum_{k=1}^{\infty
 $$ 
 
 za vse $s \in (-1, 1)$. Od koder sledi: 
-
 $$
 \lim _{s \uparrow 1} G_X^{\prime}(s)=\sum_{k=1}^{\infty} p_k \, k=E(X)
 $$
@@ -3105,7 +3101,6 @@ $$
     $$
     G_X^{(n)}(1-)=E(X(X-1)(X-2) \cdots(X-n+1))
     $$
-
     kjer je: $G_X^{(n)}(1-)=\lim_{s \uparrow 1} G_X^{(n)}(s)$
 \end{izrek} 
 
@@ -3114,7 +3109,7 @@ $$
     $$
     G_X^{(n)}(s)=\left(\sum_{k=0}^{\infty} p_k \, s^k\right)^{(n)}=\sum_{k=n}^{\infty} k(k-1) \cdots(k-n+1) s^{k-n} \, p_k
     $$
-    Ko gre $s \uparrow 1$, z uporabo Abelove leme dobimo: 
+    Ko gre $s \uparrow 1$, z uporabo Abelove leme\footnote[3]{Naj bo $G(x)=\sum_{k=0}^{\infty} a_k x^k$ potenčna vrsta z realnimi koeficienti $a_k$ in konvergenčnim radijem 1. Naj $\sum_{k=0}^{\infty} a_k$ konvergira. Abelova lema pravi, da je $G(x)$ z leve zvezna pri $x=1$, t.j.: $\lim _{x \rightarrow 1-} G(x)=\sum_{k=0}^{\infty} a_k$.}  dobimo: 
     $$
     \lim_{s \uparrow 1} G_X^{(n)}(s)=\sum_{k=n}^{\infty} k(k-1) \cdots(k-n+1) \, p_k=E(X(X-1)(X-2) \cdots(X-n+1))
     $$
@@ -3122,14 +3117,14 @@ $$
 
 \begin{posledica}
     \begin{flalign*}
-        \qquad E(X)&=G_X^{\prime}(1-) & \\
-        \qquad D(X)&=E(X(X-1))+E(X)-(E(X))^2  & \\
+        \quad E(X)&=G_X^{\prime}(1-) & \\
+        \quad D(X)&=E(X(X-1))+E(X)-(E(X))^2  & \\
         &= G_X^{\prime \prime}(1-)+G_X^{\prime}(1-)-\left(G_X^{\prime}(1-)\right)^2 &
     \end{flalign*}
 \end{posledica}
 
 \begin{izrek}
-    Naj bosta $X$ in $Y$ neodvisni slučajni spremenljivki z rodovnima funkcijama $G_X$ in $G_Y$. Potem je za $s \in [0,1]$: 
+    Naj bosta $X$ in $Y$ neodvisni slučajni spremenljivki z rodovnima funkcijama $G_X$ in $G_Y$. Potem je za $s \in [-1,1]$: 
     $$
     G_{X+Y}(s)=G_X(s) \, G_Y(s)
     $$
@@ -3142,8 +3137,7 @@ $$
         &=E(s^X) \, E(s^Y) \tag{$\star$} \\
         &=G_X(s) \, G_Y(s)
     \end{align*}
-
-    \n Enakost $(\star)$ velja, saj sta $s^X$ in $s^Y$ neodvisni slučajni spremenljivki.
+    Enakost $(\star)$ velja, saj sta $s^X$ in $s^Y$ neodvisni slučajni spremenljivki.
 \end{proof}
 
 \n \textbf{Posplošitev:} Če je $S_n=X_1 + \cdots + X_n$ vsota neodvisnih slučajnih spremenljivk z vrednostmi v $\mathbb{N} \cup \{0\}$, potem je za $s \in [-1, 1]$: 
@@ -3158,7 +3152,7 @@ $$
 
 \s
 
-Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_N$, kjer so $X_1, X_2, \ldots$ enako porazdeljene in $N$ slučajna spremenljivka z rodovno funkcijo $G_N$?
+\n Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_N$, kjer so $X_1, X_2, \ldots$ enako porazdeljene in $N$ slučajna spremenljivka z rodovno funkcijo $G_N$?
 
 \begin{izrek}
     Naj bodo za vsak $n \in \mathbb{N}$ slučajne spremenljivke $N, X_1, X_2, \ldots, X_n$. Naj ima $N$ rodovno funkcijo $G_N$, $X_n$ pa rodovno funkcijo $G_X$ za vsak $n \in \mathbb{N}$. Potem ima slučajna spremenljivka $S=X_1+X_2+\cdots+X_N$ rodovno funkcijo: 
@@ -3171,14 +3165,13 @@ Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_
     Zaradi neodvisnosti imamo: 
     \begin{align*}
         P(S=k)&=\sum_{n=1}^{\infty} P(S=k, N=n) & \\
-        &=\sum_{n=1}^{\infty} P\left(N=n, X_1+X_2+ \cdots +X_k=k\right) & \\
+        &=\sum_{n=1}^{\infty} P\left(N=n, X_1+X_2+ \cdots +X_n=k\right) & \\
         &=\sum_{n=1}^{\infty} P(N=n) P\left(X_1+\cdots+X_n=k\right) & \tag{$\star$}
     \end{align*}
-    
     Kjer vrstica $(\star)$ velja zaradi neodvisnosti. Zato je: 
     \begin{align*}
         G_S(s)&=\sum_{k=0}^{\infty} P(S=k) s^k & \\
-        &=\sum_{n=1}^{\infty} P(N=N) \sum_{k=0}^{\infty} P\left(X_1+\cdots+X_n=k\right)  s^k & \\
+        &=\sum_{n=1}^{\infty} P(N=n) \sum_{k=0}^{\infty} P\left(X_1+\cdots+X_n=k\right)  s^k & \\
         &=\sum_{n=1}^{\infty} P(N=n) \, G_{X_1+\cdots+X_n}\left(s\right) & \\
         &=\sum_{n=1}^{\infty} P(N=n) \left(G_X(s)\right)^n & \\
         &=G_N\left(G_X(s)\right)
@@ -3201,7 +3194,7 @@ Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_
 \end{proof}
 
 \begin{zgled}[Kokoš, jajca, piščanci]
-    $N$ jajc, $N \sim \operatorname{Poi}(\lambda)$, $\lambda > 0$. $K$ piščancev. Vpeljemo slučajne spremenljivke $X_1, X_2, \ldots$, kjer $(X_i=1)$, če se iz $i$-tega jajca izvali piščanec, sicer pa je $(X_i=0)$. Potem je: 
+    $N$ jajc, $N \sim \operatorname{Poi}(\lambda)$, $\lambda > 0$. $K$ je število izvaljenih piščancev. Vpeljemo slučajne spremenljivke $X_1, X_2, \ldots$, kjer $(X_i=1)$, če se iz $i$-tega jajca izvali piščanec, sicer pa je $(X_i=0)$. Potem je: 
     $$
     X_i:\left(\begin{array}{cc}
         0 & 1 \\
@@ -3212,7 +3205,6 @@ Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_
     $$
     G_K(s)=G_N\left(G_X(s)\right)=e^{\lambda(q+p s-1)}=e^{\lambda p(s-1)}
     $$
-
     od koder sledi $K \sim \operatorname{Poi}(\lambda p)$.
 \end{zgled}
 
