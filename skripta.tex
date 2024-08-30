@@ -2914,12 +2914,16 @@ $$
 
 \chapter[Pogojna porazdelitev in pogojno matematično upanje]{Pogojna porazdelitev in\\pogojno matematično upanje}
 
-\n Fiksirajmo dogodek $B$ s $P(B)>0$. \emph{Pogojna porazdelitvena funkcija} slučajne spremenljivke $X$ gleda na pogoj $B$ je: 
-$$
-F_X(x \mid B) = P(X \leq x \mid B)=\frac{P((X \leq x) \cap B)}{P(B)}
-$$
+\begin{definicija}
+    Fiksirajmo dogodek $B$ s $P(B)>0$. \emph{Pogojna porazdelitvena funkcija} slučajne spremenljivke $X$ gleda na pogoj $B$ je: 
+    $$
+    F_X(x \mid B) = P(X \leq x \mid B)=\frac{P((X \leq x) \cap B)}{P(B)}
+    $$    
+\end{definicija}
 
-Ima enake lastnosti kot porazdelitvena funkcija. 
+\n Ima enake lastnosti kot porazdelitvena funkcija $F_X(x)$. Pogosto je $B$ povezan z neku drugo slučajno spremenljivko, npr. $Y$. 
+
+\n \textbf{Omejimo se na diskretne porazdelitve:}
 
 \n Naj bo $(X,Y)$ diskreten slučajni vektor: 
 $$
@@ -2935,43 +2939,43 @@ $$
     &=\frac{1}{q_j} \sum_{i : x_i \leq x} p_{i j}
 \end{aligned}
 $$
-
-\n Vpeljemo \emph{pogojno verjetnostno funkcijo}:
+Vpeljemo \emph{pogojno verjetnostno funkcijo}:
 $$
 p_{i \mid j}=P\left(X=x_i \mid Y=y_j\right)=\frac{P\left(X=x_i, Y=y_j\right)}{P\left(Y=y_j\right)}=\frac{p_{i j}}{q_j}
 $$
-
 Tedaj je:
 $$
 F_X\left(x \mid Y=y_j\right)=\sum_{i: x_i \leq x} p_{i \mid j}
 $$
-
-\n \emph{Pogojno matematično upanje} slučajne spremenljivke $X$ gleda na $Y=y_j$ je matematično upanje te porazdelitve: 
+\emph{Pogojno matematično upanje} slučajne spremenljivke $X$ gleda na $Y=y_j$ je matematično upanje te porazdelitve: 
 $$
 E\left(X \mid y_j\right) \equiv E\left(X \mid Y=y_j\right)=\sum_i x_i \, p_{i \mid j}=\frac{1}{q_j} \sum_i x_i \, p_{i j}
 $$
 
-Tako dobimo novo slučajno spremenljivko: 
-$$
-E(X \mid Y):\left(\begin{array}{ccc}
-    E\left(X \mid y_1\right) & E\left(X \mid y_2\right) & \cdots \\
-    q_1 & q_2 & \cdots
-    \end{array}\right)
-$$
+\n Tako dobimo novo slučajno spremenljivko.
 
-\emph{Pogojno matematično upanje} slučajne spremenljivke $X$ glede na slučajno spremenjivko $Y$. 
+\begin{definicija}
+    Slučajno spremenljivko $E(X \mid Y)$ imenujemo \emph{pogojno matematično upanje slučajne spremenljivke $X$ glede na slučajno spremenjivko $Y$.} Ima porazdelitev:
+    $$
+    E(X \mid Y):\left(\begin{array}{ccc}
+        E\left(X \mid y_1\right) & E\left(X \mid y_2\right) & \cdots \\
+        q_1 & q_2 & \cdots
+        \end{array}\right)
+    $$
+\end{definicija}
 
-\n Označimo $\varphi\left(y_j\right):=E\left(X \mid y_j\right)$ za vse $j$ in dobimo: 
-$$
-E(X \mid Y):=\varphi(Y):\left(\begin{array}{ccc}
-    \varphi\left(y_1\right) & \varphi\left(y_2\right) & \cdots \\
-    q_1 & q_2 & \cdots 
-    \end{array}\right)
-$$
+\begin{definicija}
+    Označimo $\varphi\left(y_j\right):=E\left(X \mid y_j\right)$ za vse $j$ in dobimo: 
+    $$
+    E(X \mid Y):=\varphi(Y):\left(\begin{array}{ccc}
+        \varphi\left(y_1\right) & \varphi\left(y_2\right) & \cdots \\
+        q_1 & q_2 & \cdots 
+        \end{array}\right)
+    $$
+    $\varphi$ je \emph{regresijska funkcija}. Definirana je na zalogi vrednosti slučajne spremenljivke $Y$. 
+\end{definicija}
 
-$\varphi$ je \emph{regresijska funkcija}. 
-
-\n Za $E(X,Y)$ velja zveza: 
+\n Za $E(X \mid Y)$ velja zveza: 
 $$
 \begin{aligned}
     E(E(X \mid Y))&=\sum_j E\left(X \mid y_j\right) q_j \\
@@ -2981,51 +2985,46 @@ $$
     &=E(X)
 \end{aligned}
 $$
-
-\n Vzemeimo, da sta $X$ in $Y$ neodvisni. Tedaj: 
+Vzemeimo, da sta $X$ in $Y$ neodvisni. Tedaj: 
 $$
 p_{i \mid j}=\frac{p_{i j}}{q_j}=p_i \implies E\left(X \mid y_j\right)=\sum_i x_i\, p_i=E(X)
 $$
-
-torej je $E(X \mid Y)$ izrojena slučajna spremenljivka.
+Torej je $E(X \mid Y)$ v tem primeru izrojena slučajna spremenljivka.
 
 \begin{zgled}
-    Kokš znese $N$ jajc, kjer je $N \sim \operatorname{Poi}(\lambda)$. Iz vsakega jajca se zvali piščanec s verjetnostjo $p \in (0,1)$, neodvisno od drugih jajc. 
+    Kokš znese $N$ jajc, kjer je $N$ slučajna spremenljivka, porazdeljena Poissonovo, t.j. $N \sim \operatorname{Poi}(\lambda)$ za $\lambda > 0$. Iz vsakega jajca se zvali piščanec s verjetnostjo $p \in (0,1)$, neodvisno od drugih jajc. 
 
-    Naj bo $K$ število piščancev. Določimo $E(K \mid N), E(K) \text { in } E(N \mid K)$.
+    \n Naj bo $K$ število izvaljenih piščancev. Določimo $E(K \mid N), E(K) \text { in } E(N \mid K)$.
     \begin{flalign*}
-        &\qquad P(N=n)=\frac{\lambda^n}{n !} e^{-\lambda,} \quad \text{za} \quad n=0,1,2, \ldots & \\
-        &\qquad P(K=k \mid N=h)=\binom{n}{k} p^{k} q^{n-k}, \quad q=1-p \quad \text{in za} \quad k=0,1,2, \ldots & \\
-        &\qquad E(K \mid N=n)=E(\operatorname{Bin}(n, p))=n p=: \varphi(n) & \\
-        &\qquad E(K \mid N)=p N=\varphi(N) & \\
-        &\qquad E(K)=E(E(K \mid N))=E(p N)=p  E(N)=p  \lambda &
+        &\quad P(N=n)=\frac{\lambda^n}{n !} e^{-\lambda,} \quad \text{za} \quad n=0,1,2, \ldots & \\
+        &\quad P(K=k \mid N=n)=\binom{n}{k} p^{k} q^{n-k}, \quad q=1-p \quad \text{in za} \quad k=0,1,2, \ldots & \\
+        &\quad E(K \mid N=n)=\sum_{k=0}^n k \cdot P(K=k \mid N=n)=E(\operatorname{Bin}(n, p))=n p=: \varphi(n) & \\
+        &\quad E(K \mid N)=p N=\varphi(N) & \\
+        &\quad E(K)=E(E(K \mid N))=E(p N)=p  E(N)=p  \lambda &
     \end{flalign*}
     Dokažimo, da je $K \sim \operatorname{Poi}(\lambda)$:
     \begin{flalign*}
-        \qquad P(K=k)&=\sum_{n=k}^{\infty} P(K=k \mid N=n) P(N=n) & \\
+        \quad P(K=k)&=\sum_{n=k}^{\infty} P(K=k \mid N=n) P(N=n) & \\
         &=\sum_{n=k}^{\infty}\binom{n}{k} p^k \, q^{n-k} \, \frac{\lambda^n}{n !} e^{-\lambda} & \\
         &=e^{-\lambda} \frac{p^k}{k !} \lambda^k \sum_{n=k}^{\infty} \frac{q^{n-k} \, \lambda^{n-k}}{(n-k) !} & \\
         &=e^{-\lambda} \frac{(p \lambda)^k}{k !}  e^{q\lambda}=\frac{(p \lambda)^k}{k !} e^{-p \lambda} & 
     \end{flalign*}
-
+    Vzemimo zdaj $n \geq k$:
     \begin{flalign*}
-        \qquad P(N=n \mid K=k)&=\frac{P(N=n, K=k)}{P(K=k)} & \\
-        &=\frac{P(K=k \mid N=n) P(N=n)}{P(K=k)} & \\
+        \quad P(N=n \mid K=k)&=\frac{P(N=n, K=k)}{P(K=k)} & \\
+        &=\frac{P(K=k \mid N=n) P(N=n)}{P(K=k)} & \tag{$\star$} \\
         &=\binom{n}{k} p^k \, q^{n-k} \frac{\lambda^n}{n !} e^{-\lambda}  \frac{k !}{(p \lambda)^k}  e^{p \lambda} & \\
         &=\frac{1}{(n-k) !} q^{n-k} \, \lambda^{n-k} e^{-q \lambda} & \\
         &=\frac{(q \lambda)^{n-k}}{(n-k) !} e^{-q \lambda} &
     \end{flalign*}
-    
-    za $n=k,k+1,k+2, \ldots$, kar je Poissonova porazdelitev, premaknjena za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
+    Kjer smo v $\star$ vrstici uporabili Bayesovo formulo. Dobimo torej Poissonova porazdelitev, premaknjeno za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
     $$
     \varphi(k)=E(N \mid K=k)=E(k+ \operatorname{Poi}(q \lambda))=k+q \lambda
     $$
-
     torej je: 
     $$
     E(N \mid K)=\varphi(K)=K+q \lambda
     $$
-
     Preizkus: 
     $$
     E(E(N \mid K))=E(K+q \lambda)=E(K)+q \lambda=p \lambda+q \lambda=\lambda = E(N)
