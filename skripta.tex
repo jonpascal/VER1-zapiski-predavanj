@@ -133,7 +133,7 @@
 
 Začetki verjetnosti so v 17. stoletju, iz iger na srečo (kartanje, kockanje, \dots): 
 \begin{itemize}
-    \item 17. stol.: Fermant, Pascal, Bernulli;
+    \item 17. stol.: Fermat, Pascal, Bernoulli;
     \item 18./19. stol.: Laplace, Poisson, Čebišev, Markov;
     \item 20. stol.: Kolmogorov.
 \end{itemize}
@@ -141,7 +141,7 @@ Začetki verjetnosti so v 17. stoletju, iz iger na srečo (kartanje, kockanje, \
 \n Izvajamo poskus in opazujemo določen pojav, ki ga imenujemo \emph{dogodek}. Ta se lahko zgodi ali ne. 
 
 \begin{zgled}
-    Poskus je met kocke. Da pade šestica, da pade sodo število pik pa sta dogodka.
+    Poskus je met kocke. Da pade šestica, da pade sodo število pik, pa sta dogodka.
 \end{zgled}
 
 \n Poskus ponovimo $n$-krat. Opazujemo dogodek $A$. S $k_n(A)$ označimo \emph{frekvenco dogodka} $A$, t.j. število tistih ponovitev poskusa, pri katerih se je dogodek $A$ zgodil. Naj bo $f_n(A)=\frac{k_n(A)}{n}$ \emph{relativna frekvenca} dogodka $A$. Dokazati je mogoče, da zporedje $\left\{f_n(A)\right\}_n$ konvergira k nekemu številu $p \in [0, 1]$; $f_n(A) \xrightarrow{n \to \infty} p$. Dobimo:
@@ -172,9 +172,9 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
 \begin{zgled}
     Kolikšna je verjetnost, da pri metu dveh poštenih kock znaša vsota pik $7$?
     
-    Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$. Ne! Izidi niso enkaoverjetni. 
+    Možne vsote so: $2, 3, 4, \dots , 12$. Opazimo, da je vseh vsot $11$ in od tega $1$ ugodna. Ali to pomeni, da $P(A)=\frac{1}{11}$? Ne! Izidi niso enakoverjetni. 
     
-    \n Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. Torej vsi možni izidi, bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subseteq \mathbb{N}$:
+    \n Na primer $2$ lahko dobimo samo kot $2=1+1$, $5$ pa kot $5=2+3=1+4=4+1=3+2$. Torej vsi možni izidi bodo urejeni pari $(x, y)$, kjer $x, y \in[1,6] \subseteq \mathbb{N}$:
     $$
     \begin{array}{cccc}
         (1,1) & (1,2) & \cdots & (1,6) \\
@@ -183,14 +183,13 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
         (6,1) & (6,2) & \cdots & (6,6) \\
     \end{array}
     $$
-
     Vseh izidov je torej $36$ in od tega je $6$ ugodnih. Torej $P(A)= \frac{6}{36}=\frac{1}{6}$.
 \end{zgled}
 
 \n Če je izidov neskončno, si lahko pomagamo s \textbf{Geometrijsko definicijo verjetnosti.}
 
 \begin{zgled}
-    Osebi se dogovorita za srečanje med 10. in 11. uro. Čas prihoda je slučajen. Vsak od njiju po prihodu čaka največ 20 minut. Če v tem času drugega ni, odide. Najdlje čaka do 11. ure. Kolišna je vrejetnost srečanja?
+    Osebi se dogovorita za srečanje med 10. in 11. uro. Čas prihoda je slučajen. Vsak od njiju po prihodu čaka največ 20 minut. Če v tem času drugega ni, odide. Najdlje čaka do 11. ure. Kolikšna je verjetnost srečanja?
 
     Čas začnemo šteti ob 10. uri. Vsi izidi so urejeni pari $(x, y) \in [0,1] \times[0,1]$. Ugodni izidi so $|x-y| \leq \frac{1}{3}$. Torej: 
     $$
@@ -251,36 +250,36 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
 \n Teorija mere se ukvarja z splošnim zapisom geometrijske definicije. 
 
 \begin{zgled}
-    Vzamemo $m, n \in \mathbb{N}$, $m>n$. $n$ krogljic slučajno razporedimo v $m$ posod. Kolikšna je verjetnost dogodka, da so vse krogljice v prvih $n$ posodah, v vsaki ena?
+    Vzamemo $m, n \in \mathbb{N}$, $m>n$. $n$ kroglic slučajno razporedimo v $m$ posod. Kolikšna je verjetnost dogodka, da so vse kroglice v prvih $n$ posodah, v vsaki ena?
 
-    To je pomankljivo zastavljena naloga. Ne vemo namreč, ali med seboj krogljice razlikujemo, ali ne. Za dodatno predpostavko se ponujajo 3 možnosti: 
+    To je pomanjkljivo zastavljena naloga. Ne vemo namreč, ali med seboj kroglice razlikujemo, ali ne. Za dodatno predpostavko se ponujajo 3 možnosti: 
     \begin{enumerate}
-        \item \textbf{Krogljice razlikujemo:}
+        \item \textbf{Kroglice razlikujemo:}
         
         Število vseh izidov v tem primeru je ravno število \emph{variacij} $m$ elementov na $n$ mestih \emph{s ponavljanjem}. Za vsako od $n$-tih kroglic imamo $m$ možnosti, torej je vseh možnosti $m \cdot m \cdots m=m^n$.
         
-        Število ugodnih izidov pa je ravno število \emph{permutacij} $n$ krogljic v prvih $n$ posodah. Torej je ugodnih možnosti $n(n-1) \ldots 2 \cdot 1=n!$.
+        Število ugodnih izidov pa je ravno število \emph{permutacij} $n$ kroglic v prvih $n$ posodah. Torej je ugodnih možnosti $n(n-1) \ldots 2 \cdot 1=n!$.
         
         Torej je:
         $$
         P(A)=\frac{n !}{m^n}
         $$
 
-        \item \textbf{Krogljic ne razlikujemo:} 
+        \item \textbf{Kroglic ne razlikujemo:} 
         
-        V vsaki posodi je lahko več krogljic. Število vseh izidov je ravno število \emph{kombinacij s ponavljanjem}. Število kombinacij $m$ elementov s ponavljanjem na $n$ mestih je: 
+        V vsaki posodi je lahko več kroglic. Število vseh izidov je ravno število \emph{kombinacij s ponavljanjem}. Število kombinacij $m$ elementov s ponavljanjem na $n$ mestih je: 
         $$
         \binom{n+m-1}{n} = \binom{n+m-1}{m-1}
         $$
 
         \newpage
 
-        Postavimo $n$ krogljic in med njih razporedimo $m-1$ črtic, ki predstavljajo stene posod:
+        Postavimo $n$ kroglic in med njih razporedimo $m-1$ črtic, ki predstavljajo stene posod:
         $$
-        |\underbrace{\circ|\circ|\circ\circ |\circ\circ  \cdots |\circ |}_{n \text{ krogljic, } m-1 \text{ črtic}}|
+        |\underbrace{\circ|\circ|\circ\circ |\circ\circ  \cdots |\circ |}_{n \text{ kroglic, } m-1 \text{ črtic}}|
         $$
 
-        Na $n+m-1$ mestih moramo določiti $n$ krogljic. Ugoden izid je samo eden: 
+        Na $n+m-1$ mestih moramo določiti $n$ kroglic. Ugoden izid je samo eden: 
         $$
         |\circ|\circ|\circ|\circ \cdots \circ|||| \cdots |
         $$
@@ -290,7 +289,7 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
         P(A)=\frac{1}{\binom{n+m-1}{n}}
         $$
 
-        \item \textbf{Krogljic ne razlikujemo, v vsaki posodi je kvečjemu ena krogljica:} 
+        \item \textbf{Kroglic ne razlikujemo, v vsaki posodi je kvečjemu ena kroglica:} 
         
         Število vseh izidov je ravno število \emph{kombinacij brez ponavljanja} $\binom{m}{n}$. 
         
@@ -304,10 +303,10 @@ pri pogoju, da imajo vsi izidi \emph{enake} možnosti.
 \end{zgled}
 
 \begin{opomba}
-V fiziki so krogljice delici (atomi, molekule, ...), posode pa fazna stanja, v katerih so lahko delci. Glede na zgornje primere ločimo:
+V fiziki so kroglice delici (atomi, molekule, ...), posode pa fazna stanja, v katerih so lahko delci. Glede na zgornje primere ločimo:
 \begin{enumerate}
-    \item Maxwell-Boltzmannovo statistiko, ki velja za molekule plina.
-    \item Bose-Einsteinovo statistiko, ki velja za delce imenovane bozoni.
+    \item Maxwell-Boltzmannovo statistiko, ki velja npr. za molekule plina.
+    \item Bose-Einsteinovo statistiko, ki velja za delce, imenovane bozoni.
     \item Fermi-Diracovo statistiko, ki velja za fermione. 
 \end{enumerate}
 
@@ -328,7 +327,7 @@ Imamo prostor vseh izidov oz. \emph{vzorčni prostor} $\Omega$ (možna oznaka je
 \n \textbf{Računanje z dogodki:}
 
 \begin{enumerate}
-    \item \emph{Vsota dogodkov} oz. \emph{unija dogodkov} (zgodi se vsaj enden od dogodkov): $$A + B = A \cup B$$
+    \item \emph{Vsota dogodkov} oz. \emph{unija dogodkov} (zgodi se vsaj eden od dogodkov): $$A + B = A \cup B$$
     \item \emph{Produkt dogodkov} oz. \emph{presek dogodkov} (zgodita se oba dogodka hkrati): $$A \cdot B = A \cap B$$
     \item \emph{Nasprotni dogodek} oz. \emph{komplement dogodka} (dogodek se ne zgodi): $$\bar A = A^c$$
 \end{enumerate}
@@ -354,25 +353,25 @@ Imamo prostor vseh izidov oz. \emph{vzorčni prostor} $\Omega$ (možna oznaka je
 \n Elementi v $\mathcal{F}$ so dogodki. Če v točki 3. zahtevamo manj: 
 
 \begin{enumerate}[start=3,label={\arabic**.}]
-    \item $A, B \in \mathcal{F} \implies A \cup B \in \mathcal{F}$
+    \item $A, B \in \mathcal{F} \implies A \cup B \in \mathcal{F}$,
 \end{enumerate}
-
-Potem pravimo, da je $\mathcal{F}$ \emph{algebra}. \s
+potem pravimo, da je $\mathcal{F}$ \emph{algebra}. \s
 
 \n V algebri imamo potem tudi zaprtost za končne unije (dokažemo z indukcijo): 
-$$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A_n \in \mathcal{F}$$ 
-
-\n Ker po de-Morganu velja $\bigcap_i A_i=\left(\bigcup_i A_i^c\right)^c$, je algebra zaprta za končne preseke, $\sigma$-algebra pa celo za števne preseke. Ker velja $A \setminus B=A \cap B^c$, je algebra zaprta za razlike. 
+$$
+A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A_n \in \mathcal{F}
+$$ 
+Ker po de-Morganu velja $\bigcap_i A_i=\left(\bigcup_i A_i^c\right)^c$, je algebra zaprta za končne preseke, $\sigma$-algebra pa celo za števne preseke. Ker velja $A \setminus B=A \cap B^c$, je algebra zaprta za razlike. 
 
 \n Vsaka algebra vsebuje $\{\emptyset, \Omega\}$. Ker je $\mathcal{F}$ neprazna, obstaja $A \in \mathcal{F}$ in je zato tudi $\Omega=A \cup A^c \in \mathcal{F}$ in $\emptyset=\Omega^c \in \mathcal{F}$. Tako dobimo, da je $\{\emptyset, \Omega\}$ najmanšja možna ($\sigma$-)algebra, $\mathcal{P}(\Omega)$ pa največja možna ($\sigma$-)algebra.
 
 \begin{zgled}
-    Za $A \neq \emptyset \neq \Omega$ je najmanjša ($\sigma$-)algebra, ki vsebuje $A$ enaka $\left\{\emptyset, A, A^c, \Omega\right\}$. 
+    Za $A \neq \emptyset \neq \Omega$ je najmanjša ($\sigma$-)algebra, ki vsebuje $A$, enaka $\left\{\emptyset, A, A^c, \Omega\right\}$. 
 
     \n Za $\Omega=\{1,2,3\}$ in $A=\{1,2\}$, je potem taka $\sigma$-algebra $\{\emptyset,\{3\},\{1,2\},\{1,2,3\}\}$.
 \end{zgled}
 
-\n Dogodka $A$ in $B$ sta \emph{disjunkta} oz. \emph{nezdružljiva} če je $A \cap B=\emptyset$. 
+\n Dogodka $A$ in $B$ sta \emph{disjunkta} oz. \emph{nezdružljiva}, če je $A \cap B=\emptyset$. 
 
 \n Zaporedje $\{A_i\}_i$ (končno ali števno mnogo) je \emph{popoln sistem dogodkov}, če velja: $$\bigcup_i A_i=\Omega \quad \text{in} \quad A_i \cap A_j = \emptyset \quad \text{za} \quad i \neq j.$$ 
 
@@ -394,8 +393,9 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
     \begin{proof}
         V lastnosti 3. vzamemo $A_i = \emptyset$ za vsak $i$: 
         $$
-        P\left(\bigcup_i \emptyset\right)=P(\emptyset)+P(\emptyset)+P(\emptyset)+\cdots = 0+0+0+ \cdots = 0
+        P(\emptyset) = P\left(\bigcup_i \emptyset\right)=P(\emptyset)+P(\emptyset)+P(\emptyset)+\cdots,
         $$
+        kar velja le v primeru, ko je $P(\emptyset) = 0$.
     \end{proof}
     \item $P$ je \emph{končno aditivna}, t.j. za končno mnogo paroma nezdružljivih dogodkov $\{A_i\}_{i=1}^{n}$ velja: 
     $$
@@ -410,7 +410,7 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
     $$ 
     Še več: iz $A \subseteq B$  sledi $P(B \setminus A)=P(B)-P(A)$.
     \begin{proof}
-        Ker je $B=A \cup(B \setminus A)$ in $A \cap(B \setminus A)=\emptyset$ je $P(B)=P(A)+P(B \setminus A)$ zaradi lastnosti (b).
+        Ker je $B=A \cup(B \setminus A)$ in $A \cap(B \setminus A)=\emptyset$, je $P(B)=P(A)+P(B \setminus A)$ zaradi lastnosti (b).
     \end{proof}
     \item $P(A^c) = 1-P(A)$
     \begin{proof}
@@ -455,18 +455,18 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
     \end{proof}
 \end{enumerate}
 
-\n \textbf{Verjetnostni prostor} je trojica $(\Omega, \mathcal{F}, P)$
+\n \textbf{Verjetnostni prostor} je trojica $(\Omega, \mathcal{F}, P)$.
 
 \begin{zgled}[Končni ali števni verjetnostni prostor]
-    $\Omega=\left\{\omega_2, \omega_2, \omega_3, \ldots\right\}$ končno ali števno mnogo izidov. $\left\{\omega_1\right\},\left\{\omega_2\right\},\left\{\omega_3\right\}, \ldots$ je popoln sistem dogodkov, neka podmnožica v $\Omega$ je končna ali števna unija teh dogodkov. Torej $\mathcal{F}=\mathcal{P}(\Omega)$. Vzamemo:
+    $\Omega=\left\{\omega_2, \omega_2, \omega_3, \ldots\right\}$ končno ali števno mnogo izidov. $\left\{\omega_1\right\},\left\{\omega_2\right\},\left\{\omega_3\right\}, \ldots$ je popoln sistem dogodkov, vsaka podmnožica v $\Omega$ je končna ali števna unija teh dogodkov. Torej $\mathcal{F}=\mathcal{P}(\Omega)$. Vzamemo:
     $$
-    A=\bigcup_{i: \omega_i \in A}\left\{\omega_0\right\} 
+    A=\bigcup_{i: \omega_i \in A}\left\{\omega_i\right\} 
     $$
     Če označimo $P(\{\omega_i\}) = p_i \geq 0$, potem je: 
     $$
-    \sum_i p_i=1 \quad \text{in} \quad P(A)=\sum_{i: \omega_i \in A} p_i \quad \text{za} \quad A \subseteq \Omega
+    \sum_i p_i=1 \quad \text{in} \quad P(A)=\sum_{i: \omega_i \in A} p_i
     $$
-    Če ima $\Omega$ $n$ elementov in $p_i = \frac{1}{n}$ za $i=1, 2, \ldots, n$. Potem je:
+    Če ima $\Omega$ $n$ elementov in $p_i = \frac{1}{n}$ za $i=1, 2, \ldots, n$, potem je:
     $$
     P(A)=\frac{|A|}{n}=\frac{\operatorname{mo\check{c}}(A)}{n}
     $$
@@ -550,7 +550,7 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
         \node at (4.5,2.5) {$\Omega$};
         \node at (3.5,1.5) {$A$};
         \node at (0.5,2.5) {$B$};
-        \node at (2.25,1.5) {$A \cup B$};
+        \node at (2.25,1.5) {$A \cap B$};
 
     \end{tikzpicture}
 
@@ -559,10 +559,10 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
 \end{figure}
 
 \begin{zgled}
-    V posodi sta dve beli in ena črna krogljica. Dvakrat zaporedoma izvlečemo krogljico. Kolikšna je verjetnost, da smo drugič izbrali belo krogljico, če smo prvič izbrali belo?
+    V posodi sta dve beli in ena črna kroglica. Dvakrat zaporedoma izvlečemo kroglico. Kolikšna je verjetnost, da smo drugič izbrali belo kroglico, če smo prvič izbrali belo?
 
     \begin{enumerate}[label=(\alph*)]
-        \item Krogljice vrečamo.
+        \item Kroglice vrečamo.
         
         Vseh izidov je 9: 
         $$
@@ -579,7 +579,7 @@ $$A_1, A_2, \ldots, A_n \in \mathcal{F} \implies A_1 \cup A_2 \cup \cdots \cup A
             &\quad P(\text{drugič belo}) = \frac{6}{5}=\frac{2}{3} & 
         \end{flalign*}
 
-        \item Krogljic ne vračamo. 
+        \item Kroglic ne vračamo. 
         
         Vseh izidov je 6: 
         $$
@@ -601,12 +601,12 @@ $$
 P(A \cap B)=P(A \mid B) \cdot P(B)  
 $$
 
-\n Za 3 dogodke $A, B, C$, kjer velja $P(B \cap C)>0$ dobimo:
+\n Za 3 dogodke $A, B, C$, kjer velja $P(B \cap C)>0$, dobimo:
 $$
 P(A \cap B \cap C)=P(A \mid B \cap C) \cdot P(B \cap C)=P(A \mid B \cap C) \cdot P(B \mid C) \cdot P(C)
 $$
 
-\n Če to posplošimo na $n$ dogodkov dobimo: 
+\n Če to posplošimo na $n$ dogodkov, dobimo: 
 $$
 P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right) =P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) 
 $$
@@ -614,16 +614,15 @@ $$
 \n Če desno stran razpišemo, res dobimo: 
 $$
 \begin{aligned}
-    P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right) &=P\left(A_1\right) \cdot P\left(A_2 \mid A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) \\
-    &=P\left(A_1\right) \cdot \frac{P\left(A_1 \cap A_2\right)}{P\left(A_1\right)} \cdots \frac{P\left(A_1 \cap \cdots \cap A_n\right)}{P\left(A_1 \cap \cdots \cap A_{n-1}\right)} \\
+    P\left(A_1\right) \cdots P\left(A_n \mid A_1 \cap \cdots \cap A_{n-1}\right) &=P\left(A_1\right) \cdot \frac{P\left(A_1 \cap A_2\right)}{P\left(A_1\right)} \cdots \frac{P\left(A_1 \cap \cdots \cap A_n\right)}{P\left(A_1 \cap \cdots \cap A_{n-1}\right)} \\
     &=P\left(A_1 \cap A_2 \cap \cdots \cap A_n\right)
 \end{aligned}
 $$
 
 \begin{zgled}
-    V posodi imamo 6 modrih, 5 rdečih in 4 zelene krogljice. Brez vračanja izberemo 3 krogljice. Kolikšna je verjetnost, da so vse rdeče?
+    V posodi imamo 6 modrih, 5 rdečih in 4 zelene kroglice. Brez vračanja izberemo 3 kroglice. Kolikšna je verjetnost, da so vse rdeče?
 
-    Označimo s $A_k$ dogodek, da je $k$-ta krogljica rdeče za $k=1, 2, 3$. Nalogo laho rešimo na dva načina:
+    Označimo z $A_k$ dogodek, da je $k$-ta kroglica rdeča za $k=1, 2, 3$. Nalogo lahko rešimo na dva načina:
 
     \begin{enumerate}
         \item 
@@ -642,7 +641,7 @@ $$
 \n Imejmo poskus, ki ga opravimo v 2 korakih (fazah). 
 
 \begin{enumerate}
-    \item V prvem koraku se zgodi natanko enden izmed paroma nezdružljivih dogodkov $H_1, H_2, H_3, \ldots $ (končno ali števno mnogo). 
+    \item V prvem koraku se zgodi natanko eden izmed paroma nezdružljivih dogodkov $H_1, H_2, H_3, \ldots $ (končno ali števno mnogo). 
     \item V drugem koraku pa nas zanima dogodek $A$. Izrazimo $P(A)$ z verjetnostmi: $$P\left(H_i\right) \quad \text{in} \quad P\left(A \mid H_i\right) \quad \text{za} \; i= 1, 2, 3, \ldots $$
 \end{enumerate}
 
@@ -657,14 +656,14 @@ $$
 To je \emph{formula za popolno verjetnost.}
 
 \begin{zgled}
-    Pri srečolovu je $n$ srečk, od tega je $m$ dobitnih ($m<n$). Ali imamo večje možnosti za dobitek, če izbiramo prvi ali drugi?
+    Pri srečelovu je $n$ srečk, od tega je $m$ dobitnih ($m<n$). Ali imamo večje možnosti za dobitek, če izbiramo prvi ali drugi?
 
-    Če izbiramo prvi je:
+    Če izbiramo prvi, je:
     $$
     P(\text{dobitka}) = \frac{m}{n}
     $$
 
-    Če izbiramo drugi je:
+    Če izbiramo drugi, je:
     $$
     \begin{aligned}
         P(\text{dobitka}) &= P(\text{prvi dobi}) \cdot P(\text{dobitka | prvi dobi}) \\
@@ -681,9 +680,9 @@ $$
 To je \emph{Bayesova formula}.
 
 \begin{zgled}
-    Test s poligrafom (detektorjem laži). Resnicoljub opravi test s poligrafom z verjetnostjo $0.95$. Z enako verjetnostjo poligraf prepozna lažnivca. Izmed 1000 oseb, med kateremi je natanko en lažnivec, slučajno izberemo eno osebo za katero poligraf pravi, da je lažnivec. Kolikšna je pogojna verjetnost, da je oseba zares lažnivec?
+    Test s poligrafom (detektorjem laži). Resnicoljub opravi test s poligrafom z verjetnostjo $0.95$. Z enako verjetnostjo poligraf prepozna lažnivca. Izmed 1000 oseb, med kateremi je natanko en lažnivec, slučajno izberemo eno osebo, za katero poligraf pravi, da je lažnivec. Kolikšna je pogojna verjetnost, da je oseba zares lažnivec?
 
-    Označimo s $L$ dogodek, da je izbrana oseba lažnivec, $L_p$ pa dogodek, da poligraf za osebo pravi, da je lažnivec. Potem:
+    Označimo z $L$ dogodek, da je izbrana oseba lažnivec, $L_p$ pa dogodek, da poligraf za osebo pravi, da je lažnivec. Potem:
     $$
     P\left(L_p \mid L\right)=0.95, \quad  P\left(L_p \mid L^c\right)=0.05 \quad \text{in} \quad P(L)=0.001
     $$
@@ -692,8 +691,8 @@ To je \emph{Bayesova formula}.
     $$
     \begin{aligned}
         P\left(L \mid L_p\right)&=\frac{P(L) \cdot P\left(L_p \mid L\right)}{P(L) \cdot P\left(L_p \mid L\right)+P\left(L^c\right) \cdot P\left(L_p \mid L^c\right)} \\
-        &=\frac{0.55 \cdot 0.001}{0.55 \cdot 0.001+0.05 \cdot 0.999} \\
-        &=\frac{95}{5090} = \frac{1}{50} = 0.02 
+        &=\frac{0.95 \cdot 0.001}{0.95 \cdot 0.001+0.05 \cdot 0.999} \\
+        &=\frac{95}{5090} \approx \frac{1}{50} = 0.02 
     \end{aligned}
     $$
 \end{zgled}
@@ -707,7 +706,7 @@ $$
 P(A)=\frac{P\left(A \cap B\right)}{P(B)}=P(A \mid B)
 $$
 
-\n Če imamo več dogodkov, so dogodki $\{ A_i \}_i$ so \emph{neodvisni}, če za poljuben končen nabor različnih dogodkov $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ velja: 
+\n Če imamo več dogodkov, so dogodki $\{ A_i \}_i$ \emph{neodvisni}, če za poljuben končen nabor različnih dogodkov $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ velja: 
 $$
 P\left(A_{i_1} \cap A_{i_2} \cap \ldots \cap A_{i_k}\right)=P\left(A_{i_1}\right) \cdot P\left(A_{i_2}\right) \cdots P\left(A_{i_k}\right)
 $$
@@ -756,9 +755,9 @@ $$
 
 \section{Bernoullijeva formula}
 
-\n Imejmo zaporedje $n$ neodvisnih ponovitev poskusa določenega z verjetnostnim prostorom $(\Omega, \mathcal{F}, P)$ v katerem je možen dogodek $A$ s $P(A) = p$. Označimo še $q := P(A^c) = 1-p$. 
+\n Imejmo zaporedje $n$ neodvisnih ponovitev poskusa, določenega z verjetnostnim prostorom $(\Omega, \mathcal{F}, P)$, v katerem je možen dogodek $A$ s $P(A) = p$. Označimo še $q := P(A^c) = 1-p$. 
 
-\n Z $A_n(k)$ označimo dogodek, da se v $n$ ponovitvah poskusa, dogodek $A$ zgodi natanko $k$-krat, za $k=0, 1, 2, \ldots , n$. Izračunajemo verjetnost:
+\n Z $A_n(k)$ označimo dogodek, da se v $n$ ponovitvah poskusa, dogodek $A$ zgodi natanko $k$-krat, za $k=0, 1, 2, \ldots , n$. Izračunajmo verjetnost:
 $$
 P_n(k):=P\left(A_n(k)\right)
 $$
@@ -803,7 +802,7 @@ $$
     \begin{proof}
         $$
         \begin{aligned}
-            P_n(k)&=\frac{n(n-1) \cdots n(n-k+1)}{k !} p^k (1-p)^{n-k} \\
+            P_n(k)&=\frac{n(n-1) \cdots (n-k+1)}{k !} p^k (1-p)^{n-k} \\
             &=\frac{n(n-1) \cdots(n-k+1)}{k !}\left(\frac{\lambda}{n}\right)^k \left(1-\frac{\lambda}{n}\right)^{n-k} \\
             &=\frac{\lambda^k}{k !} \frac{n(n-1)\cdots(n-k+1)}{\underbrace{n \cdot n \cdot n \cdots n}_{k \text{ krat}}} \left(1-\frac{\lambda}{n}\right)^n \left(1-\frac{\lambda}{n}\right)^{-k} \\
             &\approx \frac{\lambda^k}{k !} e^{-\lambda}
@@ -826,7 +825,7 @@ $$
     
     Za velike $n$ velja: 
     $$
-    P_n(k) = \frac{1}{\sqrt{2 \pi n  p q}} \cdot e^{-\frac{\left(k-np\right)^2}{2 n p q}}
+    P_n(k) \approx \frac{1}{\sqrt{2 \pi n  p q}} \cdot e^{-\frac{\left(k-np\right)^2}{2 n p q}}
     $$
     Kasneje boste dokazali še splošnejši izrek (centralni limitni izrek).
 
@@ -912,7 +911,7 @@ $$
     $$
     P_n\left(k_1, k_2\right) \approx \frac{1}{\sqrt{2 \pi}} \sum_{k=k_1}^{k_2-1} e^{-\frac{1}{2} x_k^2} \, \Delta x_k
     $$
-    To je Riemannova vsota za za funkcijo $f(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}$ in za delitev intervala $[a,b]$ na $k_2 -k_1$ enakih delov, kjer je $a=x_{k_1}=\frac{k_1-n p}{\sqrt{n p q}}$, $b=x_{k_2}=\frac{k_2-n p}{\sqrt{n p q}}$.
+    To je Riemannova vsota za funkcijo $f(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}$ in za delitev intervala $[a,b]$ na $k_2 -k_1$ enakih delov, kjer je $a=x_{k_1}=\frac{k_1-n p}{\sqrt{n p q}}$, $b=x_{k_2}=\frac{k_2-n p}{\sqrt{n p q}}$.
 
     \begin{figure}[H]
         \centering
@@ -940,7 +939,7 @@ $$
 
     Torej za velike $n$ imamo: 
     $$
-    P_n\left(k_1, k_2\right) \approx \int_a^b f(x) \, d x=\int_{\frac{k_1-n p}{\sqrt{n p q}}}^{\frac{k_2-n p}{\sqrt{n p q}}} e^{-\frac{x^2}{2}} \, d x
+    P_n\left(k_1, k_2\right) \approx \int_a^b f(x) \, d x= \frac{1}{\sqrt{2 \pi}} \int_{\frac{k_1-n p}{\sqrt{n p q}}}^{\frac{k_2-n p}{\sqrt{n p q}}} e^{-\frac{x^2}{2}} \, d x
     $$
     \begin{figure}[H]
         \centering
@@ -981,10 +980,10 @@ $$
         $$
         \Phi(x)=\frac{1}{\sqrt{2 \pi}} \int_0^x e^{-\frac{t^2}{2}} \, d t \quad \text{za} \quad x \in \mathbb{R}
         $$
-        $\Phi$ je zvezno odvedljiva, liha in naraščujoča. $\Phi(0)=0$. 
+        $\Phi$ je zvezno odvedljiva, liha in naraščojoča, $\Phi(0)=0$. 
     \end{definicija}
 
-    Izračunajmo $\lim _{x \rightarrow \infty} \Phi(x)$. S pomočjo $\Gamma$ funkcije dobimo. 
+    Izračunajmo $\lim _{x \rightarrow \infty} \Phi(x)$. S pomočjo $\Gamma$ funkcije dobimo: 
     \begin{align*}
         \lim _{x \rightarrow \infty} \Phi(x)&=\frac{1}{\sqrt{2 \pi}} \int_0^{\infty} e^{-\frac{t^2}{2}} \, d t  \tag{$\star$} \\
         &=\frac{1}{\sqrt{2 \pi \cdot 2}} \int_0^{\infty} u^{-\frac{1}{2}} e^{-u} \, d u \\
@@ -1072,7 +1071,7 @@ $$
     $$
     F_X(x):=P(X \leq x)
     $$
-    Imenujemo jo \emph{porazdelitvena funkcija} slučajne spremenljivke $X$.
+    Je \emph{porazdelitvena funkcija} slučajne spremenljivke $X$.
 \end{definicija}
 
 \n Dogovor: $P((X \leq x)) \iff P(X \leq x)$.
@@ -1083,7 +1082,7 @@ $$
 
 \begin{enumerate}
     \item $0 \leq F(x) \leq 1$ za vsak $x\in \mathbb{R}.$
-    \item $F$ je naraščujoča funkcija: 
+    \item $F$ je naraščojoča funkcija: 
     $$
     x_1 < x_2 \implies F(x_1) \leq F(x_2)
     $$
@@ -1095,7 +1094,7 @@ $$
     \lim _{x \to \infty} F(x)=1, \quad \lim _{x \to -\infty} F(x)=0
     $$
     \begin{proof}
-        Naj bo $\{x_n\}_n \subseteq \mathbb{R}$ neomejeno strogo naraščujoče zaporedje. Potem je: 
+        Naj bo $\{x_n\}_n \subseteq \mathbb{R}$ neomejeno strogo naraščojoče zaporedje. Potem je: 
         \begin{align*}
             \lim _{x \to \infty} F(x) &= \lim _{n \to \infty} F\left(x_n\right) \\
             &=\lim _{n \to \infty} P\left(X \leq x_n\right) \\
@@ -1303,11 +1302,11 @@ $$
     \sum_{k=0}^{\infty} p_k=e^{-\lambda} \left(\sum_{k=0}^{\infty} \frac{\lambda^k}{k !}\right)=e^{-\lambda} e^\lambda=1
     $$
     \begin{zgled}
-        Število klicev v telefonskem omrežju v minuti. $n$ je število naročnikov. Recimo, da je $n=10^6$ in vsak se z verjetnostjo $p$ odloči, da bo klical. Ker je $n$ velik in $p$ majhen lahko aproksimiramo $X \sim \operatorname{Bin}(n,p)\approx \operatorname{Poi}(np)$. Primer je tudi število napačnih črk v časopisu. 
+        Število klicev v telefonskem omrežju v minuti. $n$ je število naročnikov. Recimo, da je $n=10^6$ in vsak se z verjetnostjo $p$ odloči, da bo klical. Ker je $n$ velik in $p$ majhen, lahko aproksimiramo $X \sim \operatorname{Bin}(n,p)\approx \operatorname{Poi}(np)$. Primer je tudi število napačnih črk v časopisu. 
     \end{zgled}
     \item \emph{Geometrijska porazdelitev} $\operatorname{geo}(p)$, $p \in (0,1)$:
     
-    Ponavljanjo poskus in opazujmo dogodek $A$ s $P(a) = p$. $X$ je število potrebnih ponovitev, da se zgodi dogedek $A$ prvič. 
+    Ponavljamo poskus in opazujemo dogodek $A$ s $P(a) = p$. $X$ je število potrebnih ponovitev, da se zgodi $A$ prvič. 
 
     $(X=k)$ je dogodek, da se $A$ zgodi prvič k $k$-ti ponovitvi poskusa:
     $$
@@ -1345,7 +1344,7 @@ $$
 
     \item \emph{Hipergeometrijska porazdelitev} $\operatorname{Hip}(n; M, N)$, $n \leq \min \{M, N-M\}$:
     
-    V posodi imamo $M$ belih in $(N-M)$ črnih krogljic. Slučajno izvlečemo $n$ krogljic. $X$ naj bo število belih krogljic med izvlečenimi:
+    V posodi imamo $M$ belih in $(N-M)$ črnih kroglic. Slučajno izvlečemo $n$ kroglic. $X$ naj bo število belih kroglic med izvlečenimi:
     $$
     p_k=P(X=k)=\frac{\binom{M}{k} \binom{N-M}{n-k}}{\binom{N}{n}}
     $$
@@ -1353,7 +1352,7 @@ $$
     $$
     \sum_{k=0}^{n} \binom{M}{k} \binom{N-M}{n-k} = \binom{N}{n}
     $$
-    Računsko v $\sum_{k=0}^n p_k$ se privzame: 
+    Računsko lahko enakost $\sum_{k=0}^n p_k$ preverimo takole: 
     $$
     (1+x)^N=(1+x)^M(1+x)^{N-M}
     $$
@@ -1366,7 +1365,7 @@ $$
     $$
     Koeficient pri $x^n$ na levi je $\binom{N}{n}$, na desni pa: 
     $$
-    \sum_{i+j=n}\binom{M}{i}\binom{N-m}{j}=\sum_{k=0}^m\binom{M}{k}\binom{N-M}{n-k}
+    \sum_{i+j=n}\binom{M}{i}\binom{N-M}{j}=\sum_{k=0}^m\binom{M}{k}\binom{N-M}{n-k}
     $$
     Tako je vsota res 1. 
 
@@ -1374,7 +1373,7 @@ $$
         V jezeru je $N$ rib, od tega je $M$ krapov. Ulovimo $n$ rib. Naj bo $X$ število ujetih krapov. $X \sim \operatorname{Hip}(n;M,N)$.
     \end{zgled}
 
-    Vzemimo, da je $n \ll \min\{M, N-M\}$. Tedaj ne naredimo velike napake, če krogljice vrečamo. Tedaj je $X \sim \operatorname{Bin}(n, \frac{M}{N})$ ozirioma $p_k = \binom{n}{k} \left(\frac{M}{N}\right)^k \left(\frac{N-M}{N}\right)^{n-k}$ za $k=0, 1, \ldots , n.$
+    Vzemimo, da je $n \ll \min\{M, N-M\}$. Tedaj ne naredimo velike napake, če kroglice vrečamo. Tedaj je $X \sim \operatorname{Bin}(n, \frac{M}{N})$ ozirioma $p_k = \binom{n}{k} \left(\frac{M}{N}\right)^k \left(\frac{N-M}{N}\right)^{n-k}$ za $k=0, 1, \ldots , n.$
 
 \end{enumerate}
 
@@ -1396,7 +1395,7 @@ $$
 \int_{-\infty}^{\infty} p(t) \, d t=1
 $$ 
 
-\n Če je $p$ zvezna v toči $x$, potem je $F$ odvedljiva v $x$ in velja $F^{\prime}(x)=p(x)$. 
+\n Če je $p$ zvezna v točki $x$, potem je $F$ odvedljiva v $x$ in velja $F^{\prime}(x)=p(x)$. 
 
 \n Za vsak $x \in \mathbb{R}$ velja $P(X=x)=F(x)-F(x-)=0$. Če je $x_1 \leq x_2$, je potem:
 $$
@@ -1495,7 +1494,7 @@ $$
             \end{axis}
         \end{tikzpicture}
 
-        \caption{$p_X(x)$ za normalno porazdelitev}
+        \caption{$F_X(x)$ za enakomerno porazdelitev}
         \label{fig:10}
     \end{figure}
 
@@ -1530,7 +1529,7 @@ $$
             \end{axis}
         \end{tikzpicture}
 
-        \caption{Verjetnostni prostor $\Omega$}
+        \caption{$p_X(x)$ za normalno porazdelitev}
         \label{fig:11}
     \end{figure}
 
@@ -1760,11 +1759,11 @@ $$
     $$
     Velja: 
     $$
-    \int_{-\infty}^{\infty} p(x) \, d x=\frac{c^b}{\Gamma(b)} \int_{-\infty}^{\infty} x^{b-1} e^{-c x} \, d x=\frac{1}{\Gamma(b)} \int_{-\infty}^{\infty} \underbrace{(c x)^{k-1} e^{-c x} \, d(c x)}_{\Gamma(b)}=1
+    \int_{-\infty}^{\infty} p(x) \, d x=\frac{c^b}{\Gamma(b)} \int_{-\infty}^{\infty} x^{b-1} e^{-c x} \, d x=\frac{1}{\Gamma(b)} \underbrace{\int_{-\infty}^{\infty} (c x)^{b-1} e^{-c x} \, d(c x)}_{\Gamma(b)}=1
     $$
-    Gama porazdelitev je poseben primer eksponentne: $\Gamma(1,\lambda) = \operatorname{Exp}(\lambda)$.
+    Eksponentna je poseben primer gama porazdelitve: $\Gamma(1,\lambda) = \operatorname{Exp}(\lambda)$.
 
-    \item \emph{Porazdelitev $\chi^2(n)$} (posebna porazdelitev gama), $n \in \mathbb{N}$ prostorska stopnja:
+    \item \emph{Porazdelitev $\chi^2(n)$} (poseben primer porazdelitve gama), $n \in \mathbb{N}$ prostostna stopnja:
     $$
     p(x)=\begin{cases}
         \frac{1}{2^{\frac{n}{2}} \Gamma\left(\frac{n}{2}\right)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}} &; \text { če } x>0 \\
@@ -1936,7 +1935,7 @@ Velja, da če je $A$ dovolj \enquote{lepa} množica, recimo števna/končna unij
 
 \n Za vsak $x \in \mathbb{R}^n$ je $F(x) \in[0, 1]$.
 
-\n Glede na vsako spremenljivko je $F$ naraščujoča in z desne zvezna:
+\n Glede na vsako spremenljivko je $F$ naraščojoča in z desne zvezna:
 $$
 \begin{aligned}
     &\lim _{x_i \to \infty \, \forall i} F\left(x_1, \ldots, x_n\right)=1 \\
@@ -2014,7 +2013,7 @@ $$
 $$
 Izpeljimo analog formule $P\left(x_1<X \leq x_2\right)=F\left(x_2\right)-F\left(x_1\right)$, t.j. s pomočjo porazdelitvene funkcije $F_{(X, Y)}=F$ izračunajmo verjetnost:
 $$
-P(a<X \leq b, c<y \leq d)
+P(a<X \leq b, c<Y \leq d)
 $$
 Najprej si oglejmo:
 $$
@@ -2075,7 +2074,7 @@ $$
 $$
 p_{k_1, k_2, \ldots, k_n} = P\left(X_1=x_{k_1}, X_2=x_{k_2}, \ldots, X_n=x_{k_n}\right) \geq 0 \quad \text{in} \quad \sum_{k_1, \ldots, k_n} p_{k_1, \ldots, k_n}=1
 $$
-Omejimo se na $n=2$: $(X, Y): \Omega \to \mathbb{R}^2$ z največ števno zalogo vrednosti. Naj bo $\left\{x_1, x_2, \ldots\right\}$ zaloga vrednosti za $X$, $\left\{y_1, y_2, \ldots\right\}$ pa zaloga vrednosti za $Y$. Očitno je zaloga vrednosti $(X,Y)$ vsbovana v množica:
+Omejimo se na $n=2$: $(X, Y): \Omega \to \mathbb{R}^2$ z največ števno zalogo vrednosti. Naj bo $\left\{x_1, x_2, \ldots\right\}$ zaloga vrednosti za $X$, $\left\{y_1, y_2, \ldots\right\}$ pa zaloga vrednosti za $Y$. Očitno je zaloga vrednosti $(X,Y)$ vsebovana v množici:
 $$
 \left\{\left(x_i, y_j\right): i=1,2, \ldots, j=1,2, \ldots\right\}
 $$
@@ -2119,12 +2118,12 @@ $$
 
 \n Slučajne spremenljivke $X_1, X_2, \ldots, X_n$ so \emph{neodvisne}, če velja: 
 $$
-F_{\left(X_1, X_2, \ldots, X_n\right)}\left(x_1, x_2, \ldots, x_n\right)=F_{X_1}\left(x_n\right) \cdot F_{X_2}\left(x_2\right) \cdots F_{x_n}\left(x_n\right)
+F_{\left(X_1, X_2, \ldots, X_n\right)}\left(x_1, x_2, \ldots, x_n\right)=F_{X_1}\left(x_1\right) \cdot F_{X_2}\left(x_2\right) \cdots F_{x_n}\left(x_n\right)
 $$
-za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\left(X_1 \leq x_1\right),\left(X_2 \leq x_2\right), \ldots,\left(X_n \leq x_n\right)$ so neodvisni.
+za vse $\left(x_1, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\left(X_1 \leq x_1\right),\left(X_2 \leq x_2\right), \ldots,\left(X_n \leq x_n\right)$ so neodvisni.
 
 \begin{trditev}
-    Naj bo $(X,Y)$ diskretno porazdeljen slučajni vektor. Naj bo $p_{i j}=P\left(X=x_i, Y=y_j\right), p_i=P\left(x=x_i\right), q_j=P\left(Y=y_j\right)$ za $i=1, 2, \ldots$, $j=1, 2, \ldots$ Potem sta $X$ in $Y$ neodvisni slučajni spremenljivki $\iff$ $p_{i j}=p_i \cdot q_j \quad \forall i, \forall j$. 
+    Naj bo $(X,Y)$ diskretno porazdeljen slučajni vektor. Naj bo $p_{i j}=P\left(X=x_i, Y=y_j\right), p_i=P\left(X=x_i\right), q_j=P\left(Y=y_j\right)$ za $i=1, 2, \ldots$, $j=1, 2, \ldots$ Potem sta $X$ in $Y$ neodvisni slučajni spremenljivki $\iff$ $p_{i j}=p_i \cdot q_j \quad \forall i, \forall j$. 
 \end{trditev}
 
 \begin{proof}
@@ -2197,7 +2196,7 @@ za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\lef
     
     \begin{enumerate}
         \item $X \sim \operatorname{Ber}(p), p >0$, $X:\left(\begin{array}{cc} 0 & 1 \\ q & p \end{array}\right)$: $E(X)=0 \cdot q+1 \cdot p=p$
-        \item \emph{Izrojena} ali \emph{degenerirana} slučajna spremenljivka $\exists x_0 \in \mathbb{R}: P\left(X=x_0\right)=1$, t.j.: $X:\left(\begin{array}{c} x_0 \\ 1 \end{array}\right)$: $E(X)=x_0 \cdot 1=x_0$
+        \item \emph{Izrojena} ali \emph{degenerirana} slučajna spremenljivka: $\exists x_0 \in \mathbb{R}: P\left(X=x_0\right)=1$, t.j.: $X:\left(\begin{array}{c} x_0 \\ 1 \end{array}\right)$: $E(X)=x_0 \cdot 1=x_0$
         \item $X \sim \operatorname{Poi}(\lambda), \lambda >0$, $p_k=\frac{\lambda^k}{k !}  e^{-\lambda}$ in $x_k = k$, za $k=0, 1, 2, \ldots$:
         $$
         \begin{aligned}
@@ -2357,7 +2356,7 @@ za vse $\left(x_2, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\lef
         $$
         E(X)=E\left(X_1\right)+\cdots+E\left(X_n\right)=n p
         $$
-        Posebej: imejmo Bernoullijevo zaporedje neodvisnih ponovitev poskusa $A$, $P(A)=p$. $X_k:\left(\begin{array}{cc}0 & 1 \\1-p & p\end{array}\right)$ in $(X_k=1)$, če se dogodek $A$ zgodi v $k$-ti ponovitvi poskusa. Potem je $X=X_1+\cdots+X_n$ frekvenca dogodka $A$ v $n$ ponovitvah. Tedaj je $X \sim \operatorname{Bin}(n,p)$.
+        Posebej: imejmo Bernoullijevo zaporedje neodvisnih ponovitev poskusa in $A$ dogodek, s $P(A)=p$. $X_k:\left(\begin{array}{cc}0 & 1 \\1-p & p\end{array}\right)$ in $(X_k=1)$, če se dogodek $A$ zgodi v $k$-ti ponovitvi poskusa. Potem je $X=X_1+\cdots+X_n$ frekvenca dogodka $A$ v $n$ ponovitvah. Tedaj je $X \sim \operatorname{Bin}(n,p)$.
 
         Torej je $E(X)=n p$. To se lahko vidi tudi direktno: 
         $$
@@ -2778,7 +2777,7 @@ $$
 \section{Kovarianca}
 
 \begin{definicija}
-    \emph{Kovarianca} slučajne spremenljivke $X$ in $Y$ se definirana kot: 
+    \emph{Kovarianca} slučajne spremenljivke $X$ in $Y$ se definira kot: 
     $$
     \begin{aligned}
         K(Y, X) \equiv \operatorname{Cov}(X, Y)&:= E((X-E(X)) (Y-E(Y))) \\
@@ -2830,7 +2829,7 @@ $$
     $$
     D\left(X_1+\cdots+X_n\right)=\sum_{k=1}^n D\left(X_k\right)+2 \sum_{i=1}^{n-1} \sum_{j=i+1}^n K\left(X_i, X_j\right)
     $$
-    Posebej: če so $X_1, \ldots X_n$ paroma nekorelirane potem je: 
+    Posebej: če so $X_1, \ldots X_n$ paroma nekorelirane, potem je: 
     $$
     D\left(X_1+\cdots+X_n\right)=D\left(X_1\right)+\cdots+D\left(X_n\right)
     $$
@@ -2921,7 +2920,7 @@ $$
     $$    
 \end{definicija}
 
-\n Ima enake lastnosti kot porazdelitvena funkcija $F_X(x)$. Pogosto je $B$ povezan z neku drugo slučajno spremenljivko, npr. $Y$. 
+\n Ima enake lastnosti kot porazdelitvena funkcija $F_X(x)$. Pogosto je $B$ povezan z neko drugo slučajno spremenljivko, npr. $Y$. 
 
 \n \textbf{Omejimo se na diskretne porazdelitve:}
 
@@ -2947,7 +2946,7 @@ Tedaj je:
 $$
 F_X\left(x \mid Y=y_j\right)=\sum_{i: x_i \leq x} p_{i \mid j}
 $$
-\emph{Pogojno matematično upanje} slučajne spremenljivke $X$ gleda na $Y=y_j$ je matematično upanje te porazdelitve: 
+\emph{Pogojno matematično upanje} slučajne spremenljivke $X$ glede na $Y=y_j$ je matematično upanje te porazdelitve: 
 $$
 E\left(X \mid y_j\right) \equiv E\left(X \mid Y=y_j\right)=\sum_i x_i \, p_{i \mid j}=\frac{1}{q_j} \sum_i x_i \, p_{i j}
 $$
@@ -2985,14 +2984,14 @@ $$
     &=E(X)
 \end{aligned}
 $$
-Vzemeimo, da sta $X$ in $Y$ neodvisni. Tedaj: 
+Vzemimo, da sta $X$ in $Y$ neodvisni. Tedaj: 
 $$
 p_{i \mid j}=\frac{p_{i j}}{q_j}=p_i \implies E\left(X \mid y_j\right)=\sum_i x_i\, p_i=E(X)
 $$
 Torej je $E(X \mid Y)$ v tem primeru izrojena slučajna spremenljivka.
 
 \begin{zgled}
-    Kokš znese $N$ jajc, kjer je $N$ slučajna spremenljivka, porazdeljena Poissonovo, t.j. $N \sim \operatorname{Poi}(\lambda)$ za $\lambda > 0$. Iz vsakega jajca se zvali piščanec s verjetnostjo $p \in (0,1)$, neodvisno od drugih jajc. 
+    Kokš znese $N$ jajc, kjer je $N$ slučajna spremenljivka, porazdeljena Poissonovo, t.j. $N \sim \operatorname{Poi}(\lambda)$ za $\lambda > 0$. Iz vsakega jajca se zvali piščanec z verjetnostjo $p \in (0,1)$, neodvisno od drugih jajc. 
 
     \n Naj bo $K$ število izvaljenih piščancev. Določimo $E(K \mid N), E(K) \text { in } E(N \mid K)$.
     \begin{flalign*}
@@ -3017,7 +3016,7 @@ Torej je $E(X \mid Y)$ v tem primeru izrojena slučajna spremenljivka.
         &=\frac{1}{(n-k) !} q^{n-k} \, \lambda^{n-k} e^{-q \lambda} & \\
         &=\frac{(q \lambda)^{n-k}}{(n-k) !} e^{-q \lambda} &
     \end{flalign*}
-    Kjer smo v $(\star)$ vrstici uporabili Bayesovo formulo. Dobimo torej Poissonova porazdelitev, premaknjeno za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
+    Kjer smo v $(\star)$ dejansko uporabili Bayesovo formulo. Dobimo torej Poissonova porazdelitev, premaknjeno za $k$ v desno: $k + \operatorname{Poi}(q \lambda)$. Zato je regresijska funkcija:
     $$
     \varphi(k)=E(N \mid K=k)=E(k+ \operatorname{Poi}(q \lambda))=k+q \lambda
     $$
@@ -3080,7 +3079,7 @@ $$
     $$
     G_X(s)=G_Y(s) \iff P(X=k)=P(Y=k) \quad \text{za vse} \quad k=0, 1, 2, \ldots
     $$
-    Tedej velja: 
+    Tedaj velja: 
     $$
     P(X=k)=\frac{1}{k !} G_X^{(k)}(0)
     $$ 
@@ -3156,10 +3155,10 @@ $$
 
 \s
 
-\n Kakšne so rodovne funkcije slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_N$, kjer so $X_1, X_2, \ldots$ enako porazdeljene in $N$ slučajna spremenljivka z rodovno funkcijo $G_N$?
+\n Kakšna je rodovna funkcija slučajne spremenljivke $S_N=X_1 + X_2 + \cdots + X_N$, kjer so $X_1, X_2, \ldots$ enako porazdeljene in $N$ slučajna spremenljivka z rodovno funkcijo $G_N$?
 
 \begin{izrek}
-    Naj bodo za vsak $n \in \mathbb{N}$ slučajne spremenljivke $N, X_1, X_2, \ldots, X_n$. Naj ima $N$ rodovno funkcijo $G_N$, $X_n$ pa rodovno funkcijo $G_X$ za vsak $n \in \mathbb{N}$. Potem ima slučajna spremenljivka $S=X_1+X_2+\cdots+X_N$ rodovno funkcijo: 
+    Naj bodo za vsak $n \in \mathbb{N}$ slučajne spremenljivke $N, X_1, X_2, \ldots, X_n$ neodvisne. Naj ima $N$ rodovno funkcijo $G_N$, $X_n$ pa rodovno funkcijo $G_X$ za vsak $n \in \mathbb{N}$. Potem ima slučajna spremenljivka $S=X_1+X_2+\cdots+X_N$ rodovno funkcijo: 
     $$
     G_S(s)=G_N\left(G_X(s)\right) \quad \text{za} \quad s \in [-1,1]
     $$
@@ -3731,7 +3730,7 @@ To pomeni razpršenost, ki je nadomestek za standardno deviacijo.
     $$
     M_X(t)=E\left(e^{t  X}\right)
     $$
-    za tiste $t \in \mathbb{R}$ za katere obstaja matematično upanje, t.j.: $E\left(e^{t X}\right)<\infty$.    
+    za tiste $t \in \mathbb{R}$, za katere obstaja matematično upanje, t.j.: $E\left(e^{t X}\right)<\infty$.    
 \end{definicija}
 
 \n Kadar ima $X$ vrednosti v $\mathbb{N} \cup \{0\}$, je: 
