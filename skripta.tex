@@ -576,7 +576,7 @@ Ker po de-Morganu velja $\bigcap_i A_i=\left(\bigcup_i A_i^c\right)^c$, je algeb
             &\quad P(\text{prvič belo}) = \frac{6}{9} = \frac{2}{3} & \\
             &\quad P(\text{prvič in drugič belo}) = \frac{4}{9} & \\
             &\quad P(\text{drugič belo | prvič belo}) = \frac{4 / 9}{6 / 9}=\frac{4}{6}=\frac{2}{3} & \\
-            &\quad P(\text{drugič belo}) = \frac{6}{5}=\frac{2}{3} & 
+            &\quad P(\text{drugič belo}) =\frac{2}{3} & 
         \end{flalign*}
 
         \item Kroglic ne vračamo. 
@@ -1589,7 +1589,7 @@ $$
     \end{figure}
 
     $$
-    F(x)=\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, d t \stackrel{(\star)}{=} \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}s^2} \, ds = \frac{1}{2}+\Phi\left(\frac{x-\mu}{\sigma}\right)
+    F(x)=\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{1}{2}\left(\frac{t-\mu}{\sigma}\right)^2} \, d t \stackrel{(\star)}{=} \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}s^2} \, ds = \frac{1}{2}+\Phi\left(\frac{x-\mu}{\sigma}\right)
     $$
 
     Kjer smo v enakosti $(\star)$ uvedli novo spremenljivko $s=\frac{t-\mu}{\sigma}$. Tukaj je: 
@@ -2143,7 +2143,7 @@ za vse $\left(x_1, x_2, \ldots x_n\right) \in \mathbb{R}^n$, torej dogodki $\lef
 
     \n $(\impliedby)$:
     \begin{align*}
-        \quad F_{(X, Y)}(x, y)&=\sum_{\left\{i,j: x_i \leq x_1,y_j \leq y\right\}} p_{i j} & \\
+        \quad F_{(X, Y)}(x, y)&=\sum_{\left\{i,j: x_i \leq x,y_j \leq y\right\}} p_{i j} & \\
         &=\sum_{\left\{i,j: x_i \leq x,y_j \leq y\right\}} p_i \cdot p_j & \\
         &=\left(\sum_{\{i: x_i \leq x\}} p_i\right) \cdot \left(\sum_{\{j: y_j \leq y\}} q_j\right) & \\
         &=P(X \leq x) \cdot P(Y \leq y) & \\
@@ -2692,7 +2692,7 @@ $$
     \begin{proof}
         \begin{flalign*}
             \quad E(X) & =\int_0^{\infty} x \lambda e^{-\lambda x} \, d x & \\
-            & =\left.-x \exp (-\lambda x)\right|_0^{\infty}+\int_0^{\infty} e^{-\lambda x} \,d x & \tag{$\star$} \\
+            & =\left.-x e^{(-\lambda x)}\right|_0^{\infty}+\int_0^{\infty} e^{-\lambda x} \,d x & \tag{$\star$} \\
             & =(0-0)+\left.-\frac{1}{\lambda} e^{-\lambda x}\right|_0^{\infty} & \\
             & =0+\left(0+\frac{1}{\lambda}\right) & \\
             & =\frac{1}{\lambda} & 
@@ -2701,7 +2701,7 @@ $$
             \quad E\left(X^2\right) & =\int_0^{\infty} x^2 \lambda e^{-\lambda x} \, d x & \\
             & =\left.-x^2 e^{-\lambda x}\right|_0^{\infty}+\int_0^{\infty} 2 x e^{-\lambda x} \, d x & \tag{$\star$} \\
             & =0+2 \frac{1}{\lambda} \int_0^{\infty} x \lambda e^{-\lambda x} \, d x & \\
-            & =2 \frac{1}{\lambda} \mathrm{E}(X) & \\
+            & =2 \frac{1}{\lambda} E(X) & \\
             & =2 \left( \frac{1}{\lambda} \right)^2 &
         \end{flalign*}
         Kjer smo v $(\star)$ vrsticah uporabili metodo per-partes.
@@ -3336,7 +3336,7 @@ F(x-) \leq \frac{1}{2} \leq F(x)
 $$
 Če je $X$ zvezno porazdeljena, je pogoj enak:
 $$
-F(x) = \frac{1}{2} \iff \int_{-\infty}^{x} p_X(x) \, d x=\frac{1}{2}
+F(x) = \frac{1}{2} \iff \int_{-\infty}^{x} p_X(t) \, d t=\frac{1}{2}
 $$
 Te vrednosti (lahko jih je več) označimo z $x_{\frac{1}{2}}$.
 
